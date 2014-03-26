@@ -2,7 +2,6 @@
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-
  switch(message)
  {
    case WM_CLOSE:
@@ -12,35 +11,45 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
      return DefWindowProc(hWnd, message, wParam, lParam);
  }
  return 0;
-
 }
-Window::Window(HINSTANCE _hInstance, int _nCmdShow)
+
+Window::Window(int _nCmdShow)
 {
-	hInstance = _hInstance;
 	nCmdShow = _nCmdShow;
-	WNDCLASS _wc = {0};
-	wc = _wc;
+	WNDCLASS _wc = {0}; wc = _wc; // Creo otra clase Window inicializando todo en 0. VS2010 no me deja inicializar la de la clase.
 	wc.lpfnWndProc=WndProc;
-	wc.hInstance=hInstance;
+	wc.hInstance=GetModuleHandle(NULL);
 	wc.hbrBackground=(HBRUSH)(COLOR_BACKGROUND);
 	wc.lpszClassName="myengineWindow";
-	
-	bool b = RegisterClass(&wc);
 };
 
-bool Window::Create(unsigned int w, unsigned int h)
+bool Window::CreateWnd(unsigned int width, unsigned int height)
 {
-	 hwnd = CreateWindow(wc.lpszClassName,
-						"Create Window",
-						WS_OVERLAPPEDWINDOW|WS_VISIBLE,
-						0,0,w,h,0,0,hInstance,NULL);
+	if (!RegisterClass(&wc))
+	{
+		return false;
+		//Error al registrar la clase window.
+	}
+	hwnd = CreateWindow(	wc.lpszClassName,					//LPCTSTR lpClassName,
+							"Create Window",					//LPCTSTR lpWindowName,
+							WS_OVERLAPPEDWINDOW|WS_VISIBLE,		//DWORD dwStyle,
+							0,									//int x,
+							0,									//int y,
+							width,								//int nWidth,
+							height,								//int nHeight,
+							0,									//HWND hWndParent,
+							0,									//HMENU hMenu,
+							GetModuleHandle(NULL),				//HINSTANCE hInstance,
+							NULL								//LPVOID lpParam
+						);
 	 if (hwnd != NULL)
 	 {
-		 GetMsg();
+		 GetMsg(); // Message loop. 
 		 return true;
 	 }
 	 return false;
 }
+
 void Window::Show()
 {
 	ShowWindow(hwnd, nCmdShow);
