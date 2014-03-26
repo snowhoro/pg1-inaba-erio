@@ -18,25 +18,25 @@ Window::Window(HINSTANCE _hInstance, int _nCmdShow)
 {
 	hInstance = _hInstance;
 	nCmdShow = _nCmdShow;
-	WNDCLASS _wc ={0};
-	_wc.lpfnWndProc=WndProc;
-	_wc.hInstance=hInstance;
-	_wc.hbrBackground=(HBRUSH)(COLOR_BACKGROUND);
-	_wc.lpszClassName="myengineWindow";
-	wc = _wc;
+	wc = {0};
+	wc.lpfnWndProc=WndProc;
+	wc.hInstance=hInstance;
+	wc.hbrBackground=(HBRUSH)(COLOR_BACKGROUND);
+	wc.lpszClassName="myengineWindow";
 	bool b = RegisterClass(&wc);
 };
 
 bool Window::Create(unsigned int w, unsigned int h)
 {
 	 hwnd = CreateWindow(wc.lpszClassName,
-						"Create Window",
-						WS_OVERLAPPEDWINDOW|WS_VISIBLE,
+						"Window Name",
+						WS_CAPTION | WS_VISIBLE | WS_SYSMENU,
 						0,0,w,h,0,0,hInstance,NULL);
 	 if (hwnd == NULL)
 	 {
 		 return false;
 	 }
+
 	 return true;
 }
 void Window::Show()
