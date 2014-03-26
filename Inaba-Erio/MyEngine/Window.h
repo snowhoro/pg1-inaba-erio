@@ -5,17 +5,16 @@
 class MYENGINE_API Window
 {
 	private:
-		MSG msg;        
 		WNDCLASS wc;
 		HINSTANCE hInstance;
 		int nCmdShow;
 		HWND hwnd;
+		WPARAM GetMsg();
 
 	public:
 		Window(HINSTANCE,int);
 		bool Create(unsigned int, unsigned int);
 		void Show();
-		WPARAM GetMsg();
 };
 
 #endif

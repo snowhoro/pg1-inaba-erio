@@ -18,12 +18,13 @@ Window::Window(HINSTANCE _hInstance, int _nCmdShow)
 {
 	hInstance = _hInstance;
 	nCmdShow = _nCmdShow;
-	WNDCLASS _wc ={0};
-	_wc.lpfnWndProc=WndProc;
-	_wc.hInstance=hInstance;
-	_wc.hbrBackground=(HBRUSH)(COLOR_BACKGROUND);
-	_wc.lpszClassName="myengineWindow";
+	WNDCLASS _wc = {0};
 	wc = _wc;
+	wc.lpfnWndProc=WndProc;
+	wc.hInstance=hInstance;
+	wc.hbrBackground=(HBRUSH)(COLOR_BACKGROUND);
+	wc.lpszClassName="myengineWindow";
+	
 	bool b = RegisterClass(&wc);
 };
 
@@ -33,11 +34,12 @@ bool Window::Create(unsigned int w, unsigned int h)
 						"Create Window",
 						WS_OVERLAPPEDWINDOW|WS_VISIBLE,
 						0,0,w,h,0,0,hInstance,NULL);
-	 if (hwnd == NULL)
+	 if (hwnd != NULL)
 	 {
-		 return false;
+		 GetMsg();
+		 return true;
 	 }
-	 return true;
+	 return false;
 }
 void Window::Show()
 {
@@ -46,6 +48,7 @@ void Window::Show()
 }
 WPARAM Window::GetMsg()
 {
+	MSG msg; 
 	while(GetMessage(&msg, NULL, 0, 0) > 0)
     {
         TranslateMessage(&msg);
