@@ -1,4 +1,4 @@
-#include "Window.h"
+﻿#include "Window.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -14,30 +14,44 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
  return 0;
 
 }
-Window::Window(HINSTANCE _hInstance, int _nCmdShow)
+Window::Window(int _nCmdShow)
 {
-	hInstance = _hInstance;
 	nCmdShow = _nCmdShow;
 	wc = {0};
 	wc.lpfnWndProc=WndProc;
-	wc.hInstance=hInstance;
+	wc.hInstance=GetModuleHandle(NULL);
 	wc.hbrBackground=(HBRUSH)(COLOR_BACKGROUND);
 	wc.lpszClassName="myengineWindow";
-	bool b = RegisterClass(&wc);
 };
 
-bool Window::Create(unsigned int w, unsigned int h)
+bool Window::Create(unsigned int width, unsigned int height)
 {
-	 hwnd = CreateWindow(wc.lpszClassName,
-						"Window Name",
-						WS_CAPTION | WS_VISIBLE | WS_SYSMENU,
-						0,0,w,h,0,0,hInstance,NULL);
-	 if (hwnd == NULL)
+
+	if (!RegisterClass(&wc)){
+		return false;
+		//Error al registrar la clase window
+	}
+	hwnd = CreateWindow(
+		wc.lpszClassName,					//LPCTSTR lpClassName
+		"Window",							//LPCTSTR lpWindowName
+		WS_OVERLAPPEDWINDOW | WS_VISIBLE,	//DWORD dwStyle
+		0,									//int X
+		0,									//INT Y
+		width,								//int nWidth
+		height,							//int nHeight
+		0,									//HWND hWndParent
+		0,									//HMENU hMenu
+		GetModuleHandle(NULL),				//HINSTANCE hInstance
+		NULL								//LPVOID lpParam
+		);
+						
+	 if (hwnd != NULL)
 	 {
-		 return false;
+		 GetMsg();
+		 return true;
 	 }
 
-	 return true;
+	 return false;
 }
 void Window::Show()
 {
@@ -46,6 +60,7 @@ void Window::Show()
 }
 WPARAM Window::GetMsg()
 {
+	MSG msg;
 	while(GetMessage(&msg, NULL, 0, 0) > 0)
     {
         TranslateMessage(&msg);
