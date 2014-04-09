@@ -20,7 +20,7 @@ bool Window::Create(unsigned int w, unsigned int h)
 	_hWnd = CreateWindow(_wc->lpszClassName,
 						"Create Window",
 						WS_OVERLAPPEDWINDOW|WS_VISIBLE,
-						0,0,w,h,0,0,_hInstance,NULL);
+						0,0,w+8,h+30,0,0,_hInstance,NULL);
 	 if (_hWnd != NULL)
 	 {
 		 return true;
