@@ -1,19 +1,17 @@
 #ifndef WINDOW_H
 #define WINDOW_H
-#include "myengine_api.h"
 #include <windows.h>
-class MYENGINE_API Window
+class Window
 {
 	private:
-		int nCmdShow;
-		WNDCLASS wc;
-		HWND hwnd;
-		WPARAM GetMsg();
-
+		WNDCLASS *_wc;
+		HWND _hWnd;
+		HINSTANCE _hInstance;
 	public:
-		Window(int nCmdShow); // Constructor 
-		bool CreateWnd(unsigned int width, unsigned int height);
-		void Show();
+		Window(HINSTANCE);
+		bool Create(unsigned int, unsigned int);
+		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+		HWND hWnd();
 };
 
 #endif
