@@ -4,7 +4,6 @@ Renderer::Renderer():
 _d3d(new LPDIRECT3D9()),
 _d3ddev(new LPDIRECT3DDEVICE9())
 {
-	// NO HAGO NADA? T.T
 }
 Renderer::~Renderer()
 {
@@ -35,7 +34,7 @@ bool Renderer::Init(HWND hWnd)
 }
 void Renderer::BeginFrame()
 {
-	(*_d3ddev)->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 45, 100), 1.0f, 0);
+	(*_d3ddev)->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 255), 1.0f, 0);
     (*_d3ddev)->BeginScene();
 }
 void Renderer::EndFrame()
