@@ -4,6 +4,9 @@
 #include <windows.h>
 #include "myengine_api.h"
 
+namespace Inaba
+{
+
 class Renderer;
 class Window;
 
@@ -20,4 +23,6 @@ class MYENGINE_API Engine
 		bool Init();
 		void Run();
 };
+
+}
 #endif
