@@ -1,10 +1,12 @@
 #include "Window.h"
 
+using namespace Inaba;
+ 
 Window::Window(HINSTANCE hInstance):
 _wc(new WNDCLASS),
 _hWnd(NULL),
 _hInstance(hInstance)
-{	
+{
 }
 
 bool Window::Create(unsigned int w, unsigned int h)
@@ -22,9 +24,7 @@ bool Window::Create(unsigned int w, unsigned int h)
 						WS_OVERLAPPEDWINDOW|WS_VISIBLE,
 						0,0,w+8,h+30,0,0,_hInstance,NULL);
 	 if (_hWnd != NULL)
-	 {
 		 return true;
-	 }
 	 return false;
 }
 

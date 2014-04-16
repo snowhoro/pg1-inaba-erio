@@ -1,6 +1,10 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 #include <windows.h>
+
+namespace Inaba
+{
+
 class Window
 {
 	private:
@@ -14,4 +18,5 @@ class Window
 		HWND hWnd();
 };
 
+}
 #endif

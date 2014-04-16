@@ -12,6 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="testGame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="testGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9D161E36-8FCA-489C-BA34-C2A74FB56EEF}</ProjectGuid>

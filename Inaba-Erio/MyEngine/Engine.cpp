@@ -2,6 +2,8 @@
 #include "Renderer.h"
 #include "Window.h"
 
+using namespace Inaba;
+ 
 Engine::Engine(HINSTANCE hInstance, int width, int height):
 _window(new Window(hInstance)),
 _renderer(new Renderer),
