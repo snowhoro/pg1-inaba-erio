@@ -9,12 +9,13 @@ namespace Inaba
 
 class Renderer;
 class Window;
-
+class Game;
 class MYENGINE_API Engine
 {
 	private:
 		Window *_window;
 		Renderer *_renderer;
+		//Game *_game;
 		int _width;
 		int _height;
 	public:
@@ -22,6 +23,7 @@ class MYENGINE_API Engine
 		~Engine();
 		bool Init();
 		void Run();
+		Game *_game;
 };
 
 }

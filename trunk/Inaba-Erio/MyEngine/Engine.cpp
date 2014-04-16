@@ -1,12 +1,13 @@
 #include "Engine.h"
 #include "Renderer.h"
 #include "Window.h"
-
+#include "Game.h"
 using namespace Inaba;
  
 Engine::Engine(HINSTANCE hInstance, int width, int height):
 _window(new Window(hInstance)),
 _renderer(new Renderer),
+_game(NULL),
 _width(width),
 _height(height)
 {
@@ -28,8 +29,16 @@ void Engine::Run()
 	bool GameOn = true;
 	MSG msg;
 	
+	if(!_game)
+		return;
+	if(!_game->Init(*_renderer))
+		return;
+
 	while(GameOn)
 	{
+		_renderer->BeginFrame();
+		_game->Frame(*_renderer);
+		_renderer->EndFrame();
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -38,8 +47,5 @@ void Engine::Run()
 
 		if(msg.message == WM_QUIT)
 			GameOn = false;
-
-		_renderer->BeginFrame();
-		_renderer->EndFrame();
 	}
 }
