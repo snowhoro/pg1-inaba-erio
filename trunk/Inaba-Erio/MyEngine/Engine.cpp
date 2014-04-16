@@ -16,6 +16,7 @@ Engine::~Engine()
 {
 	delete _window;
 	delete _renderer;
+	delete _game;
 }
 bool Engine::Init()
 {
@@ -36,9 +37,12 @@ void Engine::Run()
 
 	while(GameOn)
 	{
-		_renderer->BeginFrame();
-		_game->Frame(*_renderer);
-		_renderer->EndFrame();
+		if (_renderer != NULL || _game!= NULL)
+		{
+			_renderer->BeginFrame();
+			_game->Frame(*_renderer);
+			_renderer->EndFrame();
+		}
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);

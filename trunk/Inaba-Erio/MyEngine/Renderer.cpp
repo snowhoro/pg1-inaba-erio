@@ -24,6 +24,9 @@ Renderer::~Renderer()
 	delete _d3d;
 	_d3ddev->Release();
 	delete _d3ddev;
+	//_vertexbuffer->release();
+	delete _vertexbuffer;
+	_vertexbuffer = NULL;
 }
 bool Renderer::Init(HWND hWnd)
 {
