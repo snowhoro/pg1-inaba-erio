@@ -54,6 +54,7 @@ void Renderer::BeginFrame()
 }
 void Renderer::EndFrame()
 {
+	_vertexbuffer->flush();
 	_d3ddev->EndScene();
     _d3ddev->Present(NULL, NULL, NULL, NULL);
 }

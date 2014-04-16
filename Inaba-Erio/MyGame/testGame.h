@@ -9,11 +9,13 @@ namespace Erio
 class Game : public Inaba::Game
 {
 public:
+	Game();
 	bool Init(Inaba::Renderer&);
 	void Frame(Inaba::Renderer&);
 	void DeInit();
+
 private:
-	//Inaba::
+	Inaba::ColorVertex _vertex[4];
 };
 
 }
