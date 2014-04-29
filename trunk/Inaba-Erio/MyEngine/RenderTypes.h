@@ -12,7 +12,7 @@ namespace Inaba
 		float x, y, z;
 		DWORD color;
 	};
-	extern const int ColorVertexType;
+	extern const DWORD ColorVertexType;
 
 	enum Primitive
 	{
@@ -23,6 +23,14 @@ namespace Inaba
 		LineStrip,
 		TriangleFan,
 		PrimitiveCount
+	};
+
+	enum MatrixType
+	{
+		View = 0,
+		Projection,
+		World,
+		MatrixTypeCount
 	};
 }
 #endif

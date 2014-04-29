@@ -12,6 +12,13 @@ D3DPRIMITIVETYPE primitivesMapping[Inaba::PrimitiveCount] =
 	D3DPT_TRIANGLEFAN
 };
 
+D3DTRANSFORMSTATETYPE MatrixTypeMapping[MatrixTypeCount] =
+{
+	D3DTS_VIEW,
+	D3DTS_PROJECTION,
+	D3DTS_WORLD
+};
+
 Renderer::Renderer():
 _d3d(NULL),
 _d3ddev(NULL),
@@ -21,10 +28,11 @@ _vertexbuffer(NULL)
 Renderer::~Renderer()
 {
 	_d3d->Release();
-	delete _d3d;
+	_d3d = NULL;
+	
 	_d3ddev->Release();
-	delete _d3ddev;
-	//_vertexbuffer->release();
+	_d3ddev = NULL;
+	
 	delete _vertexbuffer;
 	_vertexbuffer = NULL;
 }
@@ -43,12 +51,28 @@ bool Renderer::Init(HWND hWnd)
 							D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 							&d3dpp,
 							&_d3ddev) 
-	== D3D_OK)
-	{
-		_vertexbuffer = new Inaba::VertexBuffer(_d3ddev,sizeof(Inaba::ColorVertex),Inaba::ColorVertexType);
-		return true;
+	!= D3D_OK)
+	{		
+		return false;
 	}
-	return false;
+
+	_d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);
+	_d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+	//_d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+
+	D3DVIEWPORT9 viewport;
+	_d3ddev->GetViewport(&viewport);
+
+	float viewportWidth = static_cast<float>(viewport.Width);
+	float viewportHeight = static_cast<float>(viewport.Height);
+
+	D3DXMATRIX projectionMatrix;
+	D3DXMatrixOrthoLH(&projectionMatrix,viewportWidth,viewportHeight, -1.0f, 1.0f);
+	_d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
+
+	_vertexbuffer = new Inaba::VertexBuffer(_d3ddev,sizeof(Inaba::ColorVertex),Inaba::ColorVertexType);
+	
+	return true;
 }
 void Renderer::BeginFrame()
 {
@@ -61,16 +85,12 @@ void Renderer::EndFrame()
 	_d3ddev->EndScene();
     _d3ddev->Present(NULL, NULL, NULL, NULL);
 }
-void Renderer::Draw(const void* vertex,Inaba::Primitive primitive,size_t vertexCount)
+void Renderer::Draw(ColorVertex* vertex,Inaba::Primitive primitive,size_t vertexCount)
 {
 	_vertexbuffer->bind();
 	_vertexbuffer->draw(vertex,primitivesMapping[primitive], vertexCount);
 }
-/*LPDIRECT3D9 Renderer::d3d()
+void Renderer::setMatrix(MatrixType matrixType, const Matrix& matrix)
 {
-	return *_d3d;
+	_d3ddev->SetTransform(MatrixTypeMapping[matrixType], matrix);
 }
-LPDIRECT3DDEVICE9 Renderer::d3ddev()
-{
-	return *_d3ddev;
-}*/

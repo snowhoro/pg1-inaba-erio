@@ -3,6 +3,7 @@
 
 #include "Vertexbuffer.h"
 #include "RenderTypes.h"
+#include "xMath.h"
 #include "myengine_api.h"
 #include <windows.h>
 #include <d3d9.h>
@@ -23,9 +24,8 @@ public:
 	bool Init(HWND hwnd);
 	void BeginFrame();
 	void EndFrame();
-	void Draw(const void*,Inaba::Primitive,size_t);
-	//IDirect3D9 d3d();
-	//IDirect3DDevice9 d3ddev();
+	void Draw(ColorVertex*,Inaba::Primitive,size_t);
+	void setMatrix(MatrixType, const Matrix&);
 };
 
 }
