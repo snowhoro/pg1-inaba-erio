@@ -1,5 +1,5 @@
 #include "testGame.h"
-#include "Renderer.h"
+
 
 using namespace Erio;
 
@@ -8,23 +8,22 @@ Game::Game()
 }
 bool Game::Init(Inaba::Renderer& renderer)
 {
-	static const float SIZE = 0.5f;
+	_quad1.setScale(100.0f);
+	_quad1.setPos(100.0f, 100.0f);
 
-	_vertex[0].x = -SIZE;	_vertex[0].y = SIZE;	_vertex[0].z = 0.0f;
-	_vertex[1].x = SIZE;	_vertex[1].y = SIZE;	_vertex[1].z = 0.0f;
-	_vertex[2].x = -SIZE;	_vertex[2].y = -SIZE;	_vertex[2].z = 0.0f;
-	_vertex[3].x = SIZE;	_vertex[3].y = -SIZE;	_vertex[3].z = 0.0f;
-
-	_vertex[0].color = D3DCOLOR_XRGB(0,0,0);	
-	_vertex[1].color = D3DCOLOR_XRGB(0,0,0);	
-	_vertex[2].color = D3DCOLOR_XRGB(0,0,0);	
-	_vertex[3].color = D3DCOLOR_XRGB(0,0,0);	
-
+	_quad2.setScale(200.0f);
+	_quad2.setPos(-100.0f, -100.0f);
+	_quad2.setRotation(-45.0f);
 	return true;
 }
 void Game::Frame(Inaba::Renderer& renderer)
 {
-	renderer.Draw(_vertex,Inaba::TriangleStrip,4);
+	static float rot = 0.0f;
+	rot += 0.001f;
+	_quad1.setRotation(rot);
+
+	_quad1.Draw(renderer);
+	_quad2.Draw(renderer);
 }
 void Game::DeInit()
 {

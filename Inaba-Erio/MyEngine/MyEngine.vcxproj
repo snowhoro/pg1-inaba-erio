@@ -79,7 +79,9 @@
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="xMath.h" />
     <ClInclude Include="myengine_api.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderTypes.h" />
     <ClInclude Include="Vertexbuffer.h" />
@@ -88,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderTypes.cpp" />
     <ClCompile Include="Vertexbuffer.cpp" />

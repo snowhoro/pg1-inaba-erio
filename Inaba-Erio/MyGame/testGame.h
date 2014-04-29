@@ -3,9 +3,11 @@
 
 #include "Game.h"
 #include "RenderTypes.h"
+#include "Quad.h"
+#include "Renderer.h"
 namespace Erio
 {
-
+	//class Quad;
 class Game : public Inaba::Game
 {
 public:
@@ -16,6 +18,8 @@ public:
 
 private:
 	Inaba::ColorVertex _vertex[4];
+	Inaba::Quad _quad1;
+	Inaba::Quad _quad2;
 };
 
 }
