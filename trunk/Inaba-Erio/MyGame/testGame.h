@@ -17,7 +17,6 @@ public:
 	void DeInit();
 
 private:
-	Inaba::ColorVertex _vertex[4];
 	Inaba::Quad _quad1;
 	Inaba::Quad _quad2;
 };
