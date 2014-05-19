@@ -16,6 +16,7 @@ class Window
 		bool Create(unsigned int, unsigned int);
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 		HWND hWnd();
+		HINSTANCE gethInstance();
 };
 
 }

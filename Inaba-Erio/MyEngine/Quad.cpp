@@ -24,9 +24,6 @@ _vertex(new ColorVertex[4])
 
 Quad::~Quad()
 {
-	//delete _transformationMatrix;
-	//_transformationMatrix = NULL;
-
 	delete[] _vertex;
 	_vertex = NULL;
 }

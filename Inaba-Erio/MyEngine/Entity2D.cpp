@@ -58,3 +58,13 @@ void Entity2D::UpdateLocalTransformation()
 	D3DXMatrixMultiply(_transformationMatrix,&scaleMatrix,_transformationMatrix);
 
 }
+
+float Entity2D::posX() const
+{
+	return _posX;
+}
+
+float Entity2D::posY() const
+{
+	return _posY;
+}

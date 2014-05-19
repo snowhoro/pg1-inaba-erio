@@ -47,3 +47,8 @@ HWND Window::hWnd()
 {
 	return _hWnd;
 }
+
+HINSTANCE Window::gethInstance()
+{
+	return _hInstance;
+}

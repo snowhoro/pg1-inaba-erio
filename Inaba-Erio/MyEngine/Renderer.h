@@ -31,7 +31,7 @@ public:
 	void Draw(ColorVertex*,Inaba::Primitive,size_t);
 	void Draw(TextureCoordVertex*,Inaba::Primitive,size_t);
 	void setMatrix(MatrixType, const Matrix&);
-	const Texture LoadTexture(const std::string&);
+	const Texture LoadTexture(const std::string& FileName, int KeyCode);
 	void setCurrentTexture (const Texture&);
 };
 
