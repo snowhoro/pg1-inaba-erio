@@ -78,7 +78,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Entity2D.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="xMath.h" />
     <ClInclude Include="myengine_api.h" />
     <ClInclude Include="Quad.h" />
@@ -89,10 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Entity2D.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderTypes.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Vertexbuffer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
