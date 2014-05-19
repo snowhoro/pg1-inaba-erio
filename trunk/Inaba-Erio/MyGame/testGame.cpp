@@ -1,5 +1,5 @@
 #include "testGame.h"
-
+#include "directinput.h"
 
 using namespace Erio;
 
@@ -18,13 +18,31 @@ bool Game::Init(Inaba::Renderer& renderer)
 	_sprite1.setScale(300.0f/*,250.0f*/);
 	_sprite1.setPos(0.0f,0.0f);
 
-	Inaba::Texture texture = renderer.LoadTexture("logo.png");
+	Inaba::Texture texture = renderer.LoadTexture("logo.png",D3DCOLOR_XRGB(0,0,0));
 	_sprite1.setTexture(texture);
 
 	return true;
 }
-void Game::Frame(Inaba::Renderer& renderer)
+void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput)
 {
+	 static float fSp = 1.0f;
+
+	 if(directInput.keyDown(Inaba::Input::KEY_UP)){
+	  _sprite1.setPos(_sprite1.posX(), _sprite1.posY() + fSp);
+	 }
+
+	 if(directInput.keyDown(Inaba::Input::KEY_DOWN)){
+	  _sprite1.setPos(_sprite1.posX(), _sprite1.posY() - fSp);
+	 }
+
+	 if(directInput.keyDown(Inaba::Input::KEY_LEFT)){
+	  _sprite1.setPos(_sprite1.posX() - fSp, _sprite1.posY());
+	 }
+
+	 if(directInput.keyDown(Inaba::Input::KEY_RIGHT)){
+	  _sprite1.setPos(_sprite1.posX() + fSp, _sprite1.posY());
+	 }
+
 	static float rot = 0.0f;
 	rot += 0.001f;
 	_quad1.setRotation(rot);

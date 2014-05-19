@@ -7,6 +7,7 @@
 namespace Inaba
 {
 
+class DirectInput;
 class Renderer;
 class Window;
 class Game;
@@ -15,6 +16,7 @@ class MYENGINE_API Engine
 	private:
 		Window *_window;
 		Renderer *_renderer;
+		DirectInput *_directInput;
 		//Game *_game;
 		int _width;
 		int _height;
