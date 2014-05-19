@@ -5,11 +5,7 @@
 using namespace Inaba;
 
 Quad::Quad():
-_posX(0.0f),
-_posY(0.0f),
-_rotation(0.0f),
-_scale(1.0f),
-_transformationMatrix(new D3DXMATRIX()),
+Entity2D(),
 _vertex(new ColorVertex[4])
 {
 	static const float SIZE = 0.5f;
@@ -28,55 +24,16 @@ _vertex(new ColorVertex[4])
 
 Quad::~Quad()
 {
-	delete _transformationMatrix;
-	_transformationMatrix = NULL;
+	//delete _transformationMatrix;
+	//_transformationMatrix = NULL;
 
 	delete[] _vertex;
 	_vertex = NULL;
 }
 
-void Quad::setPos(float posX, float posY)
-{
-	_posX = posX;
-	_posY = posY;
-
-	UpdateLocalTransformation();
-}
-
-void Quad::setRotation(float rotation)
-{
-	_rotation = rotation;
-
-	UpdateLocalTransformation();
-}
-
-void Quad::setScale(float scale)
-{
-	_scale = scale;
-
-	UpdateLocalTransformation();
-}
-
 void Quad::Draw(Renderer& renderer) const
 {
+	renderer.setCurrentTexture(NoTexture);
 	renderer.setMatrix(World,_transformationMatrix);
 	renderer.Draw(_vertex,Inaba::TriangleStrip, 4);
-}
-
-void Quad::UpdateLocalTransformation()
-{
-	D3DXMATRIX translateMatrix;
-	D3DXMatrixTranslation(&translateMatrix, _posX, _posY, 0);
-
-	D3DXMATRIX rotationMatrix;
-	D3DXMatrixRotationZ(&rotationMatrix, _rotation);
-
-	D3DXMATRIX scaleMatrix;
-	D3DXMatrixScaling(&scaleMatrix, _scale, _scale, 1);
-
-	D3DXMatrixIdentity(_transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix,&translateMatrix,_transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix,&rotationMatrix,_transformationMatrix);
-	D3DXMatrixMultiply(_transformationMatrix,&scaleMatrix,_transformationMatrix);
-
 }

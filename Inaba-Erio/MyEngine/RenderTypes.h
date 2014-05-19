@@ -3,7 +3,7 @@
 
 #include <Windows.h>
 #include "myengine_api.h"
-
+#include <d3d9.h>
 
 namespace Inaba
 {
@@ -13,6 +13,14 @@ namespace Inaba
 		DWORD color;
 	};
 	extern const DWORD ColorVertexType;
+
+	struct MYENGINE_API TextureCoordVertex
+	{
+		float x, y, z;
+		float u, v;
+	};
+
+	extern const int TextureCoordVertexType;
 
 	enum Primitive
 	{
@@ -32,5 +40,8 @@ namespace Inaba
 		World,
 		MatrixTypeCount
 	};
+
+	typedef IDirect3DTexture9 *Texture;
+	static const Texture NoTexture = NULL;
 }
 #endif

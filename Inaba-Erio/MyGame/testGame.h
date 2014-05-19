@@ -5,6 +5,8 @@
 #include "RenderTypes.h"
 #include "Quad.h"
 #include "Renderer.h"
+#include "Sprite.h"
+
 namespace Erio
 {
 	//class Quad;
@@ -19,6 +21,7 @@ public:
 private:
 	Inaba::Quad _quad1;
 	Inaba::Quad _quad2;
+	Inaba::Sprite _sprite1; 
 };
 
 }

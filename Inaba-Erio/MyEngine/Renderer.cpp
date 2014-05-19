@@ -35,7 +35,18 @@ Renderer::~Renderer()
 	
 	delete _vertexbuffer;
 	_vertexbuffer = NULL;
+
+	delete _textureCoordVertexbuffer;
+	_textureCoordVertexbuffer = NULL;
+
+	for(std::vector<Texture>::iterator it = _vectorTextures.begin(); it!= _vectorTextures.end(); it++)
+	{
+		(*it)->Release();
+		(*it) = NULL;
+	}
+	_vectorTextures.clear();
 }
+
 bool Renderer::Init(HWND hWnd)
 {
 	_d3d = Direct3DCreate9(D3D_SDK_VERSION);
@@ -71,9 +82,10 @@ bool Renderer::Init(HWND hWnd)
 	_d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
 
 	_vertexbuffer = new Inaba::VertexBuffer(_d3ddev,sizeof(Inaba::ColorVertex),Inaba::ColorVertexType);
-	
+	_textureCoordVertexbuffer = new VertexBuffer(_d3ddev,sizeof(Inaba::TextureCoordVertex),Inaba::TextureCoordVertexType);
 	return true;
 }
+
 void Renderer::BeginFrame()
 {
 	_d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
@@ -90,7 +102,43 @@ void Renderer::Draw(ColorVertex* vertex,Inaba::Primitive primitive,size_t vertex
 	_vertexbuffer->bind();
 	_vertexbuffer->draw(vertex,primitivesMapping[primitive], vertexCount);
 }
+void Renderer::Draw(TextureCoordVertex* vertex,Inaba::Primitive primitive,size_t vertexCount)
+{
+	_textureCoordVertexbuffer->bind();
+	_textureCoordVertexbuffer->draw(vertex,primitivesMapping[primitive], vertexCount);
+}
 void Renderer::setMatrix(MatrixType matrixType, const Matrix& matrix)
 {
 	_d3ddev->SetTransform(MatrixTypeMapping[matrixType], matrix);
+}
+const Texture Renderer::LoadTexture(const std::string& FileName)
+{
+	IDirect3DTexture9 *texture = NULL;
+
+	HRESULT hr = D3DXCreateTextureFromFileEx(
+												_d3ddev,
+												FileName.c_str(),
+												0,0,0,0,
+												D3DFMT_UNKNOWN, D3DPOOL_MANAGED,
+												D3DX_FILTER_NONE, D3DX_FILTER_NONE,
+												0,
+												NULL,
+												NULL,
+												&texture
+												);
+
+	if (hr != D3D_OK)
+	{
+		return NoTexture;
+	}
+	else
+	{
+		_vectorTextures.push_back(texture);
+		return texture;
+	}
+
+}
+void Renderer::setCurrentTexture(const Texture& texture)
+{
+	_d3ddev->SetTexture(0,texture);
 }
