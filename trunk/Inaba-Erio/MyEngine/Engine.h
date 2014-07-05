@@ -6,13 +6,13 @@
 
 namespace Inaba
 {
-
-class DirectInput;
-class Renderer;
-class Window;
-class Game;
-class MYENGINE_API Engine
-{
+	class DirectInput;
+	class Renderer;
+	class Window;
+	class Game;
+	class Timer;
+	class MYENGINE_API Engine
+	{
 	private:
 		Window *_window;
 		Renderer *_renderer;
@@ -26,7 +26,8 @@ class MYENGINE_API Engine
 		bool Init();
 		void Run();
 		Game *_game;
-};
+		Timer * _timer;
+	};
 
 }
 #endif

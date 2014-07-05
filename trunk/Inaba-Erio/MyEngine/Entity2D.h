@@ -17,7 +17,7 @@ namespace Inaba
 			
 			void setPos(float,float);
 			void setRotation(float);
-			void setScale(float);
+			void setScale(float,float);
 
 			float posX() const;
 			float posY() const;
@@ -29,7 +29,8 @@ namespace Inaba
 		protected:
 			float _posX, _posY;
 			float _rotation;
-			float _scale;
+			float _scaleX;
+			float _scaleY;
 
 			Matrix _transformationMatrix;
 

@@ -6,6 +6,7 @@
 #include "Quad.h"
 #include "Renderer.h"
 #include "Sprite.h"
+#include "timer.h"
 
 namespace Erio
 {
@@ -15,7 +16,7 @@ class Game : public Inaba::Game
 public:
 	Game();
 	bool Init(Inaba::Renderer&);
-	void Frame(Inaba::Renderer&,Inaba::DirectInput&);
+	void Frame(Inaba::Renderer&,Inaba::DirectInput&, Inaba::Timer&);
 	void DeInit();
 
 private:

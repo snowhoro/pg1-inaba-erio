@@ -3,7 +3,7 @@
 #include "Window.h"
 #include "Game.h"
 #include "directinput.h"
-
+#include "timer.h"
 using namespace Inaba;
  
 Engine::Engine(HINSTANCE hInstance, int width, int height):
@@ -12,7 +12,8 @@ _renderer(new Renderer),
 _directInput(new DirectInput),
 _game(NULL),
 _width(width),
-_height(height)
+_height(height),
+_timer(new Timer())
 {
 }
 Engine::~Engine()
@@ -21,6 +22,7 @@ Engine::~Engine()
 	delete _renderer;
 	delete _game;
 	delete _directInput;
+	delete _timer;
 }
 bool Engine::Init()
 {
@@ -40,13 +42,15 @@ void Engine::Run()
 	if(!_game->Init(*_renderer))
 		return;
 
+	_timer->firstMeasure();
 	while(GameOn)
 	{
 		if (_renderer != NULL || _game!= NULL)
 		{
+			_timer->measure();
 			_directInput->reacquire();
 			_renderer->BeginFrame();
-			_game->Frame(*_renderer, *_directInput);
+			_game->Frame(*_renderer, *_directInput,*_timer);
 			_renderer->EndFrame();
 		}
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

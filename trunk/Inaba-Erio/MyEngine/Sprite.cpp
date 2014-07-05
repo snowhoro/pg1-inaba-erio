@@ -1,5 +1,7 @@
 #include "Sprite.h"
 #include "Renderer.h"
+#include "Animation.h"
+#include "timer.h"
 #include <d3dx9.h>
 
 using namespace Inaba;
@@ -7,7 +9,9 @@ using namespace Inaba;
 Sprite::Sprite():
 Entity2D(),
 _texture(NoTexture),
-_vertex(new TextureCoordVertex[4])
+_vertex(new TextureCoordVertex[4]),
+_animation(new Animation()),
+_previousFrame(0) // asdf
 {
 	static const float SIZE = 0.5f;
 	_vertex[0].x = -SIZE;	_vertex[0].y = SIZE;	_vertex[0].z = 0.0f;
@@ -50,4 +54,19 @@ void Sprite::Draw(Renderer& renderer) const
 	renderer.setCurrentTexture(_texture);
 	renderer.setMatrix(World,_transformationMatrix);
 	renderer.Draw(_vertex,Inaba::TriangleStrip, 4);
+}
+
+void Sprite::setAnimation(Animation* pkAnimation){
+ _animation = pkAnimation;
+}
+void Sprite::Update(Timer& rkTimer){
+ if(!_animation){
+  return;
+ }
+ _animation->update(rkTimer);
+ unsigned int uiCurrentFrame = _animation->currentFrame();
+ if(uiCurrentFrame != _previousFrame){
+  const Animation::Frame& frame = _animation->frames()[uiCurrentFrame];
+  setTextureCoords(frame.u1, frame.v1,frame.u2, frame.v2,frame.u3, frame.v3,frame.u4, frame.v4);
+ }
 }

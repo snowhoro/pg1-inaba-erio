@@ -8,14 +8,14 @@ Game::Game()
 }
 bool Game::Init(Inaba::Renderer& renderer)
 {
-	_quad1.setScale(100.0f);
+	_quad1.setScale(100.0f,100.0f);
 	_quad1.setPos(100.0f, 100.0f);
 
-	_quad2.setScale(200.0f);
+	_quad2.setScale(200.0f,200.0f);
 	_quad2.setPos(-100.0f, -100.0f);
 	_quad2.setRotation(-45.0f);
 
-	_sprite1.setScale(300.0f/*,250.0f*/);
+	_sprite1.setScale(300.0f,300.0f);
 	_sprite1.setPos(0.0f,0.0f);
 
 	Inaba::Texture texture = renderer.LoadTexture("logo.png",D3DCOLOR_XRGB(0,0,0));
@@ -23,7 +23,7 @@ bool Game::Init(Inaba::Renderer& renderer)
 
 	return true;
 }
-void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput)
+void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Inaba::Timer& timer)
 {
 	 static float fSp = 1.0f;
 
