@@ -7,7 +7,7 @@
 #include "Renderer.h"
 #include "Sprite.h"
 #include "timer.h"
-
+#include "Animation.h"
 namespace Erio
 {
 	//class Quad;
@@ -23,6 +23,7 @@ private:
 	Inaba::Quad _quad1;
 	Inaba::Quad _quad2;
 	Inaba::Sprite _sprite1; 
+	Inaba::Animation _anim1;
 };
 
 }

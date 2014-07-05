@@ -30,7 +30,7 @@ namespace Inaba
 		std::vector<Frame> _frames;
 	public:
 		void setLength(float fLength);
-		void update(Timer&);
+		void Update(Timer&);
 		void resetFrames();
 	private:
 		float _currentTime;

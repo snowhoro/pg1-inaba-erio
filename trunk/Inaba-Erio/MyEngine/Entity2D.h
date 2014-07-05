@@ -22,12 +22,25 @@ namespace Inaba
 			float posX() const;
 			float posY() const;
 			float rotation() const;
-			float scale() const;
+			float scaleX() const;
+			float scaleY() const;
+			void Draw(Renderer&) const; 
 
-			void Draw(Renderer&) const;
+			float prevPosX() const;
+			float prevPosY() const;
+
+			enum CollisionResult{
+				CollisionVertical,
+				CollisionHorizontal,
+				NoCollision
+			};
+
+			CollisionResult checkCollision(Entity2D&) const;
+			void drawAABB (Renderer&) const;
+			void returnToPos(float, float);
 
 		protected:
-			float _posX, _posY;
+			float _posX, _posY,_prevPosX, _prevPosY;
 			float _rotation;
 			float _scaleX;
 			float _scaleY;
