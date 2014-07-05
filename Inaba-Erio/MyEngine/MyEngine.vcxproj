@@ -77,12 +77,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="directinput.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity2D.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="timer.h" />
     <ClInclude Include="xMath.h" />
     <ClInclude Include="myengine_api.h" />
     <ClInclude Include="Quad.h" />
@@ -92,6 +94,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="directinput.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity2D.cpp" />
@@ -101,11 +104,13 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderTypes.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="timer.cpp" />
     <ClCompile Include="Vertexbuffer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="input.inl" />
+    <None Include="timer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

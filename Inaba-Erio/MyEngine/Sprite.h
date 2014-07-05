@@ -9,6 +9,8 @@
 namespace Inaba
 {
 	class Renderer;
+	class Animation;
+	class Timer;
 
 	class MYENGINE_API Sprite : public Entity2D
 	{
@@ -24,10 +26,14 @@ namespace Inaba
 								   );
 
 			void Draw(Renderer&) const;
+			void setAnimation(Animation*);
+			void Update(Timer&);
 
 		private:
 			Texture _texture;
 			TextureCoordVertex* _vertex;
+			Animation *_animation;
+			unsigned int _previousFrame;
 	};
 }
 
