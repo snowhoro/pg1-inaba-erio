@@ -10,8 +10,7 @@ Sprite::Sprite():
 Entity2D(),
 _texture(NoTexture),
 _vertex(new TextureCoordVertex[4]),
-_animation(new Animation()),
-_previousFrame(0) // asdf
+_animation(new Animation())
 {
 	static const float SIZE = 0.5f;
 	_vertex[0].x = -SIZE;	_vertex[0].y = SIZE;	_vertex[0].z = 0.0f;
@@ -63,7 +62,7 @@ void Sprite::Update(Timer& rkTimer){
  if(!_animation){
   return;
  }
- _animation->update(rkTimer);
+ _animation->Update(rkTimer);
  unsigned int uiCurrentFrame = _animation->currentFrame();
  if(uiCurrentFrame != _previousFrame){
   const Animation::Frame& frame = _animation->frames()[uiCurrentFrame];

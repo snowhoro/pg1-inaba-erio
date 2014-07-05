@@ -34,7 +34,7 @@ void Animation::resetFrames(){
  _currentFrame = 0;
 }
 
-void Animation::update(Timer& rkTimer){
+void Animation::Update(Timer& rkTimer){
  _currentTime += rkTimer.timeBetweenFrames();
  while(_currentTime > _length){
   _currentTime-= _length;

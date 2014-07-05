@@ -1,5 +1,9 @@
+#define NOMINMAX
+
 #include "Entity2D.h"
 #include "Renderer.h"
+#include <Windows.h>
+#include <iostream>
 #include <d3dx9.h>
 
 using namespace Inaba;
@@ -7,6 +11,8 @@ using namespace Inaba;
 Entity2D::Entity2D():
 _posX(0.0f),
 _posY(0.0f),
+_prevPosX(0.0f),
+_prevPosY(0.0f),
 _rotation(0.0f),
 _scaleX(1.0f),
 _scaleY(1.0f),
@@ -22,6 +28,8 @@ Entity2D::~Entity2D()
 
 void Entity2D::setPos(float posX, float posY)
 {
+	_prevPosX = _posX;
+	_prevPosY = _posY;
 	_posX = posX;
 	_posY = posY;
 
@@ -69,4 +77,74 @@ float Entity2D::posX() const
 float Entity2D::posY() const
 {
 	return _posY;
+}
+
+float Entity2D::prevPosX() const
+{
+	return _prevPosX;
+}
+
+float Entity2D::prevPosY() const
+{
+	return _prevPosY;
+}
+
+float Entity2D::scaleX() const
+{
+	return _scaleX;
+}
+
+float Entity2D::scaleY() const
+{
+	return _scaleY;
+}
+
+
+
+Entity2D::CollisionResult Entity2D::checkCollision(Entity2D& rkEntity2D) const
+{
+ float fOverlapX = std::max(0.0f, 
+        std::min( posX() + fabs( scaleX() ) / 2.0f,rkEntity2D.posX() + fabs( rkEntity2D.scaleX() ) / 2.0f) -  
+        std::max( posX() - fabs( scaleX() ) / 2.0f,rkEntity2D.posX() - fabs( rkEntity2D.scaleX() ) / 2.0f)
+ );
+ float fOverlapY = std::max(0.0f, 
+        std::min( posY() + fabs( scaleY() ) / 2.0f,  rkEntity2D.posY() + fabs( rkEntity2D.scaleY() ) / 2.0f) -  
+        std::max( posY() - fabs( scaleY() ) / 2.0f, rkEntity2D.posY() - fabs( rkEntity2D.scaleY() ) / 2.0f)
+ );
+
+ if(fOverlapX != 0.0f && fOverlapY != 0.0f){
+  if(fOverlapX > fOverlapY){
+   return CollisionVertical;
+  }else{
+   return CollisionHorizontal;
+  }
+ }
+
+ return NoCollision;
+}
+
+void Entity2D::drawAABB(Renderer& rkRenderer) const
+{
+ static ColorVertex s_akAABBVertices[5];
+ static bool s_bIsInitialized = false;
+ if(!s_bIsInitialized){
+  s_bIsInitialized = true;
+
+  s_akAABBVertices[0].x = -0.5; s_akAABBVertices[0].y = -0.5; s_akAABBVertices[0].z = 0.0; s_akAABBVertices[0].color =Inaba_COLOR_RGB(255,50,50);
+  s_akAABBVertices[1].x = -0.5; s_akAABBVertices[1].y = 0.5; s_akAABBVertices[1].z = 0.0; s_akAABBVertices[1].color = Inaba_COLOR_RGB(255,70,70);
+  s_akAABBVertices[2].x = 0.5; s_akAABBVertices[2].y = 0.5; s_akAABBVertices[2].z = 0.0; s_akAABBVertices[2].color = Inaba_COLOR_RGB(255,30,30);
+  s_akAABBVertices[3].x = 0.5; s_akAABBVertices[3].y = -0.5; s_akAABBVertices[3].z = 0.0; s_akAABBVertices[3].color = Inaba_COLOR_RGB(255,15,15);
+  s_akAABBVertices[4].x = -0.5; s_akAABBVertices[4].y = -0.5; s_akAABBVertices[4].z = 0.0; s_akAABBVertices[4].color = Inaba_COLOR_RGB(255,95,90);
+ }
+ rkRenderer.setCurrentTexture(NoTexture);
+ rkRenderer.setMatrix(World, _transformationMatrix );
+ rkRenderer.Draw(s_akAABBVertices, Inaba::LineStrip, 5);
+}
+
+void Entity2D::returnToPos(float posX, float posY)
+{
+	_posX = posX;
+	_posY = posY;
+
+	UpdateLocalTransformation();
 }
