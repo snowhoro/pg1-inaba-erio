@@ -1,9 +1,9 @@
 #ifndef ENTITY2D_H
 #define ENTITY2D_H
 
-#include "xMath.h"
-#include "RenderTypes.h"
-#include "myengine_api.h"
+#include "../Renderer/xMath.h"
+#include "../Renderer/RenderTypes.h"
+#include "../myengine_api.h"
 
 namespace Inaba
 {

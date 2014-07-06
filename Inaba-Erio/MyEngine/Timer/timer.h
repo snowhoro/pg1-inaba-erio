@@ -3,7 +3,7 @@
 #ifndef TIMER_H
 #define TIMER_H
 //---------------------------------------------------------------------------
-#include "myengine_api.h"
+#include "../myengine_api.h"
 #include <windows.h>
 //---------------------------------------------------------------------------
 namespace Inaba

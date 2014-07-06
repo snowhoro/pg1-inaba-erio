@@ -4,7 +4,7 @@
 #include "Vertexbuffer.h"
 #include "RenderTypes.h"
 #include "xMath.h"
-#include "myengine_api.h"
+#include "../myengine_api.h"
 #include <windows.h>
 #include <d3d9.h>
 #include <iostream>

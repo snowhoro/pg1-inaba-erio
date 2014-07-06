@@ -1,5 +1,5 @@
 #include "testGame.h"
-#include "directinput.h"
+#include "Input/directinput.h"
 
 using namespace Erio;
 

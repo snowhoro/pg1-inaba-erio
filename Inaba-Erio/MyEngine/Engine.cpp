@@ -1,9 +1,9 @@
 #include "Engine.h"
-#include "Renderer.h"
-#include "Window.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/Window.h"
 #include "Game.h"
-#include "directinput.h"
-#include "timer.h"
+#include "Input/directinput.h"
+#include "Timer/timer.h"
 using namespace Inaba;
  
 Engine::Engine(HINSTANCE hInstance, int width, int height):

@@ -1,5 +1,5 @@
 #include "Quad.h"
-#include "Renderer.h"
+#include "../Renderer/Renderer.h"
 #include <d3dx9.h>
 
 using namespace Inaba;

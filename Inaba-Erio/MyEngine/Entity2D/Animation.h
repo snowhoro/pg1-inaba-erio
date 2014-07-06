@@ -1,7 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include "myEngine_API.h"
+#include "../myEngine_API.h"
 #include <vector>
 
 namespace Inaba

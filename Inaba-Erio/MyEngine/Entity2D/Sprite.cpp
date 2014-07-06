@@ -1,7 +1,7 @@
 #include "Sprite.h"
-#include "Renderer.h"
+#include "../Renderer/Renderer.h"
 #include "Animation.h"
-#include "timer.h"
+#include "../Timer/timer.h"
 #include <d3dx9.h>
 
 using namespace Inaba;
