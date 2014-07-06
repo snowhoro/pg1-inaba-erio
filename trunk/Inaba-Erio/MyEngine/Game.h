@@ -23,7 +23,7 @@ public:
 	Scene currentScene();
 	void setScene(std::string);
 private:
-	Scene *_scene;
+	static Scene _scene;
 
 };
 

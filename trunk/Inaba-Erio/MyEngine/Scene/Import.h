@@ -12,13 +12,16 @@ namespace Inaba
 	class Quad;
 	class Sprite;
 	class Animation;
+	class Renderer;
 
 	class MYENGINE_API Import
 	{
-		static bool importScene(Scene&, std::string);
-		static void importSprite(Scene&,tinyxml2::XMLElement*);
-		static void importQuad(Scene&,tinyxml2::XMLElement*);
-		static void importAnimation(std::list<Animation> &animations,tinyxml2::XMLElement*);
+		public:
+			static bool importScene(Scene&, std::string);
+			static void importSprite(Scene&,tinyxml2::XMLElement*);
+			static void importQuad(Scene&,tinyxml2::XMLElement*);
+			static void importAnimation(std::list<Animation> &animations,tinyxml2::XMLElement*);
+			static Renderer *renderer;
 	};
 }
 

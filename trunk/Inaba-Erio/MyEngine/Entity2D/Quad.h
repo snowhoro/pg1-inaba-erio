@@ -17,6 +17,8 @@ namespace Inaba
 			~Quad();
 
 			void Draw(Renderer&) const;
+			void setColor(DWORD c, int v);
+			void setColor(DWORD c);
 		private:
 			ColorVertex* _vertex;
 	};

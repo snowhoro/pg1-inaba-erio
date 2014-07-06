@@ -34,3 +34,12 @@ void Quad::Draw(Renderer& renderer) const
 	renderer.setMatrix(World,_transformationMatrix);
 	renderer.Draw(_vertex,Inaba::TriangleStrip, 4);
 }
+
+void Quad::setColor(DWORD c, int v){
+ if(v >= 0 && v < 4)
+  _vertex[v].color = c;
+}
+void Quad::setColor(DWORD c){
+ for(int i = 0; i < 4; i++)
+  _vertex[i].color = c;
+}
