@@ -2,12 +2,12 @@
 #define TESTGAME_H
 
 #include "Game.h"
-#include "RenderTypes.h"
-#include "Quad.h"
-#include "Renderer.h"
-#include "Sprite.h"
-#include "timer.h"
-#include "Animation.h"
+#include "Renderer/RenderTypes.h"
+#include "Entity2D/Quad.h"
+#include "Renderer/Renderer.h"
+#include "Entity2D/Sprite.h"
+#include "Timer/timer.h"
+#include "Entity2D/Animation.h"
 namespace Erio
 {
 	//class Quad;

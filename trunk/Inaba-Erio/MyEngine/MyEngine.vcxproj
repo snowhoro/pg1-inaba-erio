@@ -10,6 +10,42 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Entity2D\Animation.cpp" />
+    <ClCompile Include="Entity2D\Entity2D.cpp" />
+    <ClCompile Include="Entity2D\Quad.cpp" />
+    <ClCompile Include="Entity2D\Sprite.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Input\directinput.cpp" />
+    <ClCompile Include="Input\input.cpp" />
+    <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Renderer\RenderTypes.cpp" />
+    <ClCompile Include="Renderer\Vertexbuffer.cpp" />
+    <ClCompile Include="Renderer\Window.cpp" />
+    <ClCompile Include="Timer\timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Entity2D\Animation.h" />
+    <ClInclude Include="Entity2D\Entity2D.h" />
+    <ClInclude Include="Entity2D\Quad.h" />
+    <ClInclude Include="Entity2D\Sprite.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Input\directinput.h" />
+    <ClInclude Include="Input\input.h" />
+    <ClInclude Include="myengine_api.h" />
+    <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="Renderer\RenderTypes.h" />
+    <ClInclude Include="Renderer\Vertexbuffer.h" />
+    <ClInclude Include="Renderer\Window.h" />
+    <ClInclude Include="Renderer\xMath.h" />
+    <ClInclude Include="Timer\timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Input\input.inl" />
+    <None Include="Timer\timer.inl" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{26D7FAF2-5E17-44AE-99B2-C5E58CB0E356}</ProjectGuid>
     <RootNamespace>MyEngine</RootNamespace>
@@ -76,42 +112,6 @@
       <AdditionalDependencies>d3dx9.lib;d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="directinput.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="Entity2D.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="input.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="timer.h" />
-    <ClInclude Include="xMath.h" />
-    <ClInclude Include="myengine_api.h" />
-    <ClInclude Include="Quad.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="RenderTypes.h" />
-    <ClInclude Include="Vertexbuffer.h" />
-    <ClInclude Include="Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="directinput.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Entity2D.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="input.cpp" />
-    <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="RenderTypes.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="timer.cpp" />
-    <ClCompile Include="Vertexbuffer.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="input.inl" />
-    <None Include="timer.inl" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

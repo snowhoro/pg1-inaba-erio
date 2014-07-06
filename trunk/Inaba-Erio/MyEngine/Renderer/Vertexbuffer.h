@@ -3,7 +3,7 @@
 #ifndef Inaba_VERTEXBUFFER_H
 #define Inaba_VERTEXBUFFER_H
 //---------------------------------------------------------------------------
-#include "myengine_api.h"
+#include "../myengine_api.h"
 //---------------------------------------------------------------------------
 #include <d3d9.h>
 #include <d3dx9.h>

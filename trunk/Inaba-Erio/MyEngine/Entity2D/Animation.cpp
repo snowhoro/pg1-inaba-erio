@@ -1,5 +1,5 @@
-#include "animation.h"
-#include "timer.h"
+#include "Animation.h"
+#include "../Timer/timer.h"
 
 using namespace Inaba;
 Animation::Animation() :

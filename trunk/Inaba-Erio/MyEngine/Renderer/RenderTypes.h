@@ -2,7 +2,7 @@
 #define RENDERTYPES_H
 
 #include <Windows.h>
-#include "myengine_api.h"
+#include "../myengine_api.h"
 #include <d3d9.h>
 
 namespace Inaba

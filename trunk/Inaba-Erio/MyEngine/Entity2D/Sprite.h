@@ -2,9 +2,9 @@
 #define SPRITE_H
 
 #include "Entity2D.h"
-#include "xMath.h"
-#include "RenderTypes.h"
-#include "myengine_api.h"
+#include "../Renderer/xMath.h"
+#include "../Renderer/RenderTypes.h"
+#include "../myengine_api.h"
 
 namespace Inaba
 {

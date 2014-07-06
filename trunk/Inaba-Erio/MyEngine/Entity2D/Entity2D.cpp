@@ -1,7 +1,7 @@
 #define NOMINMAX
 
 #include "Entity2D.h"
-#include "Renderer.h"
+#include "../Renderer/Renderer.h"
 #include <Windows.h>
 #include <iostream>
 #include <d3dx9.h>
