@@ -16,6 +16,12 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{140ebed6-7632-44a0-8948-96186b8d6f51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{5b322e5c-4726-43d2-a5cd-bde3713fc344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xml">
+      <UniqueIdentifier>{2a8fdfe4-68ad-40c9-980c-2543517d4b9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity2D\Animation.cpp">
@@ -56,6 +62,15 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Import.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\tinyxml2.cpp">
+      <Filter>xml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +118,15 @@
     </ClInclude>
     <ClInclude Include="myengine_api.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Import.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\tinyxml2.h">
+      <Filter>xml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

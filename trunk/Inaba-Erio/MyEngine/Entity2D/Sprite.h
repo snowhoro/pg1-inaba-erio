@@ -5,6 +5,7 @@
 #include "../Renderer/xMath.h"
 #include "../Renderer/RenderTypes.h"
 #include "../myengine_api.h"
+#include <list>
 
 namespace Inaba
 {
@@ -27,12 +28,16 @@ namespace Inaba
 
 			void Draw(Renderer&) const;
 			void setAnimation(Animation*);
-			void Update(Timer&);
-
+			void setAnimation(std::string);
+			void Update(Timer&);				
+			void AddAnimation(Animation&);
+			void AddAnimation(std::list<Animation>);	
+			
 		private:
 			Texture _texture;
 			TextureCoordVertex* _vertex;
 			Animation *_animation;
+			std::list<Animation> _animations;
 			unsigned int _previousFrame;
 	};
 }

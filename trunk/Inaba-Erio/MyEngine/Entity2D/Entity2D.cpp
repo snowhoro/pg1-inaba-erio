@@ -148,3 +148,13 @@ void Entity2D::returnToPos(float posX, float posY)
 
 	UpdateLocalTransformation();
 }
+
+std::string Entity2D::name() const
+{
+	return _name;
+}
+
+void Entity2D::setName(std::string name)
+{
+	_name = name;
+}
