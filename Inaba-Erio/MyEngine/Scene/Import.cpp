@@ -4,7 +4,7 @@
 #include "../Entity2D/Sprite.h"
 #include "../Entity2D/Animation.h"
 #include "../Entity2D/Entity2D.h"
-
+#include "../Renderer/Renderer.h"
 using namespace Inaba;
 
 bool Import::importScene(Scene &scene, std::string fileName)
@@ -28,12 +28,12 @@ void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root)
 	while(sprite!= NULL)
 	{	
 		std::string nameSprite = sprite->Attribute("name");
-		std::string texture = sprite->Attribute("texture");
+		std::string texturePath = sprite->Attribute("texture");
 		int r = sprite->IntAttribute("r");
 		int g = sprite->IntAttribute("g");
 		int b = sprite->IntAttribute("b");
 
-		//FALTA grabar
+		Inaba::Texture texture = renderer->LoadTexture(texturePath,Inaba_COLOR_RGB(r,g,b));
 
 		//CREAR LISTA ANIM
 		std::list<Animation> list_animations;
@@ -59,6 +59,7 @@ void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root)
 				ent_sprite.setName(name);
 				ent_sprite.setRotation(rotation);
 				ent_sprite.setScale(scaleX,scaleY);
+				ent_sprite.setTexture(texture);
 
 			}
 			//CARGO ANIMACIONES
@@ -97,7 +98,7 @@ void Import::importQuad(Scene &scene,tinyxml2::XMLElement* root)
 		ent_quad.setPos(posX,posY);
 		ent_quad.setRotation(rotation);
 		ent_quad.setScale(scaleX,scaleY);
-		//add color
+		ent_quad.setColor(Inaba_COLOR_RGB(r,g,b));
 
 		//PUSH_BACK A LISTA ENTITY2D
 		scene.AddEntity(&ent_quad);

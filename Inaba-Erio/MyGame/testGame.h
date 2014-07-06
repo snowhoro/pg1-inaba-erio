@@ -9,7 +9,7 @@
 #include "Timer/timer.h"
 #include "Entity2D/Animation.h"
 #include "Scene/Import.h"
-
+#include "Scene/Scene.h"
 namespace Erio
 {
 	//class Quad;

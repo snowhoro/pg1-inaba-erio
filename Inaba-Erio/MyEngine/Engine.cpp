@@ -4,6 +4,8 @@
 #include "Game.h"
 #include "Input/directinput.h"
 #include "Timer/timer.h"
+#include "Scene/Import.h"
+#include "Scene/Scene.h"
 using namespace Inaba;
  
 Engine::Engine(HINSTANCE hInstance, int width, int height):
@@ -29,7 +31,11 @@ bool Engine::Init()
 	if(_window->Create(_width,_height) == TRUE 
 	   && _renderer->Init(_window->hWnd()) == TRUE
 	   && _directInput->init(_window->gethInstance(),_window->hWnd()) == TRUE)
+	{
+		Import import;
+		import.renderer = _renderer;
 		return true;
+	}
 	return false;
 }
 void Engine::Run()
@@ -51,6 +57,7 @@ void Engine::Run()
 			_directInput->reacquire();
 			_renderer->BeginFrame();
 			_game->Frame(*_renderer, *_directInput,*_timer);
+			_game->currentScene().Frame(*_renderer);
 			_renderer->EndFrame();
 		}
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

@@ -8,9 +8,7 @@ Game::Game()
 }
 bool Game::Init(Inaba::Renderer& renderer)
 {
-	
-
-
+	/*
 	_quad1.setScale(100.0f,100.0f);
 	_quad1.setPos(100.0f, 100.0f);
 
@@ -43,11 +41,12 @@ bool Game::Init(Inaba::Renderer& renderer)
 
 	_ent1 = &_quad1;
 
-
+	*/
 	return true;
 }
 void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Inaba::Timer& timer)
 {
+	/*
 	 static float fSp = 1.0f;
 
 	 if(directInput.keyDown(Inaba::Input::KEY_UP)){
@@ -86,7 +85,7 @@ void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Ina
 	_sprite1.Update(timer);
 	_sprite1.Draw(renderer);
 	_sprite1.drawAABB(renderer);
-
+	*/
 }
 void Game::DeInit()
 {

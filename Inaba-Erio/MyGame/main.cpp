@@ -5,8 +5,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Inaba::Engine engine(hInstance,640,480);
 	engine.Init();
 	
-	engine._game = new Erio::Game();
+	//Inaba::Scene scene();
 
+	engine._game = new Erio::Game();
+	engine._game->setScene("../archivo.xml");
 	engine.Run();
 
 	delete engine._game;
