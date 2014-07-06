@@ -17,6 +17,10 @@
   <ItemGroup>
     <ClInclude Include="testGame.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Link.png" />
+    <None Include="logo.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9D161E36-8FCA-489C-BA34-C2A74FB56EEF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
