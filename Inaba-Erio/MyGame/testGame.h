@@ -8,6 +8,8 @@
 #include "Entity2D/Sprite.h"
 #include "Timer/timer.h"
 #include "Entity2D/Animation.h"
+#include "Scene/Import.h"
+
 namespace Erio
 {
 	//class Quad;
@@ -24,6 +26,7 @@ private:
 	Inaba::Quad _quad2;
 	Inaba::Sprite _sprite1; 
 	Inaba::Animation _anim1;
+	Inaba::Entity2D *_ent1;
 };
 
 }

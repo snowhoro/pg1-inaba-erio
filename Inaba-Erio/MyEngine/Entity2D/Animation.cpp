@@ -45,3 +45,13 @@ void Animation::Update(Timer& rkTimer){
 void Animation::setLength(float Length){
  _length = Length;
 }
+
+std::string Animation::name() const
+{
+	return _name;
+}
+
+void Animation::setName(std::string name)
+{
+	_name = name;
+}

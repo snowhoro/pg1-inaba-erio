@@ -55,17 +55,50 @@ void Sprite::Draw(Renderer& renderer) const
 	renderer.Draw(_vertex,Inaba::TriangleStrip, 4);
 }
 
-void Sprite::setAnimation(Animation* pkAnimation){
- _animation = pkAnimation;
+void Sprite::setAnimation(Animation* pkAnimation)
+{
+	_animation = pkAnimation;
 }
-void Sprite::Update(Timer& rkTimer){
- if(!_animation){
-  return;
- }
- _animation->Update(rkTimer);
- unsigned int uiCurrentFrame = _animation->currentFrame();
- if(uiCurrentFrame != _previousFrame){
-  const Animation::Frame& frame = _animation->frames()[uiCurrentFrame];
-  setTextureCoords(frame.u1, frame.v1,frame.u2, frame.v2,frame.u3, frame.v3,frame.u4, frame.v4);
- }
+
+void Sprite::setAnimation(std::string nameAnimation)
+{
+	if(_animations.empty())
+		return;
+	
+	std::list<Animation>::iterator iter;
+	for(iter = _animations.begin(); iter != _animations.end(); iter++)
+	{
+		if(iter->name() == nameAnimation)
+		{
+			*_animation = *iter;
+			return;
+		}
+	}
+}
+
+void Sprite::Update(Timer& rkTimer)
+{
+	if(!_animation)
+	{
+		return;
+	}
+	_animation->Update(rkTimer);
+
+	unsigned int uiCurrentFrame = _animation->currentFrame();
+
+	if(uiCurrentFrame != _previousFrame)
+	{
+		const Animation::Frame& frame = _animation->frames()[uiCurrentFrame];
+		setTextureCoords(frame.u1, frame.v1,frame.u2, frame.v2,frame.u3, frame.v3,frame.u4, frame.v4);
+	}
+}
+
+void Sprite::AddAnimation(Animation& animation)
+{
+	_animations.push_back(animation);
+}
+
+void Sprite::AddAnimation(std::list<Animation> animation)
+{
+	_animations = animation;
 }

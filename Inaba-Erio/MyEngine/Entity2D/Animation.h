@@ -3,6 +3,7 @@
 
 #include "../myEngine_API.h"
 #include <vector>
+#include <string>
 
 namespace Inaba
 {
@@ -32,9 +33,12 @@ namespace Inaba
 		void setLength(float fLength);
 		void Update(Timer&);
 		void resetFrames();
+		std::string name() const;
+		void setName(std::string);
 	private:
 		float _currentTime;
 		float _length;
+		std::string _name;
 	};
 }
 

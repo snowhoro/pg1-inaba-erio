@@ -4,7 +4,7 @@
 #include "../Renderer/xMath.h"
 #include "../Renderer/RenderTypes.h"
 #include "../myengine_api.h"
-
+#include <string>
 namespace Inaba
 {
 	class Renderer;
@@ -24,7 +24,7 @@ namespace Inaba
 			float rotation() const;
 			float scaleX() const;
 			float scaleY() const;
-			void Draw(Renderer&) const; 
+			//void Draw(Renderer&) const; 
 
 			float prevPosX() const;
 			float prevPosY() const;
@@ -38,12 +38,15 @@ namespace Inaba
 			CollisionResult checkCollision(Entity2D&) const;
 			void drawAABB (Renderer&) const;
 			void returnToPos(float, float);
-
+			virtual void Draw(Renderer&) const = 0;
+			std::string name() const;
+			void setName(std::string);
 		protected:
 			float _posX, _posY,_prevPosX, _prevPosY;
 			float _rotation;
 			float _scaleX;
 			float _scaleY;
+			std::string _name; 
 
 			Matrix _transformationMatrix;
 

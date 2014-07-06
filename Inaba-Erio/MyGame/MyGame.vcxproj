@@ -18,6 +18,7 @@
     <ClInclude Include="testGame.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="archivo.xml" />
     <None Include="Link.png" />
     <None Include="logo.png" />
   </ItemGroup>

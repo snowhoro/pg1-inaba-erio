@@ -8,6 +8,9 @@ Game::Game()
 }
 bool Game::Init(Inaba::Renderer& renderer)
 {
+	
+
+
 	_quad1.setScale(100.0f,100.0f);
 	_quad1.setPos(100.0f, 100.0f);
 
@@ -37,6 +40,10 @@ bool Game::Init(Inaba::Renderer& renderer)
 
 
 	_sprite1.setAnimation(&_anim1);
+
+	_ent1 = &_quad1;
+
+
 	return true;
 }
 void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Inaba::Timer& timer)
@@ -65,12 +72,15 @@ void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Ina
 
 	static float rot = 0.0f;
 	rot += 0.001f;
-	//_quad1.setRotation(rot);
+	_quad1.setRotation(rot);
 
 	_quad1.Draw(renderer);
 	_quad1.drawAABB(renderer);
 
-	//_quad2.Draw(renderer);
+	//_ent1->Draw(renderer);
+	//_ent1->drawAABB(renderer);
+
+	_quad2.Draw(renderer);
 
 	_sprite1.setAnimation(&_anim1);
 	_sprite1.Update(timer);

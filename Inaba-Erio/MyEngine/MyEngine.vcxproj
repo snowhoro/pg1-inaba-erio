@@ -23,7 +23,10 @@
     <ClCompile Include="Renderer\RenderTypes.cpp" />
     <ClCompile Include="Renderer\Vertexbuffer.cpp" />
     <ClCompile Include="Renderer\Window.cpp" />
+    <ClCompile Include="Scene\Import.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Timer\timer.cpp" />
+    <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -40,7 +43,10 @@
     <ClInclude Include="Renderer\Vertexbuffer.h" />
     <ClInclude Include="Renderer\Window.h" />
     <ClInclude Include="Renderer\xMath.h" />
+    <ClInclude Include="Scene\Import.h" />
+    <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Timer\timer.h" />
+    <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Input\input.inl" />
