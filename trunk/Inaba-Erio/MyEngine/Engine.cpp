@@ -59,7 +59,7 @@ void Engine::Run()
 			_directInput->reacquire();
 			_renderer->BeginFrame();
 			_game->Frame(*_renderer, *_directInput,*_timer);
-			_game->currentScene().Frame(*_renderer);
+			_game->currentScene().Frame(*_renderer,*_timer);
 			_renderer->EndFrame();
 		}
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

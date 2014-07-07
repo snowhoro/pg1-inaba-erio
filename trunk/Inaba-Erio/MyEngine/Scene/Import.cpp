@@ -36,9 +36,10 @@ void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root,Renderer* rend
 		Inaba::Texture texture = renderer->LoadTexture(texturePath,Inaba_COLOR_RGB(r,g,b));
 
 		//CREAR LISTA ANIM
-		std::list<Animation> *list_animations = new std::list<Animation>();
+		std::vector<Animation> *list_animations = new std::vector<Animation>();
 
-		importAnimation(list_animations,sprite->FirstChildElement("ANIMATION"));
+		importAnimation(&list_animations,sprite->FirstChildElement("ANIMATION"));
+		
 		instance = root->FirstChildElement("INSTANCE");
 		while(instance != NULL)
 		{
@@ -63,7 +64,7 @@ void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root,Renderer* rend
 
 			}
 			//CARGO ANIMACIONES
-			ent_sprite->AddAnimation(list_animations);
+			ent_sprite->AddAnimation(*list_animations);
 
 			//PUSH_BACK A LISTA ENTITY2D
 			scene.AddEntity(ent_sprite);
@@ -108,7 +109,7 @@ void Import::importQuad(Scene &scene,tinyxml2::XMLElement* root)
 
 }
 
-void Import::importAnimation(std::list<Animation> *list_animations,tinyxml2::XMLElement* animations)
+void Import::importAnimation (std::vector<Animation> **list_animations,tinyxml2::XMLElement* animations)
 {
 	while(animations != NULL)
 	{
@@ -138,7 +139,7 @@ void Import::importAnimation(std::list<Animation> *list_animations,tinyxml2::XML
 			frame = frame->NextSiblingElement("FRAME");
 		}
 		// PUSH_BACK ANIMATION
-		list_animations->push_back(*anim);
+		(*list_animations)->push_back(*anim);
 
 		animations = animations->NextSiblingElement("ANIMATION");
 	}

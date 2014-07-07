@@ -5,7 +5,7 @@
 #include "../Renderer/xMath.h"
 #include "../Renderer/RenderTypes.h"
 #include "../myengine_api.h"
-#include <list>
+#include <vector>
 
 namespace Inaba
 {
@@ -30,14 +30,14 @@ namespace Inaba
 			void setAnimation(Animation*);
 			void setAnimation(std::string);
 			void Update(Timer&);				
-			void AddAnimation(Animation&);
-			void AddAnimation(std::list<Animation>*);	
+			void AddAnimation(Animation*);
+			void AddAnimation(std::vector<Animation>);
 			
 		private:
 			Texture _texture;
 			TextureCoordVertex* _vertex;
 			Animation *_animation;
-			std::list<Animation> _animations;
+			std::vector<Animation> _animations;
 			unsigned int _previousFrame;
 	};
 }
