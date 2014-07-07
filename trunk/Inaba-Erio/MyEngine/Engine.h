@@ -24,6 +24,7 @@ namespace Inaba
 		Engine(HINSTANCE, int, int);
 		~Engine();
 		bool Init();
+		Renderer* getRenderer() { return _renderer;}
 		void Run();
 		Game *_game;
 		Timer * _timer;

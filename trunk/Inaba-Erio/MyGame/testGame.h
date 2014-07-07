@@ -22,11 +22,13 @@ public:
 	void DeInit();
 
 private:
-	Inaba::Quad _quad1;
+	/*Inaba::Quad _quad1;
 	Inaba::Quad _quad2;
 	Inaba::Sprite _sprite1; 
 	Inaba::Animation _anim1;
-	Inaba::Entity2D *_ent1;
+	Inaba::Entity2D *_ent1;*/
+	Inaba::Sprite *_sprite1;
+	Inaba::Sprite *_sprite2;
 };
 
 }

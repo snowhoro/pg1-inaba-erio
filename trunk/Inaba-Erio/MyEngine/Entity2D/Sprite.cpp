@@ -93,12 +93,12 @@ void Sprite::Update(Timer& rkTimer)
 	}
 }
 
-void Sprite::AddAnimation(Animation& animation)
+void Sprite::AddAnimation(Animation &animation)
 {
 	_animations.push_back(animation);
 }
 
-void Sprite::AddAnimation(std::list<Animation> animation)
+void Sprite::AddAnimation(std::list<Animation> *animation)
 {
-	_animations = animation;
+	_animations = *animation;
 }

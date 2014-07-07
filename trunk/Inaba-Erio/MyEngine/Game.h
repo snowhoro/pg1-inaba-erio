@@ -11,6 +11,7 @@ class DirectInput;
 class Renderer;
 class Timer;
 class Scene;
+class Renderer;
 
 class MYENGINE_API Game
 {
@@ -21,9 +22,9 @@ public:
 	virtual void Frame(Inaba::Renderer&, Inaba::DirectInput&, Inaba::Timer&) = 0;
 	virtual void DeInit() = 0;
 	Scene currentScene();
-	void setScene(std::string);
+	void setScene(std::string, Renderer*);
 private:
-	static Scene _scene;
+	Scene *_scene;
 
 };
 
