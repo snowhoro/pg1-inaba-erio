@@ -8,6 +8,7 @@
 namespace Inaba
 {
 	class Renderer;
+	class Timer;
 
 	class MYENGINE_API Entity2D
 	{
@@ -39,6 +40,7 @@ namespace Inaba
 			void drawAABB (Renderer&) const;
 			void returnToPos(float, float);
 			virtual void Draw(Renderer&) const = 0;
+			virtual void Update(Timer&) = 0;
 			std::string name() const;
 			void setName(std::string);
 		protected:

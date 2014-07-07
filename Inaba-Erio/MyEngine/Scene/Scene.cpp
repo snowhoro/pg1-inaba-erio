@@ -3,7 +3,7 @@
 #include "../Entity2D/Quad.h"
 #include "../Entity2D/Sprite.h"
 #include "../Entity2D/Animation.h"
-
+#include "../Timer/Timer.h"
 using namespace Inaba;
 
 Scene::Scene()
@@ -24,7 +24,7 @@ bool Scene::Init(Renderer &renderer)
 	return true;
 }
 
-bool Scene::Frame(Renderer &renderer)
+bool Scene::Frame(Renderer &renderer,Timer &timer)
 {
 	if(_entities.empty())
 		return false;
@@ -32,6 +32,7 @@ bool Scene::Frame(Renderer &renderer)
 	std::vector<Entity2D*>::iterator iter;
 	for(iter = _entities.begin(); iter != _entities.end(); iter++)
 	{
+		(*iter)->Update(timer);
 		(*iter)->Draw(renderer);
 	}
 
@@ -44,47 +45,33 @@ bool Scene::deInit()
 	return true;
 }
 
-Entity2D* Scene::getEntity(std::string name)
+bool Scene::getEntity(Sprite **ent ,std::string name)
 {
 	if(_entities.empty())
-		return false;
-	
+		return NULL;
+
 	for(int i=0; i < _entities.size(); i ++){
 		if(_entities[i]->name() == name){
-			return _entities[i];
-			
-		}
-	}
-	/*std::vector<Entity2D*>::iterator iter;
-	for(iter = _entities.begin(); iter != _entities.end(); iter++)
-	{
-		if((*iter)->name() == name)
-		{
-			//((Entity2D*)*iter);
-			//entity = _entities.
-			entity = (Quad*)(*iter);
+			*ent = (Sprite*)_entities[i];
 			return true;
 		}
-	}*/
+	}
 	return false;
 }
 
-/*Sprite* Scene::getEntity(std::string name)
+bool Scene::getEntity(Quad **ent ,std::string name)
 {
 	if(_entities.empty())
-		return false;
-	
-	std::vector<Entity2D*>::iterator iter;
-	for(iter = _entities.begin(); iter != _entities.end(); iter++)
-	{
-		if((*iter)->name() == name)
-		{
-			return (Sprite*)(*iter);
+		return NULL;
+
+	for(int i=0; i < _entities.size(); i ++){
+		if(_entities[i]->name() == name){
+			*ent = (Quad*)_entities[i];
+			return true;
 		}
 	}
-
 	return false;
-}*/
+}
 
 void Scene::AddEntity(Entity2D* entity)
 {

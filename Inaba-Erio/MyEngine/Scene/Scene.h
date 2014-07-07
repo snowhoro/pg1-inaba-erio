@@ -14,6 +14,7 @@ namespace Inaba
 	class Quad;
 	class Sprite;
 	class Animation;
+	class Timer;
 	class MYENGINE_API Scene
 	{
 	private:
@@ -21,9 +22,10 @@ namespace Inaba
 	public:
 		Scene();
 		 bool Init(Renderer&);
-		 bool Frame(Renderer&);
+		 bool Frame(Renderer&,Timer&);
 		 bool deInit();
-		 Entity2D* getEntity(std::string);
+		 bool getEntity(Sprite** ent ,std::string name);
+		 bool getEntity(Quad** ent ,std::string name);
 		 void AddEntity(Entity2D*);
 	};
 }

@@ -9,7 +9,7 @@
 namespace Inaba
 {
 	class Renderer;
-
+	class Timer;
 	class MYENGINE_API Quad : public Entity2D
 	{
 		public:
@@ -19,6 +19,7 @@ namespace Inaba
 			void Draw(Renderer&) const;
 			void setColor(DWORD c, int v);
 			void setColor(DWORD c);
+			void Update(Timer&){}
 		private:
 			ColorVertex* _vertex;
 	};

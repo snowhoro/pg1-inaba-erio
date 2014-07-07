@@ -4,7 +4,7 @@
 #include "../myengine_api.h"
 #include <string>
 #include "../xml/tinyxml2.h"
-#include <list>
+#include <vector>
 namespace Inaba
 {
 	
@@ -20,7 +20,7 @@ namespace Inaba
 			static bool importScene(Scene&, std::string, Renderer*);
 			static void importSprite(Scene&,tinyxml2::XMLElement*,Renderer*);
 			static void importQuad(Scene&,tinyxml2::XMLElement*);
-			static void importAnimation(std::list<Animation> *animations,tinyxml2::XMLElement*);
+			static void importAnimation(std::vector<Animation> **animations,tinyxml2::XMLElement*);
 	};
 }
 

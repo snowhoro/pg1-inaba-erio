@@ -10,7 +10,9 @@ Sprite::Sprite():
 Entity2D(),
 _texture(NoTexture),
 _vertex(new TextureCoordVertex[4]),
-_animation(new Animation())
+_animation(new Animation())//,
+//_animations(new std::vector<Animation*>())
+//_animations2(new Animation())
 {
 	static const float SIZE = 0.5f;
 	_vertex[0].x = -SIZE;	_vertex[0].y = SIZE;	_vertex[0].z = 0.0f;
@@ -65,12 +67,12 @@ void Sprite::setAnimation(std::string nameAnimation)
 	if(_animations.empty())
 		return;
 	
-	std::list<Animation>::iterator iter;
+	std::vector<Animation>::iterator iter;
 	for(iter = _animations.begin(); iter != _animations.end(); iter++)
-	{
+	{		
 		if(iter->name() == nameAnimation)
 		{
-			*_animation = *iter;
+			_animation = iter._Ptr;
 			return;
 		}
 	}
@@ -93,12 +95,16 @@ void Sprite::Update(Timer& rkTimer)
 	}
 }
 
-void Sprite::AddAnimation(Animation &animation)
+void Sprite::AddAnimation(Animation *animation)
 {
-	_animations.push_back(animation);
+	_animation = animation;
+	_animations.push_back(*animation);
 }
 
-void Sprite::AddAnimation(std::list<Animation> *animation)
+void Sprite::AddAnimation(std::vector<Animation> animation)
 {
-	_animations = *animation;
+	_animations = animation;
+
+	if(!_animations.empty())
+		_animation = &_animations[0];
 }
