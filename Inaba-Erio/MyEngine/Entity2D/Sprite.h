@@ -31,7 +31,7 @@ namespace Inaba
 			void setAnimation(std::string);
 			void Update(Timer&);				
 			void AddAnimation(Animation&);
-			void AddAnimation(std::list<Animation>);	
+			void AddAnimation(std::list<Animation>*);	
 			
 		private:
 			Texture _texture;

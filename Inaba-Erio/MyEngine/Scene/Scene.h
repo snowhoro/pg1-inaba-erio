@@ -4,24 +4,26 @@
 
 #include "../myengine_api.h"
 #include <iostream>
-#include <list>
+#include <vector>
 #include <string>
 
 namespace Inaba
 {
 	class Renderer;
 	class Entity2D;
-
+	class Quad;
+	class Sprite;
+	class Animation;
 	class MYENGINE_API Scene
 	{
 	private:
-		std::list<Entity2D*> _entities;
+		std::vector<Entity2D*> _entities;
 	public:
 		Scene();
-		 bool Init();
+		 bool Init(Renderer&);
 		 bool Frame(Renderer&);
 		 bool deInit();
-		 bool getEntity(Entity2D*, std::string);
+		 Entity2D* getEntity(std::string);
 		 void AddEntity(Entity2D*);
 	};
 }

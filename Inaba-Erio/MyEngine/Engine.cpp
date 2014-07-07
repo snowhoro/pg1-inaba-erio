@@ -32,8 +32,7 @@ bool Engine::Init()
 	   && _renderer->Init(_window->hWnd()) == TRUE
 	   && _directInput->init(_window->gethInstance(),_window->hWnd()) == TRUE)
 	{
-		Import import;
-		import.renderer = _renderer;
+		//Import::renderer = _renderer;
 		return true;
 	}
 	return false;
@@ -46,6 +45,9 @@ void Engine::Run()
 	if(!_game)
 		return;
 	if(!_game->Init(*_renderer))
+		return;
+
+	if(!_game->currentScene().Init(*_renderer))
 		return;
 
 	_timer->firstMeasure();

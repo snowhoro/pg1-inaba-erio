@@ -17,11 +17,10 @@ namespace Inaba
 	class MYENGINE_API Import
 	{
 		public:
-			static bool importScene(Scene&, std::string);
-			static void importSprite(Scene&,tinyxml2::XMLElement*);
+			static bool importScene(Scene&, std::string, Renderer*);
+			static void importSprite(Scene&,tinyxml2::XMLElement*,Renderer*);
 			static void importQuad(Scene&,tinyxml2::XMLElement*);
-			static void importAnimation(std::list<Animation> &animations,tinyxml2::XMLElement*);
-			static Renderer *renderer;
+			static void importAnimation(std::list<Animation> *animations,tinyxml2::XMLElement*);
 	};
 }
 
