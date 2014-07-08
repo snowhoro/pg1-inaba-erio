@@ -39,6 +39,7 @@
       <FRAME 	posX = "144" posY = "20" width="23" height="41" />
     </ANIMATION>
   </SPRITE>
+  <QUAD name="wall" posX="300" posY="0" rotation="0" scaleX="30" scaleY="1000" r="0" g="250" b="0" />
   <INSTANCE sprite="Link2" name="player3" posX="100" posY="100" rotation="0" scaleX="100" scaleY="100" />
   <INSTANCE sprite="Link2" name="player4" posX="150" posY="150" rotation="0" scaleX="100" scaleY="100" />
 

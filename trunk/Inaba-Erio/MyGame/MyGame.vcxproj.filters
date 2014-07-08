@@ -34,7 +34,10 @@
     <None Include="logo.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="archivo.xml">
+    <None Include="scene1.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="scene2.xml">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

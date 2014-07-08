@@ -10,7 +10,7 @@ using namespace Inaba;
 bool Import::importScene(Scene &scene, std::string fileName, Renderer *renderer)
 {
 	tinyxml2::XMLDocument xmlDoc;
-	xmlDoc.LoadFile("archivo.xml");
+	xmlDoc.LoadFile(fileName.c_str());
 	if(xmlDoc.Error())
 		return false;
 

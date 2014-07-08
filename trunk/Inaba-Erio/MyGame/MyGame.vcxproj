@@ -18,9 +18,10 @@
     <ClInclude Include="testGame.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="archivo.xml" />
     <None Include="Link.png" />
     <None Include="logo.png" />
+    <None Include="scene1.xml" />
+    <None Include="scene2.xml" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9D161E36-8FCA-489C-BA34-C2A74FB56EEF}</ProjectGuid>
