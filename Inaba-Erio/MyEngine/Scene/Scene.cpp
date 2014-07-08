@@ -43,16 +43,15 @@ bool Scene::deInit()
 	{
 		delete _entities[i];
 		_entities[i] = NULL;
-
-		_entities.clear();
-	}		
+	}	
+	_entities.clear();
 	return true;
 }
 
 bool Scene::getEntity(Sprite **ent ,std::string name)
 {
 	if(_entities.empty())
-		return NULL;
+		return false;
 
 	for(int i=0; i < _entities.size(); i ++){
 		if(_entities[i]->name() == name){
@@ -66,7 +65,7 @@ bool Scene::getEntity(Sprite **ent ,std::string name)
 bool Scene::getEntity(Quad **ent ,std::string name)
 {
 	if(_entities.empty())
-		return NULL;
+		return false;
 
 	for(int i=0; i < _entities.size(); i ++){
 		if(_entities[i]->name() == name){
