@@ -1,7 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-
 #include "../myengine_api.h"
 #include <iostream>
 #include <vector>
@@ -21,6 +20,7 @@ namespace Inaba
 		std::vector<Entity2D*> _entities;
 	public:
 		Scene();
+		~Scene();
 		 bool Init(Renderer&);
 		 bool Frame(Renderer&,Timer&);
 		 bool deInit();

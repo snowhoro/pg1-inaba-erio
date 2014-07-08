@@ -18,6 +18,7 @@ class MYENGINE_API Game
 public:
 	Game();
 	Game(std::string);
+	~Game();
 	virtual bool Init(Inaba::Renderer&) = 0;
 	virtual void Frame(Inaba::Renderer&, Inaba::DirectInput&, Inaba::Timer&) = 0;
 	virtual void DeInit() = 0;

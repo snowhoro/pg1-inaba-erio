@@ -4,23 +4,19 @@
 #include "../Entity2D/Sprite.h"
 #include "../Entity2D/Animation.h"
 #include "../Timer/Timer.h"
+
 using namespace Inaba;
 
 Scene::Scene()
-//: _entities(new std::list<Entity2D*>)
 {	
+}
+
+Scene::~Scene()
+{
 }
 
 bool Scene::Init(Renderer &renderer)
 {
-	/*if(_entities.empty())
-		return false;*/
-	
-	/*std::vector<Entity2D*>::iterator iter;
-	for(iter = _entities.begin(); iter != _entities.end(); iter++)
-	{
-		(*iter)->Draw(renderer);
-	}*/
 	return true;
 }
 
@@ -35,13 +31,21 @@ bool Scene::Frame(Renderer &renderer,Timer &timer)
 		(*iter)->Update(timer);
 		(*iter)->Draw(renderer);
 	}
-
 	return true;
 }
 
 bool Scene::deInit()
 {
-	//delete
+	if(_entities.empty())
+		return true;
+
+	for(int i=0; i < _entities.size(); i ++)
+	{
+		delete _entities[i];
+		_entities[i] = NULL;
+
+		_entities.clear();
+	}		
 	return true;
 }
 

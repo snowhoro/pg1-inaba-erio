@@ -16,6 +16,12 @@ Game::Game(std::string sceneName)
 	//setScene(sceneName,);
 }
 
+Game::~Game()
+ {
+	delete _scene;
+	_scene = NULL;
+}
+
 Scene Game::currentScene()
 {
 	return *_scene;
@@ -23,5 +29,7 @@ Scene Game::currentScene()
 
 void Game::setScene(std::string sceneName, Renderer* renderer)
 {
+	_scene->deInit();
 	Import::importScene(*_scene,sceneName, renderer);
+	Init(*renderer);
 }

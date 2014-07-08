@@ -47,9 +47,6 @@ void Engine::Run()
 	if(!_game->Init(*_renderer))
 		return;
 
-	if(!_game->currentScene().Init(*_renderer))
-		return;
-
 	_timer->firstMeasure();
 	while(GameOn)
 	{

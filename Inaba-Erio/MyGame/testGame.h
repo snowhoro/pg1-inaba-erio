@@ -10,22 +10,22 @@
 #include "Entity2D/Animation.h"
 #include "Scene/Import.h"
 #include "Scene/Scene.h"
+
 namespace Erio
 {
-	//class Quad;
-class Game : public Inaba::Game
-{
-public:
-	Game();
-	bool Init(Inaba::Renderer&);
-	void Frame(Inaba::Renderer&,Inaba::DirectInput&, Inaba::Timer&);
-	void DeInit();
+	class Game : public Inaba::Game
+	{
+	public:
+		Game();
+		bool Init(Inaba::Renderer&);
+		void Frame(Inaba::Renderer&,Inaba::DirectInput&, Inaba::Timer&);
+		void DeInit();
 
-private:
-	Inaba::Quad *_quad1;
-	Inaba::Sprite *_sprite1;
-	Inaba::Sprite *_sprite2;
-};
-
+	private:
+		Inaba::Quad *_quad1;
+		Inaba::Quad *_quad2;
+		Inaba::Sprite *_sprite1;
+		Inaba::Sprite *_sprite2;
+	};
 }
 #endif
