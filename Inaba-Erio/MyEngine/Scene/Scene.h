@@ -14,19 +14,29 @@ namespace Inaba
 	class Sprite;
 	class Animation;
 	class Timer;
+	class Game;
+	class DirectInput;
+
 	class MYENGINE_API Scene
 	{
-	private:
+	protected:
 		std::vector<Entity2D*> _entities;
+		std::string _name;
+		Game *_game;
+		
 	public:
 		Scene();
-		~Scene();
-		 bool Init(Renderer&);
-		 bool Frame(Renderer&,Timer&);
-		 bool deInit();
-		 bool getEntity(Sprite** ent ,std::string name);
-		 bool getEntity(Quad** ent ,std::string name);
-		 void AddEntity(Entity2D*);
+		//~Scene();
+		virtual bool Init(Renderer&) = 0;
+		virtual bool Frame(Renderer&,DirectInput&,Timer&)= 0;
+		bool deInit();
+		bool Draw(Renderer&,Timer&);
+		bool getEntity(Sprite** ent ,std::string name);
+		bool getEntity(Quad** ent ,std::string name);
+		void AddEntity(Entity2D*);
+		void setName(std::string);
+		std::string Name(){return _name;}
+		std::string fileName;
 	};
 }
 

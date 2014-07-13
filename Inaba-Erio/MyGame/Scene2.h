@@ -1,5 +1,5 @@
-#ifndef TESTGAME_H
-#define TESTGAME_H
+#ifndef SCENE2_H
+#define SCENE2_H
 
 #include "Game.h"
 #include "Renderer/RenderTypes.h"
@@ -10,21 +10,24 @@
 #include "Entity2D/Animation.h"
 #include "Scene/Import.h"
 #include "Scene/Scene.h"
-#include "Scene1.h"
 
 namespace Erio
 {
-	class Game : public Inaba::Game
+	class Game;
+
+	class Scene2 : public Inaba::Scene
 	{
 	public:
-		Game();
+		Scene2(Game*);
 		bool Init(Inaba::Renderer&);
-		void Frame(Inaba::Renderer&,Inaba::DirectInput&, Inaba::Timer&);
-		void DeInit();
+		bool Frame(Inaba::Renderer&,Inaba::DirectInput&, Inaba::Timer&);
 
-	private: 
-		Inaba::Scene *scene1;
-		Inaba::Scene *scene2;
+	private:		
+		Inaba::Quad *_quad1;
+		Inaba::Quad *_quad2;
+		Inaba::Sprite *_sprite1;
+		Inaba::Sprite *_sprite2;
 	};
+
 }
 #endif

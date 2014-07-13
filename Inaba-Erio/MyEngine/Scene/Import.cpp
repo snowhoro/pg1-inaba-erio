@@ -7,23 +7,45 @@
 #include "../Renderer/Renderer.h"
 using namespace Inaba;
 
-bool Import::importScene(Scene &scene, std::string fileName, Renderer *renderer)
+Import* Import::_instance = NULL;
+
+Import::Import()
+: _renderer(NULL)
+{
+}
+
+Import* Import::GetInstance()
+{
+	if (!_instance)
+	{
+		_instance = new Import();
+	}
+	return _instance;
+}
+
+void Import::setRenderer(Renderer *renderer)
+{
+	_renderer = renderer;
+}
+
+bool Import::importScene(Scene &scene)
 {
 	tinyxml2::XMLDocument xmlDoc;
-	xmlDoc.LoadFile(fileName.c_str());
+	xmlDoc.LoadFile(scene.fileName.c_str());
 	if(xmlDoc.Error())
 		return false;
 
 	tinyxml2::XMLElement *root = xmlDoc.FirstChildElement("SCENE");
 
-	importSprite(scene,root,renderer);
+	importSprite(scene,root);
 	importQuad(scene,root);
 }
 
-void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root,Renderer* renderer)
+void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root)
 {
 	tinyxml2::XMLElement *sprite = root->FirstChildElement("SPRITE");
 	tinyxml2::XMLElement *instance = root->FirstChildElement("INSTANCE");
+	scene.setName(root->Attribute("name"));
 
 	while(sprite!= NULL)
 	{	
@@ -33,7 +55,7 @@ void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root,Renderer* rend
 		int g = sprite->IntAttribute("g");
 		int b = sprite->IntAttribute("b");
 
-		Inaba::Texture texture = renderer->LoadTexture(texturePath,Inaba_COLOR_RGB(r,g,b));
+		Inaba::Texture texture = _renderer->LoadTexture(texturePath,Inaba_COLOR_RGB(r,g,b));
 
 		//CREAR LISTA ANIM
 		std::vector<Animation> *list_animations = new std::vector<Animation>();
@@ -144,3 +166,5 @@ void Import::importAnimation (std::vector<Animation> **list_animations,tinyxml2:
 		animations = animations->NextSiblingElement("ANIMATION");
 	}
 }
+
+

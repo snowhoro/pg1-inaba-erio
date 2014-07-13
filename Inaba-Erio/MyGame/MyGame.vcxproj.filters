@@ -21,9 +21,21 @@
     <ClCompile Include="testGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="testGame.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene1.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

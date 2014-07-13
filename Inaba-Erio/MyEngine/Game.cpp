@@ -5,12 +5,12 @@
 using namespace Inaba;
 
 Game::Game()
-:_scene(new Scene)
+:_currentScene(NULL)
 {
 }
 
 Game::Game(std::string sceneName)
-:_scene(new Scene)
+:_currentScene(NULL)
 {
 	// otras cosas
 	//setScene(sceneName,);
@@ -18,18 +18,37 @@ Game::Game(std::string sceneName)
 
 Game::~Game()
  {
-	delete _scene;
-	_scene = NULL;
+	delete _currentScene;
+	_currentScene = NULL;
 }
 
-Scene Game::currentScene()
+Scene* Game::currentScene()
 {
-	return *_scene;
+	return _currentScene;
 }
 
 void Game::setScene(std::string sceneName, Renderer* renderer)
 {
-	_scene->deInit();
-	Import::importScene(*_scene,sceneName, renderer);
-	Init(*renderer);
+	if(_currentScene)
+		_currentScene->deInit();
+
+	if(_scenes.empty())
+		return;
+		
+	for(int i = 0; i < _scenes.size(); i++)
+	{
+		if(_scenes[i]->Name() == sceneName)
+			_currentScene = _scenes[i];
+	}
+
+	if(!_currentScene)
+		return;
+
+	Import::GetInstance()->importScene(*_currentScene);
+	_currentScene->Init(*renderer);
+}
+
+void Game::AddScene(Scene* scene)
+{
+	_scenes.push_back(scene);
 }

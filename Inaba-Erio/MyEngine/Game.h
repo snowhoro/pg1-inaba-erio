@@ -3,6 +3,7 @@
 
 #include "myengine_api.h"
 #include <string>
+#include <vector>
 
 namespace Inaba
 {
@@ -15,17 +16,19 @@ class Renderer;
 
 class MYENGINE_API Game
 {
-public:
-	Game();
-	Game(std::string);
-	~Game();
-	virtual bool Init(Inaba::Renderer&) = 0;
-	virtual void Frame(Inaba::Renderer&, Inaba::DirectInput&, Inaba::Timer&) = 0;
-	virtual void DeInit() = 0;
-	Scene currentScene();
-	void setScene(std::string, Renderer*);
-private:
-	Scene *_scene;
+	public:
+		Game();
+		Game(std::string);
+		~Game();
+		virtual bool Init(Inaba::Renderer&) = 0;
+		virtual void Frame(Inaba::Renderer&, Inaba::DirectInput&, Inaba::Timer&) = 0;
+		virtual void DeInit() = 0;
+		Scene* currentScene();
+		void setScene(std::string, Renderer*);
+		void AddScene(Scene*);
+	private:
+		Scene *_currentScene;
+		std::vector<Scene*> _scenes;
 
 };
 
