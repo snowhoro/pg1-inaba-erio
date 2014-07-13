@@ -37,7 +37,7 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 	if(_sprite1->checkCollision(*_quad2) != Inaba::Entity2D::NoCollision )
 		_sprite1->returnToPos(_sprite1->prevPosX(), _sprite1->prevPosY());
 
-	if(directInput.keyUp(Inaba::Input::KEY_R))
+	if(directInput.keyDown(Inaba::Input::KEY_R))
 		_game->setScene("scene2", &renderer);
 
 
