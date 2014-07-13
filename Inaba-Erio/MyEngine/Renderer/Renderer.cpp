@@ -90,6 +90,16 @@ bool Renderer::Init(HWND hWnd)
 	return true;
 }
 
+void Renderer::deInit()
+{
+	for(std::vector<Texture>::iterator it = _vectorTextures.begin(); it!= _vectorTextures.end(); it++)
+	{
+		(*it)->Release();
+		(*it) = NULL;
+	}
+	_vectorTextures.clear();
+}
+
 void Renderer::BeginFrame()
 {
 	_d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);

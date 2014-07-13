@@ -17,7 +17,7 @@ _vertex(new ColorVertex[4])
 	_vertex[0].color = D3DCOLOR_XRGB(255,0,0);	
 	_vertex[1].color = D3DCOLOR_XRGB(255,0,0);	
 	_vertex[2].color = D3DCOLOR_XRGB(255,0,0);
-	_vertex[3].color = D3DCOLOR_XRGB(255,0,0);	
+	_vertex[3].color = D3DCOLOR_XRGB(255,0,0);
 
 	UpdateLocalTransformation();
 }

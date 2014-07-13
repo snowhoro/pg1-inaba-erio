@@ -25,12 +25,22 @@ Game::~Game()
 Scene* Game::currentScene()
 {
 	return _currentScene;
+
+	for(int i=0; i < _scenes.size(); i ++)
+	{
+		delete _scenes[i];
+		_scenes[i] = NULL;
+	}	
+	_scenes.clear();
 }
 
 void Game::setScene(std::string sceneName, Renderer* renderer)
 {
 	if(_currentScene)
+	{
 		_currentScene->deInit();
+		renderer->deInit();
+	}
 
 	if(_scenes.empty())
 		return;

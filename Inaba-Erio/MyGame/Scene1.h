@@ -18,16 +18,16 @@ namespace Erio
 
 	class Scene1 : public Inaba::Scene
 	{
-	public:
-		Scene1(Game*);
-		bool Init(Inaba::Renderer&);
-		bool Frame(Inaba::Renderer&,Inaba::DirectInput&, Inaba::Timer&);
-
-	private:		
-		Inaba::Quad *_quad1;
-		Inaba::Quad *_quad2;
-		Inaba::Sprite *_sprite1;
-		Inaba::Sprite *_sprite2;
+		public:
+			Scene1(Game*);
+			~Scene1();
+			bool Init(Inaba::Renderer&);
+			bool Frame(Inaba::Renderer&,Inaba::DirectInput&, Inaba::Timer&);
+		private:		
+			Inaba::Quad *_quad1;
+			Inaba::Quad *_quad2;
+			Inaba::Sprite *_sprite1;
+			Inaba::Sprite *_sprite2;
 	};
 
 }

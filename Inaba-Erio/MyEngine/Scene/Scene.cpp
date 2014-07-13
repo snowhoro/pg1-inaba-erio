@@ -14,6 +14,8 @@ Scene::Scene()
 
 /*Scene::~Scene()
 {
+	delete _game;
+	_game = NULL;
 }*/
 
 bool Scene::deInit()
@@ -27,6 +29,10 @@ bool Scene::deInit()
 		_entities[i] = NULL;
 	}	
 	_entities.clear();
+
+	/*delete _game;
+	_game = NULL;*/
+
 	return true;
 }
 

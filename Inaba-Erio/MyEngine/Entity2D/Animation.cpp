@@ -9,6 +9,11 @@ _length(1.0f)
 {
 }
 
+Animation::~Animation()
+{
+	_frames.clear();
+}
+
 unsigned int Animation::currentFrame() const{
  return _currentFrame;
 }

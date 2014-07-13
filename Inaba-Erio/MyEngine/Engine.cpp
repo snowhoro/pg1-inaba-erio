@@ -21,10 +21,19 @@ _timer(new Timer())
 Engine::~Engine()
 {
 	delete _window;
+	_window = NULL;
+
 	delete _renderer;
+	_renderer = NULL;
+	
 	delete _game;
+	_game = NULL;
+	
 	delete _directInput;
+	_directInput = NULL;
+
 	delete _timer;
+	_timer = NULL;
 }
 bool Engine::Init()
 {
