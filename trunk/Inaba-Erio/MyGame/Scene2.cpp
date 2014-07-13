@@ -21,15 +21,15 @@ bool Scene2::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 {	
 	 static float fSp = 1.0f;
 	 if(directInput.keyDown(Inaba::Input::KEY_UP))
-	  _quad1->setPos(_sprite1->posX(), _sprite1->posY() + fSp);
+	  _quad1->setPos(_quad1->posX(), _quad1->posY() + fSp);
 	 else if(directInput.keyDown(Inaba::Input::KEY_DOWN))
-	  _quad1->setPos(_sprite1->posX(), _sprite1->posY() - fSp);
+	  _quad1->setPos(_quad1->posX(), _quad1->posY() - fSp);
 	 else if(directInput.keyDown(Inaba::Input::KEY_LEFT))
-	  _quad1->setPos(_sprite1->posX() - fSp, _sprite1->posY());
+	  _quad1->setPos(_quad1->posX() - fSp, _quad1->posY());
 	 else if(directInput.keyDown(Inaba::Input::KEY_RIGHT))
-	  _quad1->setPos(_sprite1->posX() + fSp, _sprite1->posY());
+	  _quad1->setPos(_quad1->posX() + fSp, _quad1->posY());
 
-	if(directInput.keyDown(Inaba::Input::KEY_R))
+	if(directInput.keyUp(Inaba::Input::KEY_R))
 		_game->setScene("scene1", &renderer);
 
 
