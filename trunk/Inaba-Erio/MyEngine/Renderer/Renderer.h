@@ -26,6 +26,7 @@ public:
 	Renderer();
 	~Renderer();
 	bool Init(HWND hwnd);
+	void deInit();
 	void BeginFrame();
 	void EndFrame();
 	void Draw(ColorVertex*,Inaba::Primitive,size_t);

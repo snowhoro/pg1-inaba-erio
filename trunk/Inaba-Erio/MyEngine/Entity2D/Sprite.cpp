@@ -10,9 +10,7 @@ Sprite::Sprite():
 Entity2D(),
 _texture(NoTexture),
 _vertex(new TextureCoordVertex[4]),
-_animation(new Animation())//,
-//_animations(new std::vector<Animation*>())
-//_animations2(new Animation())
+_animation(new Animation())
 {
 	static const float SIZE = 0.5f;
 	_vertex[0].x = -SIZE;	_vertex[0].y = SIZE;	_vertex[0].z = 0.0f;
@@ -32,6 +30,11 @@ Sprite::~Sprite()
 {
 	delete[] _vertex;
 	_vertex = NULL;
+
+	delete _animation;
+	_animation = NULL;
+
+	_animations.clear();
 }
 
 void Sprite::setTexture(Texture& texture)

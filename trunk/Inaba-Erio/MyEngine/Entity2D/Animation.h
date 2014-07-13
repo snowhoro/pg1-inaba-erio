@@ -11,6 +11,7 @@ namespace Inaba
 	class MYENGINE_API Animation{
 	public:
 		Animation();
+		~Animation();
 		struct Frame{
 			float u1; float v1;
 			float u2; float v2;

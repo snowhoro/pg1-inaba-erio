@@ -11,6 +11,22 @@ Scene1::Scene1(Game *game)
 	_name = "scene1";
 	_game = game;
 }
+
+Scene1::~Scene1()
+{
+	delete _quad1;
+	_quad1 = NULL;
+
+	delete _quad2;
+	_quad2 = NULL;
+
+	delete _sprite1;
+	_sprite1 = NULL;
+	
+	delete _sprite2;
+	_sprite2 = NULL;
+}
+
 bool Scene1::Init(Inaba::Renderer& renderer)
 {
 	getEntity(&_sprite1, "player1");
@@ -37,7 +53,7 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 	if(_sprite1->checkCollision(*_quad2) != Inaba::Entity2D::NoCollision )
 		_sprite1->returnToPos(_sprite1->prevPosX(), _sprite1->prevPosY());
 
-	if(directInput.keyDown(Inaba::Input::KEY_R))
+	if(directInput.keyDown(Inaba::Input::KEY_P))
 		_game->setScene("scene2", &renderer);
 
 

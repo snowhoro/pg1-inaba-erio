@@ -9,6 +9,12 @@ _hInstance(hInstance)
 {
 }
 
+Window::~Window()
+{
+	delete _wc;
+	_wc = NULL;
+}
+
 bool Window::Create(unsigned int w, unsigned int h)
 {
 	ZeroMemory(_wc, sizeof(*_wc));
