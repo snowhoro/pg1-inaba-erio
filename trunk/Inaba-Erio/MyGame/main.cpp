@@ -8,10 +8,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//Inaba::Scene scene();
 
 	engine._game = new Erio::Game();
-	engine._game->setScene("scene1.xml", engine.getRenderer());
-	engine.Run();
-	engine._game = new Erio::Game();
-	engine._game->setScene("scene1.xml", engine.getRenderer());
+	//engine._game->setScene("scene1.xml", engine.getRenderer());
 	engine.Run();
 
 	delete engine._game;

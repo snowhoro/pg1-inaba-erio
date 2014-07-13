@@ -4,6 +4,7 @@
 #include "../Entity2D/Sprite.h"
 #include "../Entity2D/Animation.h"
 #include "../Timer/Timer.h"
+#include "../Game.h"
 
 using namespace Inaba;
 
@@ -11,28 +12,9 @@ Scene::Scene()
 {	
 }
 
-Scene::~Scene()
+/*Scene::~Scene()
 {
-}
-
-bool Scene::Init(Renderer &renderer)
-{
-	return true;
-}
-
-bool Scene::Frame(Renderer &renderer,Timer &timer)
-{
-	if(_entities.empty())
-		return false;
-	
-	std::vector<Entity2D*>::iterator iter;
-	for(iter = _entities.begin(); iter != _entities.end(); iter++)
-	{
-		(*iter)->Update(timer);
-		(*iter)->Draw(renderer);
-	}
-	return true;
-}
+}*/
 
 bool Scene::deInit()
 {
@@ -45,6 +27,20 @@ bool Scene::deInit()
 		_entities[i] = NULL;
 	}	
 	_entities.clear();
+	return true;
+}
+
+bool Scene::Draw(Renderer &renderer,Timer &timer)
+{
+	if(_entities.empty())
+		return false;
+	
+	std::vector<Entity2D*>::iterator iter;
+	for(iter = _entities.begin(); iter != _entities.end(); iter++)
+	{
+		(*iter)->Update(timer);
+		(*iter)->Draw(renderer);
+	}
 	return true;
 }
 
@@ -79,4 +75,9 @@ bool Scene::getEntity(Quad **ent ,std::string name)
 void Scene::AddEntity(Entity2D* entity)
 {
 	_entities.push_back(entity);
+}
+
+void Scene::setName(std::string sceneName)
+{
+	_name = sceneName;
 }

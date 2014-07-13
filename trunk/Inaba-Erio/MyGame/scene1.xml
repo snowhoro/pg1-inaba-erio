@@ -1,4 +1,4 @@
-<SCENE>
+<SCENE name="scene1">
   <SPRITE name="Link" texture="Link.png" r="0" g="255" b="0">
     <ANIMATION 	name="Idle" lenght="1000" width="512" height="1024">				
 		  <FRAME 	posX = "94" posY = "20" width="23" height="41" />

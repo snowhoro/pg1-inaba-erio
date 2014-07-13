@@ -6,8 +6,7 @@
 #include "../xml/tinyxml2.h"
 #include <vector>
 namespace Inaba
-{
-	
+{	
 	class Scene;
 	class Quad;
 	class Sprite;
@@ -16,11 +15,23 @@ namespace Inaba
 
 	class MYENGINE_API Import
 	{
+		private:
+			static bool instanceFlag;
+			static Import *_instance;
+			Renderer *_renderer;
+			Import();
+			Import(Import &const);
+			Import& operator= (Import const&);
+
 		public:
-			static bool importScene(Scene&, std::string, Renderer*);
-			static void importSprite(Scene&,tinyxml2::XMLElement*,Renderer*);
-			static void importQuad(Scene&,tinyxml2::XMLElement*);
-			static void importAnimation(std::vector<Animation> **animations,tinyxml2::XMLElement*);
+			static Import* GetInstance();
+			void setRenderer(Renderer*);
+			bool importScene(Scene&);
+			
+		private:
+			void importSprite(Scene&,tinyxml2::XMLElement*);
+			void importQuad(Scene&,tinyxml2::XMLElement*);
+			void importAnimation(std::vector<Animation> **animations,tinyxml2::XMLElement*);
 	};
 }
 
