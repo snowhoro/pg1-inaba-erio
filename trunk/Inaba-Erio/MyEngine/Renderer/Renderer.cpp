@@ -22,9 +22,11 @@ D3DTRANSFORMSTATETYPE MatrixTypeMapping[MatrixTypeCount] =
 Renderer::Renderer():
 _d3d(NULL),
 _d3ddev(NULL),
-_vertexbuffer(NULL)
+_vertexbuffer(NULL),
+_textureCoordVertexbuffer(NULL)
 {
 }
+
 Renderer::~Renderer()
 {
 	_d3d->Release();
@@ -63,9 +65,10 @@ bool Renderer::Init(HWND hWnd)
 
 	// create a device class using this information and information from the d3dpp
     if(_d3d->CreateDevice(	D3DADAPTER_DEFAULT,
-							D3DDEVTYPE_HAL,
-							hWnd,
-							D3DCREATE_SOFTWARE_VERTEXPROCESSING,
+							D3DDEVTYPE_HAL, // Hardware Abstraction Layer is used to indicate that Direct3D 
+										    //should be using hardware to process graphics
+							hWnd, // handle window
+							D3DCREATE_SOFTWARE_VERTEXPROCESSING, // indicates that all 3D calculations should be done with
 							&d3dpp,
 							&_d3ddev) 
 	!= D3D_OK)
@@ -73,9 +76,9 @@ bool Renderer::Init(HWND hWnd)
 		return false;
 	}
 
-	_d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);
-	_d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	_d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE);
+	_d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE); // setea el uso de luz o no. 
+	_d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE); 
+	_d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE); //activa alpha
 	_d3ddev->SetRenderState(D3DRS_BLENDOP,D3DBLENDOP_ADD);
 	_d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
 	_d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
@@ -88,7 +91,7 @@ bool Renderer::Init(HWND hWnd)
 	float viewportHeight = static_cast<float>(viewport.Height);
 
 	D3DXMATRIX projectionMatrix;
-	D3DXMatrixOrthoLH(&projectionMatrix,viewportWidth,viewportHeight, -1.0f, 1.0f);
+	D3DXMatrixOrthoLH(&projectionMatrix,viewportWidth,viewportHeight, -1.0f, 1.0f); // left handed
 	_d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
 
 	_vertexbuffer = new Inaba::VertexBuffer(_d3ddev,sizeof(Inaba::ColorVertex),Inaba::ColorVertexType);
