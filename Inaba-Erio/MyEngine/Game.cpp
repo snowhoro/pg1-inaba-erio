@@ -20,11 +20,6 @@ Game::~Game()
  {
 	delete _currentScene;
 	_currentScene = NULL;
-}
-
-Scene* Game::currentScene()
-{
-	return _currentScene;
 
 	for(int i=0; i < _scenes.size(); i ++)
 	{
@@ -32,6 +27,11 @@ Scene* Game::currentScene()
 		_scenes[i] = NULL;
 	}	
 	_scenes.clear();
+}
+
+Scene* Game::currentScene()
+{
+	return _currentScene;
 }
 
 void Game::setScene(std::string sceneName, Renderer* renderer)
