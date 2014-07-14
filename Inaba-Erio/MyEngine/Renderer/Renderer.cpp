@@ -49,13 +49,19 @@ Renderer::~Renderer()
 
 bool Renderer::Init(HWND hWnd)
 {
-	_d3d = Direct3DCreate9(D3D_SDK_VERSION);
-    D3DPRESENT_PARAMETERS d3dpp;
-    ZeroMemory(&d3dpp, sizeof(d3dpp));
-    d3dpp.Windowed = TRUE;
-    d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
-    d3dpp.hDeviceWindow = hWnd;
+	_d3d = Direct3DCreate9(D3D_SDK_VERSION); // create the Direct3D interface
 
+    D3DPRESENT_PARAMETERS d3dpp; // create a struct to hold various device information
+
+    ZeroMemory(&d3dpp, sizeof(d3dpp));
+
+    d3dpp.Windowed = TRUE; // program windowed, not fullscreen
+
+    d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD; // discard old frames
+
+    d3dpp.hDeviceWindow = hWnd; // set the window to be used by Direct3D
+
+	// create a device class using this information and information from the d3dpp
     if(_d3d->CreateDevice(	D3DADAPTER_DEFAULT,
 							D3DDEVTYPE_HAL,
 							hWnd,
