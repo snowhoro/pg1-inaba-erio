@@ -6,6 +6,7 @@
 using namespace Erio;
 
 Game::Game()
+: Inaba::Game()
 {
 }
 

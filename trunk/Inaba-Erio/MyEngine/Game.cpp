@@ -21,11 +21,11 @@ Game::~Game()
 	delete _currentScene;
 	_currentScene = NULL;
 
-	for(int i=0; i < _scenes.size(); i ++)
+	/*for(int i=0; i < _scenes.size(); i ++)
 	{
 		delete _scenes[i];
 		_scenes[i] = NULL;
-	}	
+	}*/	
 	_scenes.clear();
 }
 
@@ -38,8 +38,8 @@ void Game::setScene(std::string sceneName, Renderer* renderer)
 {
 	if(_currentScene)
 	{
-		_currentScene->deInit();
-		renderer->deInit();
+		_currentScene->deInit(); //LIMPIO LISTA DE ENTIDADES
+		renderer->deInit(); //BORRO TEXTURAS
 	}
 
 	if(_scenes.empty())
@@ -48,10 +48,13 @@ void Game::setScene(std::string sceneName, Renderer* renderer)
 	for(int i = 0; i < _scenes.size(); i++)
 	{
 		if(_scenes[i]->Name() == sceneName)
+		{
 			_currentScene = _scenes[i];
+			break;
+		}
 	}
 
-	if(!_currentScene)
+	if(!_currentScene) // SI NO LO ENCONTRO POR NOMBRE
 		return;
 
 	Import::GetInstance()->importScene(*_currentScene);
