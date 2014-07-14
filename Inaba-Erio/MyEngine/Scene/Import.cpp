@@ -95,7 +95,6 @@ void Import::importSprite(Scene &scene,tinyxml2::XMLElement* root)
 		}
 		sprite = sprite->NextSiblingElement("SPRITE");
 	}
-
 }
 
 void Import::importQuad(Scene &scene,tinyxml2::XMLElement* root)
@@ -148,8 +147,7 @@ void Import::importAnimation (std::vector<Animation> **list_animations,tinyxml2:
 
 		tinyxml2::XMLElement *frame = animations->FirstChildElement("FRAME");
 		while(frame != NULL)
-		{
-			
+		{			
 			float posX = frame->FloatAttribute("posX");
 			float posY = frame->FloatAttribute("posY");
 			float width = frame->FloatAttribute("width");

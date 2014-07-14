@@ -56,6 +56,5 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 	if(directInput.keyDown(Inaba::Input::KEY_P))
 		_game->setScene("scene2", &renderer);
 
-
 	return true;
 }

@@ -16,7 +16,6 @@ namespace Inaba
 	class MYENGINE_API Import
 	{
 		private:
-			static bool instanceFlag;
 			static Import *_instance;
 			Renderer *_renderer;
 			Import();
