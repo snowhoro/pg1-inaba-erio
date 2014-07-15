@@ -111,8 +111,13 @@ void Renderer::deInit()
 
 void Renderer::BeginFrame()
 {
+	// Limpia el buffer	
 	_d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
-    _d3ddev->BeginScene();
+    
+	//tells Direct3D you are ready to start rendering. 
+	//to tell Direct3D that you are in control of the memory. 
+	//locking, where the buffer in the video RAM is 'locked'
+	_d3ddev->BeginScene(); 
 }
 void Renderer::EndFrame()
 {
