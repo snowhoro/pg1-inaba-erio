@@ -2,7 +2,7 @@
 using namespace Inaba;
 
 Font::Font():
-_font()
+_font(NULL)
 {
 }
 
@@ -94,5 +94,5 @@ void Font::Print( char* text, int xPosition, int yPosition, DWORD color, LPD3DXS
 		} 
 	}
 	RECT rect = { xPosition, yPosition, xPosition + textBoxWidth, yPosition + textBoxHeight }; 
-	_font->DrawText( sprite, text, -1, &rect, format, color ); 
+	_font->DrawText( sprite, text, -1, &rect, format, color );
 }

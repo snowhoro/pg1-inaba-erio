@@ -66,6 +66,7 @@ void Engine::Run()
 			_renderer->BeginFrame();
 			_game->Frame(*_renderer, *_directInput,*_timer);
 			_game->currentScene()->Draw(*_renderer,*_timer);
+			_renderer->UpdateCamera();
 			_renderer->EndFrame();
 		}
 

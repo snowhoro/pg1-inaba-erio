@@ -85,33 +85,20 @@ bool Renderer::Init(HWND hWnd)
 	//_d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
 
+	//INIT CAMERA
+	_camera = new Camera();
+	_d3ddev->SetTransform(D3DTS_VIEW, _camera->getViewMatrix()); 
+	_d3ddev->SetTransform(D3DTS_PROJECTION, _camera->getProjectionMatrix());	
+	
 
-
-	/*D3DXMATRIX matView;    // the view transform matrix
-		
-	D3DXMatrixLookAtLH(&matView,
-		&D3DXVECTOR3(0.0f, 0.0f, -1000.0f),    // the camera position
-		&D3DXVECTOR3(0.0f, 0.0f, 0.0f),    // the look-at position
-		&D3DXVECTOR3(0.0f, 1.0f, 0.0f));    // the up direction
-
-		_d3ddev->SetTransform(D3DTS_VIEW, &matView);    // set the view transform to matView
-	*/
+	/* ORTHOGRAPHIC
+	
 	D3DVIEWPORT9 viewport;
 	_d3ddev->GetViewport(&viewport);
-
 	float viewportWidth = static_cast<float>(viewport.Width);
 	float viewportHeight = static_cast<float>(viewport.Height);
-
-	D3DXMATRIX projectionMatrix;
-
-	D3DXMatrixPerspectiveFovLH(&projectionMatrix,
-		D3DXToRadian(45),    // the horizontal field of view
-		(FLOAT)viewportWidth / (FLOAT)viewportHeight,    // aspect ratio
-		0.0f,    // the near view-plane
-		100.0f);    // the far view-plane
-
-	//D3DXMatrixOrthoLH(&projectionMatrix,viewportWidth,viewportHeight, -1.0f, 1.0f); // left handed
-	_d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
+	D3DXMatrixOrthoLH(&projectionMatrix,viewportWidth,viewportHeight, -1.0f, 1.0f); // left handed
+	*/
 
 	_vertexbuffer = new Inaba::VertexBuffer(_d3ddev,sizeof(Inaba::ColorVertex),Inaba::ColorVertexType);
 	_textureCoordVertexbuffer = new VertexBuffer(_d3ddev,sizeof(Inaba::TextureCoordVertex),Inaba::TextureCoordVertexType);
@@ -146,10 +133,6 @@ void Renderer::BeginFrame()
 }
 void Renderer::EndFrame()
 {
-	//NO VA ACA BOLUDO
-	_font->Print( "HOLA RULO", 0, 0, D3DCOLOR_XRGB( 255, 255, 255 ), NULL, 200, 0, FA_LEFT );
-	// --- ^
-
 	_vertexbuffer->flush();
 	_d3ddev->EndScene(); // unlocks
     _d3ddev->Present(NULL, NULL, NULL, NULL);
@@ -198,4 +181,20 @@ const Texture Renderer::LoadTexture(const std::string& FileName, int KeyCode)
 void Renderer::setCurrentTexture(const Texture& texture)
 {
 	_d3ddev->SetTexture(0,texture);
+}
+
+Font* Renderer::getFont()
+{
+	return _font;
+}
+
+Camera* Renderer::getCamera()
+{
+	return _camera;
+}
+
+void Renderer::UpdateCamera()
+{
+	_camera->Update();
+	_d3ddev->SetTransform(D3DTS_VIEW, _camera->getViewMatrix());
 }

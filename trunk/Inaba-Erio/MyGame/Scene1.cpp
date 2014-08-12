@@ -2,7 +2,8 @@
 #include "Input/directinput.h"
 #include "Entity2D\Sprite.h"
 #include "testGame.h"
-
+#include <string>
+#include <sstream>
 using namespace Erio;
 
 Scene1::Scene1(Game *game)
@@ -39,6 +40,34 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 {	
 	 static float fSp = 1.0f;
 	 static float vSpd = 10.0f;
+	 std::string number;
+	 std::stringstream strstream;
+	 strstream <<directInput.mouseRelPosX();
+	 strstream >> number;
+
+	 renderer.getFont()->Print((char*)("mouse X: " + number).c_str(), 0, 0, D3DCOLOR_XRGB(255, 255, 255), NULL, 200, 0, Inaba::FA_LEFT);
+
+	 // ------------------------------------------------
+	 //				CAMERA CONTROL
+	 // ------------------------------------------------
+	 if (directInput.keyDown(Inaba::Input::KEY_W))
+		 renderer.getCamera()->MoveForward(5.0f);
+	 if (directInput.keyDown(Inaba::Input::KEY_S))
+		 renderer.getCamera()->MoveForward(-5.0f);
+	 if (directInput.keyDown(Inaba::Input::KEY_A))
+		 renderer.getCamera()->Strafe(-5.0f);
+	 if (directInput.keyDown(Inaba::Input::KEY_D))
+		 renderer.getCamera()->Strafe(5.0f);
+	 if (directInput.keyDown(Inaba::Input::KEY_Q))
+		 renderer.getCamera()->MoveUp(-5.0f);
+	 if (directInput.keyDown(Inaba::Input::KEY_E))
+		 renderer.getCamera()->MoveUp(5.0f);
+
+	 if (directInput.keyDown(Inaba::Input::KEY_LCONTROL)){
+		 renderer.getCamera()->Yaw(D3DXToRadian(directInput.mouseRelPosX()));
+		 renderer.getCamera()->Pitch(D3DXToRadian(directInput.mouseRelPosY()));
+	 }
+	 // ------------------------------------------------
 
 	 if (directInput.keyDown(Inaba::Input::KEY_SUBTRACT))
 		 _sprite1->setPos(_sprite1->posX(), _sprite1->posY(), _sprite1->posZ() - vSpd);
