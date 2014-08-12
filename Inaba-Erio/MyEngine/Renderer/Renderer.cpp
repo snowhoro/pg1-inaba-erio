@@ -84,6 +84,15 @@ bool Renderer::Init(HWND hWnd)
 	_d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
 	//_d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
+	D3DXMATRIX matView;    // the view transform matrix
+
+	D3DXMatrixLookAtLH(&matView,
+		&D3DXVECTOR3(0.0f, 0.0f, -1000.0f),    // the camera position
+		&D3DXVECTOR3(0.0f, 0.0f, 0.0f),    // the look-at position
+		&D3DXVECTOR3(0.0f, 1.0f, 0.0f));    // the up direction
+
+		_d3ddev->SetTransform(D3DTS_VIEW, &matView);    // set the view transform to matView
+
 	D3DVIEWPORT9 viewport;
 	_d3ddev->GetViewport(&viewport);
 
@@ -91,7 +100,14 @@ bool Renderer::Init(HWND hWnd)
 	float viewportHeight = static_cast<float>(viewport.Height);
 
 	D3DXMATRIX projectionMatrix;
-	D3DXMatrixOrthoLH(&projectionMatrix,viewportWidth,viewportHeight, -1.0f, 1.0f); // left handed
+
+	D3DXMatrixPerspectiveFovLH(&projectionMatrix,
+		D3DXToRadian(45),    // the horizontal field of view
+		(FLOAT)viewportWidth / (FLOAT)viewportHeight,    // aspect ratio
+		0.0f,    // the near view-plane
+		100.0f);    // the far view-plane
+
+	//D3DXMatrixOrthoLH(&projectionMatrix,viewportWidth,viewportHeight, -1.0f, 1.0f); // left handed
 	_d3ddev->SetTransform(D3DTS_PROJECTION, &projectionMatrix);
 
 	_vertexbuffer = new Inaba::VertexBuffer(_d3ddev,sizeof(Inaba::ColorVertex),Inaba::ColorVertexType);

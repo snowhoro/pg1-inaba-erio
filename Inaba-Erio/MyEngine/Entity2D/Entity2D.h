@@ -16,12 +16,13 @@ namespace Inaba
 			Entity2D();
 			~Entity2D();
 			
-			void setPos(float,float);
+			void setPos(float,float,float = 0.0f);
 			void setRotation(float);
 			void setScale(float,float);
 
 			float posX() const;
 			float posY() const;
+			float posZ() const;
 			float rotation() const;
 			float scaleX() const;
 			float scaleY() const;
@@ -44,7 +45,7 @@ namespace Inaba
 			std::string name() const;
 			void setName(std::string);
 		protected:
-			float _posX, _posY,_prevPosX, _prevPosY;
+			float _posX, _posY, _posZ,_prevPosX, _prevPosY, _prevPosZ;
 			float _rotation;
 			float _scaleX;
 			float _scaleY;
