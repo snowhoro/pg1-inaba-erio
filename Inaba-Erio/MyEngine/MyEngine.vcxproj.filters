@@ -78,7 +78,7 @@
     <ClCompile Include="Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="Camera\Camera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
@@ -140,7 +140,7 @@
     <ClInclude Include="Font.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Camera\Camera.h">
       <Filter>Camera</Filter>
     </ClInclude>
   </ItemGroup>

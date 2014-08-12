@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity2D\Animation.cpp" />
     <ClCompile Include="Entity2D\Entity2D.cpp" />
@@ -31,7 +31,7 @@
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Entity2D\Animation.h" />
     <ClInclude Include="Entity2D\Entity2D.h" />
