@@ -41,6 +41,8 @@ namespace Inaba
 		MatrixTypeCount
 	};
 
+	enum FONTALIGNMENT { FA_LEFT, FA_CENTER, FA_RIGHT, FA_TOPRIGHT, FA_TOPLEFT, FA_BOTTOMRIGHT, FA_BOTTOMLEFT }; 
+
 	typedef IDirect3DTexture9 *Texture;
 	static const Texture NoTexture = NULL;
 

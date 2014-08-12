@@ -10,6 +10,7 @@
 #include <iostream>
 #include <vector>
 
+#include "../Font.h"
 namespace Inaba
 {
 
@@ -21,6 +22,7 @@ private:
 	Inaba::VertexBuffer *_vertexbuffer;
 	Inaba::VertexBuffer *_textureCoordVertexbuffer;
 	std::vector<Texture> _vectorTextures;
+	Font *_font;
 
 public:
 	Renderer();

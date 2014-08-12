@@ -84,15 +84,18 @@ bool Renderer::Init(HWND hWnd)
 	_d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
 	//_d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
-	D3DXMATRIX matView;    // the view transform matrix
 
+
+
+	/*D3DXMATRIX matView;    // the view transform matrix
+		
 	D3DXMatrixLookAtLH(&matView,
 		&D3DXVECTOR3(0.0f, 0.0f, -1000.0f),    // the camera position
 		&D3DXVECTOR3(0.0f, 0.0f, 0.0f),    // the look-at position
 		&D3DXVECTOR3(0.0f, 1.0f, 0.0f));    // the up direction
 
 		_d3ddev->SetTransform(D3DTS_VIEW, &matView);    // set the view transform to matView
-
+	*/
 	D3DVIEWPORT9 viewport;
 	_d3ddev->GetViewport(&viewport);
 
@@ -112,6 +115,12 @@ bool Renderer::Init(HWND hWnd)
 
 	_vertexbuffer = new Inaba::VertexBuffer(_d3ddev,sizeof(Inaba::ColorVertex),Inaba::ColorVertexType);
 	_textureCoordVertexbuffer = new VertexBuffer(_d3ddev,sizeof(Inaba::TextureCoordVertex),Inaba::TextureCoordVertexType);
+
+
+	//FONT
+	_font = new Font();
+	_font->Init(_d3ddev,"Arial",22);
+
 	return true;
 }
 
@@ -137,6 +146,10 @@ void Renderer::BeginFrame()
 }
 void Renderer::EndFrame()
 {
+	//NO VA ACA BOLUDO
+	_font->Print( "HOLA RULO", 0, 0, D3DCOLOR_XRGB( 255, 255, 255 ), NULL, 200, 0, FA_LEFT );
+	// --- ^
+
 	_vertexbuffer->flush();
 	_d3ddev->EndScene(); // unlocks
     _d3ddev->Present(NULL, NULL, NULL, NULL);
