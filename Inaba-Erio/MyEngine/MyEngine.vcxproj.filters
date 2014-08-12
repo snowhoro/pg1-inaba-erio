@@ -22,6 +22,9 @@
     <Filter Include="xml">
       <UniqueIdentifier>{2a8fdfe4-68ad-40c9-980c-2543517d4b9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{154d09bb-2abe-4d6e-9f63-c477048057fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity2D\Animation.cpp">
@@ -71,6 +74,12 @@
     </ClCompile>
     <ClCompile Include="xml\tinyxml2.cpp">
       <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="xml\tinyxml2.h">
       <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

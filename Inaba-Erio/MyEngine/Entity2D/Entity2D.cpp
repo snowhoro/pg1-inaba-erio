@@ -28,6 +28,17 @@ Entity2D::~Entity2D()
 	_transformationMatrix = NULL;
 }
 
+void Entity2D::setPos(float posX, float posY)
+{
+	_prevPosX = _posX;
+	_prevPosY = _posY;
+	_prevPosZ = _posZ;
+	_posX = posX;
+	_posY = posY;
+
+	UpdateLocalTransformation();
+}
+
 void Entity2D::setPos(float posX, float posY, float posZ)
 {
 	_prevPosX = _posX;

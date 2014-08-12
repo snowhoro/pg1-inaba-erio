@@ -46,15 +46,17 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 	 if (directInput.keyDown(Inaba::Input::KEY_ADD))
 		 _sprite1->setPos(_sprite1->posX(), _sprite1->posY(), _sprite1->posZ() + vSpd);
 
+
 	 if (directInput.keyDown(Inaba::Input::KEY_UP))
-		 _sprite1->setPos(_sprite1->posX(), _sprite1->posY() + fSp, _sprite1->posZ() + fSp);
+		 _sprite1->setPos(_sprite1->posX(), _sprite1->posY() + fSp);
 	 else if(directInput.keyDown(Inaba::Input::KEY_DOWN))
 	  _sprite1->setPos(_sprite1->posX(), _sprite1->posY() - fSp);
 	 else if(directInput.keyDown(Inaba::Input::KEY_LEFT))
 	  _sprite1->setPos(_sprite1->posX() - fSp, _sprite1->posY());
 	 else if(directInput.keyDown(Inaba::Input::KEY_RIGHT))
 	  _sprite1->setPos(_sprite1->posX() + fSp, _sprite1->posY());
-	 
+
+
 	 //COLISION
 	if(_sprite1->checkCollision(*_quad1) != Inaba::Entity2D::NoCollision )
 		_sprite1->returnToPos(_sprite1->prevPosX(), _sprite1->prevPosY());

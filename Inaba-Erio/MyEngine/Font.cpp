@@ -2,7 +2,7 @@
 using namespace Inaba;
 
 Font::Font():
-_font(NULL)
+_font()
 {
 }
 
@@ -11,7 +11,7 @@ Font::~Font()
 
 }
 
-bool Font::Init(LPDIRECT3DDEVICE9 pDevice, char* faceName, int size, BOOL bold, BOOL italic )
+bool Font::Init(LPDIRECT3DDEVICE9 pDevice, char* faceName, int size, bool bold, bool italic )
 {
 	if(_font != NULL)
 	{
@@ -20,7 +20,7 @@ bool Font::Init(LPDIRECT3DDEVICE9 pDevice, char* faceName, int size, BOOL bold, 
 
 	HRESULT hr = 0; 
 	hr = D3DXCreateFont( pDevice,						//D3D Device
-						-size,							//Font height
+						size,							//Font height
 						0,								//Font width
 						bold ? 800 : 0,					//Font Weight
 						1,								//MipLevels

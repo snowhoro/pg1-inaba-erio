@@ -16,7 +16,8 @@ namespace Inaba
 			Entity2D();
 			~Entity2D();
 			
-			void setPos(float,float,float = 0.0f);
+			void setPos(float,float);
+			void setPos(float,float,float);
 			void setRotation(float);
 			void setScale(float,float);
 
