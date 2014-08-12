@@ -11,8 +11,10 @@ using namespace Inaba;
 Entity2D::Entity2D():
 _posX(0.0f),
 _posY(0.0f),
+_posZ(0.0f),
 _prevPosX(0.0f),
 _prevPosY(0.0f),
+_prevPosZ(0.0f),
 _rotation(0.0f),
 _scaleX(1.0f),
 _scaleY(1.0f),
@@ -26,12 +28,14 @@ Entity2D::~Entity2D()
 	_transformationMatrix = NULL;
 }
 
-void Entity2D::setPos(float posX, float posY)
+void Entity2D::setPos(float posX, float posY, float posZ)
 {
 	_prevPosX = _posX;
 	_prevPosY = _posY;
+	_prevPosZ = _posZ;
 	_posX = posX;
 	_posY = posY;
+	_posZ = posZ;
 
 	UpdateLocalTransformation();
 }
@@ -54,7 +58,7 @@ void Entity2D::setScale(float scaleX, float scaleY)
 void Entity2D::UpdateLocalTransformation()
 {
 	D3DXMATRIX translateMatrix;
-	D3DXMatrixTranslation(&translateMatrix, _posX, _posY, 0);
+	D3DXMatrixTranslation(&translateMatrix, _posX, _posY, _posZ);
 
 	D3DXMATRIX rotationMatrix;
 	D3DXMatrixRotationZ(&rotationMatrix, _rotation);
@@ -77,6 +81,11 @@ float Entity2D::posX() const
 float Entity2D::posY() const
 {
 	return _posY;
+}
+
+float Entity2D::posZ() const
+{
+	return _posZ;
 }
 
 float Entity2D::prevPosX() const

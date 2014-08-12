@@ -38,8 +38,16 @@ bool Scene1::Init(Inaba::Renderer& renderer)
 bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Inaba::Timer& timer)
 {	
 	 static float fSp = 1.0f;
-	 if(directInput.keyDown(Inaba::Input::KEY_UP))
-	  _sprite1->setPos(_sprite1->posX(), _sprite1->posY() + fSp);
+	 static float vSpd = 10.0f;
+
+	 if (directInput.keyDown(Inaba::Input::KEY_SUBTRACT))
+		 _sprite1->setPos(_sprite1->posX(), _sprite1->posY(), _sprite1->posZ() - vSpd);
+
+	 if (directInput.keyDown(Inaba::Input::KEY_ADD))
+		 _sprite1->setPos(_sprite1->posX(), _sprite1->posY(), _sprite1->posZ() + vSpd);
+
+	 if (directInput.keyDown(Inaba::Input::KEY_UP))
+		 _sprite1->setPos(_sprite1->posX(), _sprite1->posY() + fSp, _sprite1->posZ() + fSp);
 	 else if(directInput.keyDown(Inaba::Input::KEY_DOWN))
 	  _sprite1->setPos(_sprite1->posX(), _sprite1->posY() - fSp);
 	 else if(directInput.keyDown(Inaba::Input::KEY_LEFT))
