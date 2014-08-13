@@ -15,38 +15,34 @@ namespace Inaba
 		void Strafe(float vel);
 		void MoveUp(float vel);
 
-		void Update();
-		D3DXMATRIX* getViewMatrix()        { return &_view; }
-		D3DXMATRIX* getProjectionMatrix()  { return &_projection; }
 		void Yaw(float radians);
 		void Pitch(float radians);
-		/*void Roll(float radians);
-		
+		void Roll(float radians);
 
+		D3DXMATRIX* getViewMatrix()			{ return &_view; }
+		D3DXMATRIX* getProjectionMatrix()	{ return &_projection; }
+		void SetFOV(float fov)				{ CreateProjectionMatrix(fov, _aspect, _nearPlane, _farPlane); }
+		void SetAspectRatio(float aspect)	{ CreateProjectionMatrix(_fov, aspect, _nearPlane, _farPlane); }
+		void SetNearPlane(float plane)		{ CreateProjectionMatrix(_fov, _aspect, plane, _farPlane); }
+		void SetFarPlane(float plane)		{ CreateProjectionMatrix(_fov, _aspect, _nearPlane, plane); }
 		void SetPosition(D3DXVECTOR3* pPosition);
 		void SetLookAt(D3DXVECTOR3* pLookAt);
-		void SetFOV(float fov);
-		void SetAspectRatio(float aspect);
-		void SetNearPlane(float plane);
-		void SetFarPlane(float plane);*/
+
+		void Update();
+
 	private:
 		D3DXMATRIX  _view;
 		D3DXMATRIX  _projection;
-
 		D3DXVECTOR3 _right;
 		D3DXVECTOR3 _up;		// the up direction
 		D3DXVECTOR3 _look;		// the look-at position
 		D3DXVECTOR3 _position;	// the camera position
-		D3DXVECTOR3 _lookAt;  
-		D3DXVECTOR3 _velocity; 
-		float       _yaw;
-		float       _pitch;
-		float       _maxPitch;
-		float       _maxVelocity;
-		float       _fov;
-		float       _aspect;
-		float       _nearPlane;
-		float       _farPlane;
+		D3DXVECTOR3 _lookAt;
+		D3DXVECTOR3 _velocity;
+		float _fov;
+		float _aspect;
+		float _nearPlane;
+		float _farPlane;
 	};
 }
 

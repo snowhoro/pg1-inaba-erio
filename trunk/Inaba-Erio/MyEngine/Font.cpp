@@ -63,10 +63,10 @@ void Font::Print( char* text, int xPosition, int yPosition, DWORD color, LPD3DXS
 	} 
 	else 
 	{ 
-		format |= DT_WORDBREAK; 
-		switch ( alignment ) 
+		format |= DT_WORDBREAK;
+		switch ( alignment )
 		{ 
-		case FA_LEFT: 
+		case FA_LEFT:
 			format |= DT_LEFT; 
 			break; 
 		case FA_CENTER: 

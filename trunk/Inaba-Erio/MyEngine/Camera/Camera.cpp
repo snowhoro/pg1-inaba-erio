@@ -62,6 +62,33 @@ void Camera::Pitch(float radians)
 	D3DXVec3TransformNormal(&_look, &_look, &rotation);
 }
 
+void Camera::Roll(float radians)
+{
+	if (radians == 0.0f)
+	{
+		return;
+	}
+	D3DXMATRIX rotation;
+	D3DXMatrixRotationAxis(&rotation, &_look, radians);
+	D3DXVec3TransformNormal(&_right, &_right, &rotation);
+	D3DXVec3TransformNormal(&_up, &_up, &rotation);
+}
+
+void Camera::SetPosition(D3DXVECTOR3* pPosition)
+{
+	_position.x = pPosition->x;
+	_position.y = pPosition->y;
+	_position.z = pPosition->z;
+}
+
+void Camera::SetLookAt(D3DXVECTOR3* pLookAt)
+{
+	_lookAt.x = pLookAt->x;
+	_lookAt.y = pLookAt->y;
+	_lookAt.z = pLookAt->z;
+	D3DXVec3Normalize(&_look, &(_lookAt - _position));
+}
+
 void Camera::Update()
 {
 	// Move the camera
@@ -85,10 +112,4 @@ void Camera::Update()
 	_look.x = _view._13;
 	_look.y = _view._23;
 	_look.z = _view._33;
-
-	// Calculate yaw and pitch
-	float lookLengthOnXZ = sqrtf(_look.z * _look.z + _look.x * _look.x);
-	_pitch = atan2f(_look.y, lookLengthOnXZ);
-	_yaw = atan2f(_look.x, _look.z);
 }
-
