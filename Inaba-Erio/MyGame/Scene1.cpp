@@ -50,22 +50,25 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 	//				CAMERA CONTROL
 	// ------------------------------------------------
 	if (directInput.keyDown(Inaba::Input::KEY_W))
-		renderer.getCamera()->MoveForward(5.0f);
+		renderer.getCamera()->MoveForward(vSpd);
 	if (directInput.keyDown(Inaba::Input::KEY_S))
-		renderer.getCamera()->MoveForward(-5.0f);
+		renderer.getCamera()->MoveForward(-vSpd);
 	if (directInput.keyDown(Inaba::Input::KEY_A))
-		renderer.getCamera()->Strafe(-5.0f);
+		renderer.getCamera()->Strafe(-vSpd);
 	if (directInput.keyDown(Inaba::Input::KEY_D))
-		renderer.getCamera()->Strafe(5.0f);
+		renderer.getCamera()->Strafe(vSpd);
 	if (directInput.keyDown(Inaba::Input::KEY_Q))
-		renderer.getCamera()->MoveUp(-5.0f);
+		renderer.getCamera()->MoveUp(-vSpd);
 	if (directInput.keyDown(Inaba::Input::KEY_E))
-		renderer.getCamera()->MoveUp(5.0f);
+		renderer.getCamera()->MoveUp(vSpd);
 
-	if (directInput.keyDown(Inaba::Input::KEY_LCONTROL)){
+	if (directInput.keyDown(Inaba::Input::KEY_LCONTROL))
+	{
 		renderer.getCamera()->Yaw(D3DXToRadian(directInput.mouseRelPosX()));
 		renderer.getCamera()->Pitch(D3DXToRadian(directInput.mouseRelPosY()));
 	}
+	if (directInput.keyDown(Inaba::Input::KEY_Z))
+		renderer.getCamera()->SetFOV(D3DXToRadian(10));
 	// ------------------------------------------------
 
 
