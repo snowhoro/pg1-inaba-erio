@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "../Input/directinput.h"
 using namespace Inaba;
 
 Camera::Camera():
@@ -112,4 +113,27 @@ void Camera::Update()
 	_look.x = _view._13;
 	_look.y = _view._23;
 	_look.z = _view._33;
+}
+
+void Camera::CameraControl(DirectInput &directInput, float cameraVel)
+{
+	if (directInput.keyDown(Inaba::Input::KEY_W))
+		MoveForward(cameraVel);
+	if (directInput.keyDown(Inaba::Input::KEY_S))
+		MoveForward(-cameraVel);
+	if (directInput.keyDown(Inaba::Input::KEY_A))
+		Strafe(-cameraVel);
+	if (directInput.keyDown(Inaba::Input::KEY_D))
+		Strafe(cameraVel);
+	if (directInput.keyDown(Inaba::Input::KEY_Q))
+		MoveUp(-cameraVel);
+	if (directInput.keyDown(Inaba::Input::KEY_E))
+		MoveUp(cameraVel);
+
+	if (directInput.keyDown(Inaba::Input::KEY_LCONTROL))
+	{
+		Yaw(D3DXToRadian(directInput.mouseRelPosX()));
+		Pitch(D3DXToRadian(directInput.mouseRelPosY()));
+	}
+
 }
