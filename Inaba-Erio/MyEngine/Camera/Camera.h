@@ -6,6 +6,8 @@
 
 namespace Inaba
 {
+	class DirectInput;
+
 	class MYENGINE_API Camera
 	{
 	public:
@@ -29,6 +31,8 @@ namespace Inaba
 		void SetLookAt(D3DXVECTOR3* pLookAt);
 
 		void Update();
+
+		void CameraControl(DirectInput &directInput, float cameraVel = 10.0f);
 
 	private:
 		D3DXMATRIX  _view;

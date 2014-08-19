@@ -46,31 +46,7 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 	strstream >> number;
 	renderer.getFont()->Print((char*)("mouse X: " + number).c_str(), 0, 0, D3DCOLOR_XRGB(255, 255, 255), NULL, 200, 0, Inaba::FA_LEFT);
 	
-	// ------------------------------------------------
-	//				CAMERA CONTROL
-	// ------------------------------------------------
-	if (directInput.keyDown(Inaba::Input::KEY_W))
-		renderer.getCamera()->MoveForward(vSpd);
-	if (directInput.keyDown(Inaba::Input::KEY_S))
-		renderer.getCamera()->MoveForward(-vSpd);
-	if (directInput.keyDown(Inaba::Input::KEY_A))
-		renderer.getCamera()->Strafe(-vSpd);
-	if (directInput.keyDown(Inaba::Input::KEY_D))
-		renderer.getCamera()->Strafe(vSpd);
-	if (directInput.keyDown(Inaba::Input::KEY_Q))
-		renderer.getCamera()->MoveUp(-vSpd);
-	if (directInput.keyDown(Inaba::Input::KEY_E))
-		renderer.getCamera()->MoveUp(vSpd);
-
-	if (directInput.keyDown(Inaba::Input::KEY_LCONTROL))
-	{
-		renderer.getCamera()->Yaw(D3DXToRadian(directInput.mouseRelPosX()));
-		renderer.getCamera()->Pitch(D3DXToRadian(directInput.mouseRelPosY()));
-	}
-	if (directInput.keyDown(Inaba::Input::KEY_Z))
-		renderer.getCamera()->SetFOV(D3DXToRadian(10));
-	// ------------------------------------------------
-
+	renderer.getCamera()->CameraControl(directInput);
 
 	// ------------------------------------------------
 	//				SPRITE CONTROL
