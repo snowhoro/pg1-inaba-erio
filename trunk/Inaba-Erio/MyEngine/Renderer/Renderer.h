@@ -2,6 +2,8 @@
 #define RENDERER_H
 
 #include "Vertexbuffer.h"
+#include "../VertexBuffer/vertexbuffer3D.h"
+#include "../VertexBuffer/indexbuffer.h"
 #include "RenderTypes.h"
 #include "xMath.h"
 #include "../myengine_api.h"
@@ -20,6 +22,8 @@ namespace Inaba
 		IDirect3D9 *_d3d;
 		IDirect3DDevice9 *_d3ddev;
 		Inaba::VertexBuffer *_vertexbuffer;
+		Inaba::VertexBuffer3D *_vertexbuffer3D;
+		Inaba::IndexBuffer *_indexBuffer;
 		Inaba::VertexBuffer *_textureCoordVertexbuffer;
 		std::vector<Texture> _vectorTextures;
 		Font *_font;
@@ -36,9 +40,12 @@ namespace Inaba
 		void setMatrix(MatrixType, const Matrix&);
 		const Texture LoadTexture(const std::string& FileName, int KeyCode);
 		void setCurrentTexture(const Texture&);
+		void setCurrentVertexBuffer(VertexBuffer3D* vertexBuffer3D);
+		void setCurrentIndexBuffer(IndexBuffer* indexBuffer);
 		Font * getFont();
 		Camera * getCamera();
 		void UpdateCamera();
+
 	};
 
 }

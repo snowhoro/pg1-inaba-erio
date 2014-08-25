@@ -25,6 +25,12 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{154d09bb-2abe-4d6e-9f63-c477048057fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entity3D">
+      <UniqueIdentifier>{2020de5e-8634-47d4-8933-6ddbebf71246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VertexBuffer">
+      <UniqueIdentifier>{c39620f8-d829-4061-af48-65304c1adb7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity2D\Animation.cpp">
@@ -80,6 +86,15 @@
     </ClCompile>
     <ClCompile Include="Camera\Camera.cpp">
       <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer\indexbuffer.cpp">
+      <Filter>VertexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity3D\Entity3D.cpp">
+      <Filter>Entity3D</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer\vertexbuffer3D.cpp">
+      <Filter>VertexBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +158,15 @@
     <ClInclude Include="Camera\Camera.h">
       <Filter>Camera</Filter>
     </ClInclude>
+    <ClInclude Include="VertexBuffer\indexbuffer.h">
+      <Filter>VertexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity3D\Entity3D.h">
+      <Filter>Entity3D</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer\vertexbuffer3D.h">
+      <Filter>VertexBuffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Input\input.inl">
@@ -150,6 +174,12 @@
     </None>
     <None Include="Timer\timer.inl">
       <Filter>Timer</Filter>
+    </None>
+    <None Include="VertexBuffer\indexbuffer.inl">
+      <Filter>VertexBuffer</Filter>
+    </None>
+    <None Include="VertexBuffer\vertexbuffer.inl">
+      <Filter>VertexBuffer</Filter>
     </None>
   </ItemGroup>
 </Project>
