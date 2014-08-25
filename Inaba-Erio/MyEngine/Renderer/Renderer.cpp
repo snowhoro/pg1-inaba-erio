@@ -182,7 +182,14 @@ void Renderer::setCurrentTexture(const Texture& texture)
 {
 	_d3ddev->SetTexture(0,texture);
 }
-
+void Renderer::setCurrentVertexBuffer(VertexBuffer3D* vertexBuffer3D)
+{
+	_vertexbuffer3D = vertexBuffer3D;
+}
+void Renderer::setCurrentIndexBuffer(IndexBuffer* indexBuffer)
+{
+	_indexBuffer = indexBuffer;
+}
 Font* Renderer::getFont()
 {
 	return _font;

@@ -17,6 +17,7 @@
     <ClCompile Include="Entity2D\Entity2D.cpp" />
     <ClCompile Include="Entity2D\Quad.cpp" />
     <ClCompile Include="Entity2D\Sprite.cpp" />
+    <ClCompile Include="Entity3D\Entity3D.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input\directinput.cpp" />
@@ -28,6 +29,8 @@
     <ClCompile Include="Scene\Import.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Timer\timer.cpp" />
+    <ClCompile Include="VertexBuffer\indexbuffer.cpp" />
+    <ClCompile Include="VertexBuffer\vertexbuffer3D.cpp" />
     <ClCompile Include="xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +40,7 @@
     <ClInclude Include="Entity2D\Entity2D.h" />
     <ClInclude Include="Entity2D\Quad.h" />
     <ClInclude Include="Entity2D\Sprite.h" />
+    <ClInclude Include="Entity3D\Entity3D.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input\directinput.h" />
@@ -50,11 +54,15 @@
     <ClInclude Include="Scene\Import.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Timer\timer.h" />
+    <ClInclude Include="VertexBuffer\indexbuffer.h" />
+    <ClInclude Include="VertexBuffer\vertexbuffer3D.h" />
     <ClInclude Include="xml\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Input\input.inl" />
     <None Include="Timer\timer.inl" />
+    <None Include="VertexBuffer\indexbuffer.inl" />
+    <None Include="VertexBuffer\vertexbuffer.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{26D7FAF2-5E17-44AE-99B2-C5E58CB0E356}</ProjectGuid>
