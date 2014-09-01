@@ -21,6 +21,7 @@ namespace Inaba
 
 			void setData(size_t vertexCount, Inaba::Primitive, const unsigned short*, size_t indexCount);
             void Draw(Renderer& r) const;
+			void Update(Timer&);
 		private:
 			ColorVertex* _vertex;
 			IndexBuffer* _indexBuffer;
@@ -29,5 +30,4 @@ namespace Inaba
 			Renderer& _renderer;
 	};
 }
-
 #endif
