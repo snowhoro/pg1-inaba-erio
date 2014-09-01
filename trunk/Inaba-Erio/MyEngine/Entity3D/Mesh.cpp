@@ -59,3 +59,8 @@ void Mesh::Draw(Renderer& renderer) const
 	renderer.setCurrentTexture(NoTexture);
 	renderer.Draw(_vertex,Inaba::TriangleStrip, 8);
 }
+
+void Mesh::Update(Timer&)
+{
+
+}
