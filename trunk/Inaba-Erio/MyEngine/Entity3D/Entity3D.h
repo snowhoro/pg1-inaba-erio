@@ -16,10 +16,9 @@ namespace Inaba
 			Entity3D();
 			~Entity3D();
 			
-			void setPos(float,float);
 			void setPos(float,float,float);
 			void setRotation(float);
-			void setScale(float,float);
+			void setScale(float,float,float);
 
 			float posX() const;
 			float posY() const;
@@ -27,10 +26,12 @@ namespace Inaba
 			float rotation() const;
 			float scaleX() const;
 			float scaleY() const;
+			float scaleZ() const;
 			//void Draw(Renderer&) const; 
 
 			float prevPosX() const;
 			float prevPosY() const;
+			float prevPosZ() const;
 
 			enum CollisionResult{
 				CollisionVertical,
@@ -40,7 +41,7 @@ namespace Inaba
 
 			CollisionResult checkCollision(Entity3D&) const;
 			void drawAABB (Renderer&) const;
-			void returnToPos(float, float);
+			void returnToPos(float, float, float);
 			virtual void Draw(Renderer&) const = 0;
 			virtual void Update(Timer&) = 0;
 			std::string name() const;
@@ -50,10 +51,11 @@ namespace Inaba
 			float _rotation;
 			float _scaleX;
 			float _scaleY;
+			float _scaleZ;
 			std::string _name; 
 
 			Matrix _transformationMatrix;
-
+		
 			void UpdateLocalTransformation();
 
 	};

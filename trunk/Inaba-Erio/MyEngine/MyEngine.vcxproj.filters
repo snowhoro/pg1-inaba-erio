@@ -96,6 +96,9 @@
     <ClCompile Include="VertexBuffer\vertexbuffer3D.cpp">
       <Filter>VertexBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="Entity3D\Mesh.cpp">
+      <Filter>Entity3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity2D\Animation.h">
@@ -167,6 +170,9 @@
     <ClInclude Include="VertexBuffer\vertexbuffer3D.h">
       <Filter>VertexBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="Entity3D\Mesh.h">
+      <Filter>Entity3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Input\input.inl">
@@ -178,7 +184,7 @@
     <None Include="VertexBuffer\indexbuffer.inl">
       <Filter>VertexBuffer</Filter>
     </None>
-    <None Include="VertexBuffer\vertexbuffer.inl">
+    <None Include="VertexBuffer\vertexbuffer3D.inl">
       <Filter>VertexBuffer</Filter>
     </None>
   </ItemGroup>

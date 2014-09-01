@@ -131,26 +131,39 @@ void Renderer::BeginFrame()
 	//locking, where the buffer in the video RAM is 'locked'
 	_d3ddev->BeginScene(); 
 }
+
 void Renderer::EndFrame()
 {
 	_vertexbuffer->flush();
 	_d3ddev->EndScene(); // unlocks
     _d3ddev->Present(NULL, NULL, NULL, NULL);
 }
+
 void Renderer::Draw(ColorVertex* vertex,Inaba::Primitive primitive,size_t vertexCount)
 {
 	_vertexbuffer->bind();
 	_vertexbuffer->draw(vertex,primitivesMapping[primitive], vertexCount);
 }
+
 void Renderer::Draw(TextureCoordVertex* vertex,Inaba::Primitive primitive,size_t vertexCount)
 {
 	_textureCoordVertexbuffer->bind();
 	_textureCoordVertexbuffer->draw(vertex,primitivesMapping[primitive], vertexCount);
 }
+
+void Renderer::Draw(Inaba::Primitive primitive, size_t vertexCount)
+{
+	_vertexBuffer3D->bind();
+	_indexBuffer->bind();
+
+	_d3ddev->DrawIndexedPrimitive(primitivesMapping[primitive], 0, 0, vertexCount, 0, 12);
+}
+
 void Renderer::setMatrix(MatrixType matrixType, const Matrix& matrix)
 {
 	_d3ddev->SetTransform(MatrixTypeMapping[matrixType], matrix);
 }
+
 const Texture Renderer::LoadTexture(const std::string& FileName, int KeyCode)
 {
 	IDirect3DTexture9 *texture = NULL;
@@ -178,18 +191,32 @@ const Texture Renderer::LoadTexture(const std::string& FileName, int KeyCode)
 	}
 
 }
+
 void Renderer::setCurrentTexture(const Texture& texture)
 {
 	_d3ddev->SetTexture(0,texture);
 }
+
 void Renderer::setCurrentVertexBuffer(VertexBuffer3D* vertexBuffer3D)
 {
-	_vertexbuffer3D = vertexBuffer3D;
+	_vertexBuffer3D = vertexBuffer3D;
 }
+
 void Renderer::setCurrentIndexBuffer(IndexBuffer* indexBuffer)
 {
 	_indexBuffer = indexBuffer;
 }
+
+VertexBuffer3D * Renderer::createVertexBuffer3D(size_t vSize, unsigned int FVF)
+{
+	return new VertexBuffer3D(*this,_d3ddev,vSize,FVF);
+}
+
+IndexBuffer * Renderer::createIndexBuffer()
+{
+	return new IndexBuffer(*this,_d3ddev);
+}
+
 Font* Renderer::getFont()
 {
 	return _font;

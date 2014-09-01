@@ -73,7 +73,7 @@ bool Scene1::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 		_sprite1->returnToPos(_sprite1->prevPosX(), _sprite1->prevPosY());
 
 	if (directInput.keyDown(Inaba::Input::KEY_P))
-		_game->setScene("scene2", &renderer);
+		_game->setScene("scene3D", &renderer);
 
 	return true;
 }

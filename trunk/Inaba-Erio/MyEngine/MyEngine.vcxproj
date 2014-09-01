@@ -17,6 +17,7 @@
     <ClCompile Include="Entity2D\Entity2D.cpp" />
     <ClCompile Include="Entity2D\Quad.cpp" />
     <ClCompile Include="Entity2D\Sprite.cpp" />
+    <ClCompile Include="Entity3D\Mesh.cpp" />
     <ClCompile Include="Entity3D\Entity3D.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Entity2D\Entity2D.h" />
     <ClInclude Include="Entity2D\Quad.h" />
     <ClInclude Include="Entity2D\Sprite.h" />
+    <ClInclude Include="Entity3D\Mesh.h" />
     <ClInclude Include="Entity3D\Entity3D.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
@@ -62,7 +64,7 @@
     <None Include="Input\input.inl" />
     <None Include="Timer\timer.inl" />
     <None Include="VertexBuffer\indexbuffer.inl" />
-    <None Include="VertexBuffer\vertexbuffer.inl" />
+    <None Include="VertexBuffer\vertexbuffer3D.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{26D7FAF2-5E17-44AE-99B2-C5E58CB0E356}</ProjectGuid>

@@ -3,6 +3,7 @@
 #include "Entity2D\Sprite.h"
 #include "Scene1.h"
 #include "Scene2.h"
+#include "Scene3D.h"
 using namespace Erio;
 
 Game::Game()
@@ -18,6 +19,9 @@ bool Game::Init(Inaba::Renderer& renderer)
 
 	scene2 = new Scene2(this);
 	AddScene(scene2);
+
+	scene3D = new Scene3D(this);
+	AddScene(scene3D);
 	return true;
 }
 
