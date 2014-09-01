@@ -22,7 +22,7 @@ namespace Inaba
 		IDirect3D9 *_d3d;
 		IDirect3DDevice9 *_d3ddev;
 		Inaba::VertexBuffer *_vertexbuffer;
-		Inaba::VertexBuffer3D *_vertexbuffer3D;
+		Inaba::VertexBuffer3D *_vertexBuffer3D;
 		Inaba::IndexBuffer *_indexBuffer;
 		Inaba::VertexBuffer *_textureCoordVertexbuffer;
 		std::vector<Texture> _vectorTextures;
@@ -37,11 +37,14 @@ namespace Inaba
 		void EndFrame();
 		void Draw(ColorVertex*, Inaba::Primitive, size_t);
 		void Draw(TextureCoordVertex*, Inaba::Primitive, size_t);
+		void Draw(Inaba::Primitive primitive, size_t vertexCount); 
 		void setMatrix(MatrixType, const Matrix&);
 		const Texture LoadTexture(const std::string& FileName, int KeyCode);
 		void setCurrentTexture(const Texture&);
 		void setCurrentVertexBuffer(VertexBuffer3D* vertexBuffer3D);
 		void setCurrentIndexBuffer(IndexBuffer* indexBuffer);
+		VertexBuffer3D * createVertexBuffer3D(size_t vSize, unsigned int FVF);
+		IndexBuffer * createIndexBuffer();
 		Font * getFont();
 		Camera * getCamera();
 		void UpdateCamera();

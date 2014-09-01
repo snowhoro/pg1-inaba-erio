@@ -27,6 +27,9 @@
     <ClCompile Include="Scene2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="testGame.h">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene2.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3D.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,6 +56,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="scene2.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="scene3D.xml">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

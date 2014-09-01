@@ -30,7 +30,7 @@ bool Scene2::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, I
 	  _quad1->setPos(_quad1->posX() + fSp, _quad1->posY());
 
 	 if(directInput.keyDown(Inaba::Input::KEY_P))
-		_game->setScene("scene1", &renderer);
+		_game->setScene("scene3D", &renderer);
 
 
 	return true;

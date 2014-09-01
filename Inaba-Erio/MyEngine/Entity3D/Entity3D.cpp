@@ -18,6 +18,7 @@ _prevPosZ(0.0f),
 _rotation(0.0f),
 _scaleX(1.0f),
 _scaleY(1.0f),
+_scaleZ(1.0f),
 _transformationMatrix(new D3DXMATRIX())
 {
 }
@@ -26,17 +27,6 @@ Entity3D::~Entity3D()
 {
 	delete _transformationMatrix;
 	_transformationMatrix = NULL;
-}
-
-void Entity3D::setPos(float posX, float posY)
-{
-	_prevPosX = _posX;
-	_prevPosY = _posY;
-	_prevPosZ = _posZ;
-	_posX = posX;
-	_posY = posY;
-
-	UpdateLocalTransformation();
 }
 
 void Entity3D::setPos(float posX, float posY, float posZ)
@@ -58,10 +48,11 @@ void Entity3D::setRotation(float rotation)
 	UpdateLocalTransformation();
 }
 
-void Entity3D::setScale(float scaleX, float scaleY)
+void Entity3D::setScale(float scaleX, float scaleY, float scaleZ)
 {
 	_scaleX = scaleX;
 	_scaleY = scaleY;
+	_scaleZ = scaleZ;
 
 	UpdateLocalTransformation();
 }
@@ -75,7 +66,7 @@ void Entity3D::UpdateLocalTransformation()
 	D3DXMatrixRotationZ(&rotationMatrix, _rotation);
 
 	D3DXMATRIX scaleMatrix;
-	D3DXMatrixScaling(&scaleMatrix, _scaleX, _scaleY, 1);
+	D3DXMatrixScaling(&scaleMatrix, _scaleX, _scaleY, _scaleZ);
 
 	D3DXMatrixIdentity(_transformationMatrix);
 	D3DXMatrixMultiply(_transformationMatrix,&translateMatrix,_transformationMatrix);
@@ -109,6 +100,11 @@ float Entity3D::prevPosY() const
 	return _prevPosY;
 }
 
+float Entity3D::prevPosZ() const
+{
+	return _prevPosZ;
+}
+
 float Entity3D::scaleX() const
 {
 	return _scaleX;
@@ -119,7 +115,10 @@ float Entity3D::scaleY() const
 	return _scaleY;
 }
 
-
+float Entity3D::scaleZ() const
+{
+	return _scaleZ;
+}
 
 Entity3D::CollisionResult Entity3D::checkCollision(Entity3D& rkEntity3D) const
 {
@@ -131,6 +130,9 @@ Entity3D::CollisionResult Entity3D::checkCollision(Entity3D& rkEntity3D) const
         std::min( posY() + fabs( scaleY() ) / 2.0f,  rkEntity3D.posY() + fabs( rkEntity3D.scaleY() ) / 2.0f) -  
         std::max( posY() - fabs( scaleY() ) / 2.0f, rkEntity3D.posY() - fabs( rkEntity3D.scaleY() ) / 2.0f)
  );
+
+ // COLLISION Z LO HACEMOS OTRO DIA
+
 
  if(fOverlapX != 0.0f && fOverlapY != 0.0f){
   if(fOverlapX > fOverlapY){
@@ -155,16 +157,18 @@ void Entity3D::drawAABB(Renderer& rkRenderer) const
   s_akAABBVertices[2].x = 0.5; s_akAABBVertices[2].y = 0.5; s_akAABBVertices[2].z = 0.0; s_akAABBVertices[2].color = Inaba_COLOR_RGB(255,30,30);
   s_akAABBVertices[3].x = 0.5; s_akAABBVertices[3].y = -0.5; s_akAABBVertices[3].z = 0.0; s_akAABBVertices[3].color = Inaba_COLOR_RGB(255,15,15);
   s_akAABBVertices[4].x = -0.5; s_akAABBVertices[4].y = -0.5; s_akAABBVertices[4].z = 0.0; s_akAABBVertices[4].color = Inaba_COLOR_RGB(255,95,90);
+
  }
  rkRenderer.setCurrentTexture(NoTexture);
  rkRenderer.setMatrix(World, _transformationMatrix );
  rkRenderer.Draw(s_akAABBVertices, Inaba::LineStrip, 5);
 }
 
-void Entity3D::returnToPos(float posX, float posY)
+void Entity3D::returnToPos(float posX, float posY, float posZ)
 {
 	_posX = posX;
 	_posY = posY;
+	_posZ = posZ;
 
 	UpdateLocalTransformation();
 }

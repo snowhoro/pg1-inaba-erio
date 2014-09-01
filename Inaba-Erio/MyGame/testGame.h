@@ -25,6 +25,7 @@ namespace Erio
 	private: 
 		Inaba::Scene *scene1;
 		Inaba::Scene *scene2;
+		Inaba::Scene *scene3D;
 	};
 }
 #endif

@@ -14,11 +14,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
+    <ClCompile Include="Scene3D.cpp" />
     <ClCompile Include="testGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
+    <ClInclude Include="Scene3D.h" />
     <ClInclude Include="testGame.h" />
   </ItemGroup>
   <ItemGroup>
@@ -26,6 +28,7 @@
     <None Include="logo.png" />
     <None Include="scene1.xml" />
     <None Include="scene2.xml" />
+    <None Include="scene3D.xml" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9D161E36-8FCA-489C-BA34-C2A74FB56EEF}</ProjectGuid>
@@ -57,7 +60,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(DXSDK_DIR)Include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
   </PropertyGroup>
