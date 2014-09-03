@@ -19,7 +19,7 @@ namespace Inaba
 			Mesh(Renderer & p_Renderer);
 			~Mesh();
 
-			void setData(size_t vertexCount, Inaba::Primitive, const unsigned short*, size_t indexCount);
+			void setData(const ColorVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount);
             void Draw(Renderer& r) const;
 			void Update(Timer&);
 		private:

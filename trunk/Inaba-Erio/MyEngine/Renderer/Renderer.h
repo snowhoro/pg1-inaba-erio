@@ -37,7 +37,7 @@ namespace Inaba
 		void EndFrame();
 		void Draw(ColorVertex*, Inaba::Primitive, size_t);
 		void Draw(TextureCoordVertex*, Inaba::Primitive, size_t);
-		void Draw(Inaba::Primitive primitive, size_t vertexCount); 
+		void Draw(Inaba::Primitive primitive); 
 		void setMatrix(MatrixType, const Matrix&);
 		const Texture LoadTexture(const std::string& FileName, int KeyCode);
 		void setCurrentTexture(const Texture&);

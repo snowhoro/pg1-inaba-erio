@@ -11,6 +11,7 @@
 #include "Scene/Import.h"
 #include "Scene/Scene.h"
 #include "Scene1.h"
+#include "Entity3D\Mesh.h"
 
 namespace Erio
 {
@@ -26,6 +27,7 @@ namespace Erio
 		Inaba::Scene *scene1;
 		Inaba::Scene *scene2;
 		Inaba::Scene *scene3D;
+		Inaba::Mesh* theMesh;
 	};
 }
 #endif
