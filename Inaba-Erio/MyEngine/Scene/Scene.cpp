@@ -1,8 +1,10 @@
 #include "Scene.h"
 #include "../Entity2D/Entity2D.h"
+#include "../Entity3D/Entity3D.h"
 #include "../Entity2D/Quad.h"
 #include "../Entity2D/Sprite.h"
 #include "../Entity2D/Animation.h"
+#include "../Entity3D/Mesh.h"
 #include "../Timer/Timer.h"
 #include "../Game.h"
 
@@ -29,7 +31,7 @@ bool Scene::deInit()
 
 bool Scene::Draw(Renderer &renderer,Timer &timer)
 {
-	if(_entities.empty())
+	if(_entities.empty() && _entities3D.empty())
 		return false;
 	
 	std::vector<Entity2D*>::iterator iter;
@@ -38,6 +40,14 @@ bool Scene::Draw(Renderer &renderer,Timer &timer)
 		(*iter)->Update(timer);
 		(*iter)->Draw(renderer);
 	}
+
+	std::vector<Entity3D*>::iterator iter2;
+	for(iter2 = _entities3D.begin(); iter2 != _entities3D.end(); iter2++)
+	{
+		(*iter2)->Update(timer);
+		(*iter2)->Draw(renderer);
+	}
+
 	return true;
 }
 
@@ -69,10 +79,27 @@ bool Scene::getEntity(Quad **ent ,std::string name)
 	return false;
 }
 
+bool Scene::getEntity(Mesh** ent ,std::string name)
+{
+	if(_entities3D.empty())
+		return false;
+
+	for(int i=0; i < _entities3D.size(); i++){
+		if(_entities3D[i]->name() == name){
+			*ent = (Mesh*)_entities3D[i];
+			return true;
+		}
+	}
+}
+
 void Scene::AddEntity(Entity2D* entity)
 {
 	_entities.push_back(entity);
 }
+
+void Scene::AddEntity(Entity3D* entity){
+	_entities3D.push_back(entity);
+} 
 
 void Scene::setName(std::string sceneName)
 {

@@ -10,6 +10,8 @@ namespace Inaba
 {
 	class Renderer;
 	class Entity2D;
+	class Entity3D;
+	class Mesh;
 	class Quad;
 	class Sprite;
 	class Animation;
@@ -21,6 +23,7 @@ namespace Inaba
 	{
 		protected:
 			std::vector<Entity2D*> _entities;
+			std::vector<Entity3D*> _entities3D;
 			std::string _name;
 			Game *_game;
 		
@@ -32,7 +35,9 @@ namespace Inaba
 			bool Draw(Renderer&,Timer&);
 			bool getEntity(Sprite** ent ,std::string name);
 			bool getEntity(Quad** ent ,std::string name);
+			bool getEntity(Mesh** ent ,std::string name);
 			void AddEntity(Entity2D*);
+			void AddEntity(Entity3D*);
 			void setName(std::string);
 			std::string Name(){return _name;}
 			std::string fileName;

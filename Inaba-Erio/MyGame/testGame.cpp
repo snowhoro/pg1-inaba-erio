@@ -6,6 +6,26 @@
 #include "Scene3D.h"
 using namespace Erio;
 
+Inaba::ColorVertex g_8Vertices[] = {
+{-0.5f, 0.5f, -0.5f, D3DCOLOR_XRGB( 255, 0, 0 )}, // 0 
+{0.5f, 0.5f, -0.5f, D3DCOLOR_XRGB( 0, 255, 0 )}, // 1 
+{ 0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB( 40, 0, 120 )}, // 2 
+{ -0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB( 255, 0, 0 )}, // 3
+
+{ -0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB( 0, 255, 0 )}, // 4
+{  0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB( 40, 0, 120 )}, // 5
+{  0.5f, -0.5f,-0.5f, D3DCOLOR_XRGB( 255, 0, 0 )}, // 6
+{ -0.5f, -0.5f,-0.5f, D3DCOLOR_XRGB( 0, 255, 0 )} // 7
+};
+
+USHORT g_indices[] = { 0, 1, 2, 0, 2, 3,
+                                           4, 5, 6, 4, 6, 7,
+                                           3, 2, 5, 3, 5, 4,
+                                           2, 1, 6, 2, 6, 5,
+                                           1, 7, 6, 1, 0, 7,
+                                           0, 3, 4, 0, 4, 7};
+
+
 Game::Game()
 : Inaba::Game()
 {
@@ -22,14 +42,23 @@ bool Game::Init(Inaba::Renderer& renderer)
 
 	scene3D = new Scene3D(this);
 	AddScene(scene3D);
+
+	theMesh = new Inaba::Mesh(renderer);
+	theMesh->setData(g_8Vertices, 8, Inaba::TriangleList, g_indices, 36);
+	theMesh->setScale(100,100,100);
+	theMesh->setPos(100,100,0);
+
 	return true;
 }
 
 void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Inaba::Timer& timer)
 {
 	currentScene()->Frame(renderer, directInput ,timer);
+
+	theMesh->Draw(renderer);
 }
 
-void Game::DeInit()
-{
+void Game::DeInit(){
+	delete theMesh;
+	theMesh = NULL;
 }

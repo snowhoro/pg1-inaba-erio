@@ -77,7 +77,9 @@ bool Renderer::Init(HWND hWnd)
 	}
 
 	_d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE); // setea el uso de luz o no. 
-	_d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE); 
+
+	_d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CW); 
+
 	_d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE); //activa alpha
 	_d3ddev->SetRenderState(D3DRS_BLENDOP,D3DBLENDOP_ADD);
 	_d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
@@ -151,12 +153,8 @@ void Renderer::Draw(TextureCoordVertex* vertex,Inaba::Primitive primitive,size_t
 	_textureCoordVertexbuffer->draw(vertex,primitivesMapping[primitive], vertexCount);
 }
 
-void Renderer::Draw(Inaba::Primitive primitive, size_t vertexCount)
-{
-	_vertexBuffer3D->bind();
-	_indexBuffer->bind();
-
-	_d3ddev->DrawIndexedPrimitive(primitivesMapping[primitive], 0, 0, vertexCount, 0, 12);
+void Renderer::Draw(Inaba::Primitive primitive){
+	_d3ddev->DrawIndexedPrimitive(primitivesMapping[primitive], 0, 0, _vertexBuffer3D->vertexCount(), 0, _indexBuffer->indexCount() / 3);
 }
 
 void Renderer::setMatrix(MatrixType matrixType, const Matrix& matrix)

@@ -145,24 +145,29 @@ Entity3D::CollisionResult Entity3D::checkCollision(Entity3D& rkEntity3D) const
  return NoCollision;
 }
 
-void Entity3D::drawAABB(Renderer& rkRenderer) const
+/*void Entity3D::drawAABB(Renderer& rkRenderer) const
 {
  static ColorVertex s_akAABBVertices[5];
  static bool s_bIsInitialized = false;
  if(!s_bIsInitialized){
   s_bIsInitialized = true;
 
-  s_akAABBVertices[0].x = -0.5; s_akAABBVertices[0].y = -0.5; s_akAABBVertices[0].z = 0.0; s_akAABBVertices[0].color =Inaba_COLOR_RGB(255,50,50);
-  s_akAABBVertices[1].x = -0.5; s_akAABBVertices[1].y = 0.5; s_akAABBVertices[1].z = 0.0; s_akAABBVertices[1].color = Inaba_COLOR_RGB(255,70,70);
-  s_akAABBVertices[2].x = 0.5; s_akAABBVertices[2].y = 0.5; s_akAABBVertices[2].z = 0.0; s_akAABBVertices[2].color = Inaba_COLOR_RGB(255,30,30);
-  s_akAABBVertices[3].x = 0.5; s_akAABBVertices[3].y = -0.5; s_akAABBVertices[3].z = 0.0; s_akAABBVertices[3].color = Inaba_COLOR_RGB(255,15,15);
-  s_akAABBVertices[4].x = -0.5; s_akAABBVertices[4].y = -0.5; s_akAABBVertices[4].z = 0.0; s_akAABBVertices[4].color = Inaba_COLOR_RGB(255,95,90);
+  s_akAABBVertices[0].x = -0.5; s_akAABBVertices[0].y = -0.5; s_akAABBVertices[0].z = 0.5; s_akAABBVertices[0].color =Inaba_COLOR_RGB(255,50,50);
+  s_akAABBVertices[1].x = -0.5; s_akAABBVertices[1].y = 0.5; s_akAABBVertices[1].z = 0.5; s_akAABBVertices[1].color = Inaba_COLOR_RGB(255,70,70);
+  s_akAABBVertices[2].x = 0.5; s_akAABBVertices[2].y = 0.5; s_akAABBVertices[2].z = 0.5; s_akAABBVertices[2].color = Inaba_COLOR_RGB(255,30,30);
+  s_akAABBVertices[3].x = 0.5; s_akAABBVertices[3].y = -0.5; s_akAABBVertices[3].z = 0.5; s_akAABBVertices[3].color = Inaba_COLOR_RGB(255,15,15);
+  s_akAABBVertices[4].x = -0.5; s_akAABBVertices[4].y = -0.5; s_akAABBVertices[4].z = 0.5; s_akAABBVertices[4].color = Inaba_COLOR_RGB(255,95,90);
+  s_akAABBVertices[5].x = -0.5; s_akAABBVertices[5].y = -0.5; s_akAABBVertices[5].z = -0.5; s_akAABBVertices[5].color =Inaba_COLOR_RGB(255,50,50);
+  s_akAABBVertices[6].x = -0.5; s_akAABBVertices[6].y = 0.5; s_akAABBVertices[6].z = -0.5; s_akAABBVertices[6].color = Inaba_COLOR_RGB(255,70,70);
+  s_akAABBVertices[7].x = 0.5; s_akAABBVertices[7].y = 0.5; s_akAABBVertices[7].z = -0.5; s_akAABBVertices[7].color = Inaba_COLOR_RGB(255,30,30);
+  s_akAABBVertices[8].x = 0.5; s_akAABBVertices[8].y = -0.5; s_akAABBVertices[8].z = -0.5; s_akAABBVertices[8].color = Inaba_COLOR_RGB(255,15,15);
+  s_akAABBVertices[9].x = -0.5; s_akAABBVertices[9].y = -0.5; s_akAABBVertices[9].z = -0.5; s_akAABBVertices[9].color = Inaba_COLOR_RGB(255,95,90);  
 
  }
  rkRenderer.setCurrentTexture(NoTexture);
  rkRenderer.setMatrix(World, _transformationMatrix );
- rkRenderer.Draw(s_akAABBVertices, Inaba::LineStrip, 5);
-}
+ rkRenderer.Draw(s_akAABBVertices, Inaba::TriangleStrip, 5);
+}*/
 
 void Entity3D::returnToPos(float posX, float posY, float posZ)
 {
