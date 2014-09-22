@@ -99,6 +99,9 @@
     <ClCompile Include="Entity3D\Mesh.cpp">
       <Filter>Entity3D</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Import3D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity2D\Animation.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Entity3D\Mesh.h">
       <Filter>Entity3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Import3D.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
