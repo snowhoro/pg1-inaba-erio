@@ -19,11 +19,11 @@ namespace Inaba
 			Mesh(Renderer & p_Renderer);
 			~Mesh();
 
-			void setData(const ColorVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount);
+			void setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount);
             void Draw(Renderer& r) const;
 			void Update(Timer&);
 		private:
-			ColorVertex* _vertex;
+			TextureCoordVertex* _vertex;
 			IndexBuffer* _indexBuffer;
 			VertexBuffer3D* _vertexBuffer3D;
 			Primitive pPrimitive;

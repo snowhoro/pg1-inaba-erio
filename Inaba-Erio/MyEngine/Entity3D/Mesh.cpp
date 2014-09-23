@@ -5,7 +5,7 @@
 using namespace Inaba;
 
 Mesh::Mesh(Renderer& pRenderer) : _renderer(pRenderer){
-	_vertexBuffer3D = _renderer.createVertexBuffer3D(sizeof(Inaba::ColorVertex), Inaba::ColorVertexType);
+	_vertexBuffer3D = _renderer.createVertexBuffer3D(sizeof(Inaba::TextureCoordVertex), Inaba::TextureCoordVertexType);
     _indexBuffer = _renderer.createIndexBuffer();	
 }
 
@@ -21,7 +21,7 @@ Mesh::~Mesh()
 	}
 }
 
-void Mesh::setData(const ColorVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount)
+void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount)
 {
 	pPrimitive = Prim;
 	_vertexBuffer3D->setVertexData((void*) Tex_Vertex,vertexCount);

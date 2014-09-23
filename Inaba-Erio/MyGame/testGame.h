@@ -12,6 +12,7 @@
 #include "Scene/Scene.h"
 #include "Scene1.h"
 #include "Entity3D\Mesh.h"
+#include "Scene\Import3D.h"
 
 namespace Erio
 {

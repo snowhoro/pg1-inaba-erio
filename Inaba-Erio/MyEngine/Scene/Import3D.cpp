@@ -28,7 +28,7 @@ void Import3D::setRenderer(Renderer *renderer)
 	_renderer = renderer;
 }
 
-bool Import3D::importScene(const std::string& fileName,Scene& scene)
+bool Import3D::importScene(const std::string& fileName)
 {
 	std::ifstream fin(fileName.c_str());
 	if(fin.fail()){
@@ -57,7 +57,7 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
     UINT inx_vertex = 0;
     UINT inx_faces = 0;
     UINT startIndex = 0;
-	ColorVertex* vertices;
+	TextureCoordVertex* vertices;
 	USHORT* indices;
 
 	Inaba::Mesh* myMesh = new Inaba::Mesh(*_renderer);
@@ -68,7 +68,7 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 	    numFaces += myAiMeshes[nMeshes]->mNumFaces;
 	}
 
-	vertices = new ColorVertex[numVertices];
+	vertices = new TextureCoordVertex[numVertices];
 
 	for(int nMeshes = 0; nMeshes < objScene->mNumMeshes; nMeshes++)
 	{
@@ -81,7 +81,7 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 			//vertices[inx_vertex].Nx = myAiMeshes[nMeshes]->mNormals[nVertex].x;
 			//vertices[inx_vertex].Ny = myAiMeshes[nMeshes]->mNormals[nVertex].y;
 			//vertices[inx_vertex].Nz = myAiMeshes[nMeshes]->mNormals[nVertex].z;
-			vertices[inx_vertex].color = D3DCOLOR_XRGB(255,255,255);
+			
 			inx_vertex++;
 		}
 		for(int nFaces = 0; nFaces < myAiMeshes[nMeshes]->mNumFaces; nFaces++)
@@ -92,7 +92,6 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 		}
 		
 		myMesh->setData(vertices, myAiMeshes[nMeshes]->mNumVertices,Inaba::TriangleList,indices,numVertices);
-		myMesh->setScale(100,100,100);
 		myMesh->setPos(100,100,0);
 
 

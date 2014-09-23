@@ -6,16 +6,16 @@
 #include "Scene3D.h"
 using namespace Erio;
 
-Inaba::ColorVertex g_8Vertices[] = {
-{-0.5f, 0.5f, -0.5f, D3DCOLOR_XRGB( 255, 0, 0 )}, // 0 
-{0.5f, 0.5f, -0.5f, D3DCOLOR_XRGB( 0, 255, 0 )}, // 1 
-{ 0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB( 40, 0, 120 )}, // 2 
-{ -0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB( 255, 0, 0 )}, // 3
+Inaba::TextureCoordVertex g_8Vertices[] = {
+{-0.5f, 0.5f, -0.5f,0,0}, // 0 
+{0.5f, 0.5f, -0.5f, 0,0}, // 1 
+{ 0.5f, 0.5f, 0.5f, 0,0}, // 2 
+{ -0.5f, 0.5f, 0.5f,0,0}, // 3
 
-{ -0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB( 0, 255, 0 )}, // 4
-{  0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB( 40, 0, 120 )}, // 5
-{  0.5f, -0.5f,-0.5f, D3DCOLOR_XRGB( 255, 0, 0 )}, // 6
-{ -0.5f, -0.5f,-0.5f, D3DCOLOR_XRGB( 0, 255, 0 )} // 7
+{ -0.5f, -0.5f, 0.5f, 0,0}, // 4
+{  0.5f, -0.5f, 0.5f, 0,0}, // 5
+{  0.5f, -0.5f,-0.5f, 0,0}, // 6
+{ -0.5f, -0.5f,-0.5f, 0,0} // 7
 };
 
 USHORT g_indices[] = { 0, 1, 2, 0, 2, 3,
@@ -48,6 +48,9 @@ bool Game::Init(Inaba::Renderer& renderer)
 	theMesh->setScale(100,100,100);
 	theMesh->setPos(100,100,0);
 
+
+
+	Inaba::Import3D::GetInstance()->importScene("cubito.obj");
 	return true;
 }
 
@@ -55,7 +58,7 @@ void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Ina
 {
 	currentScene()->Frame(renderer, directInput ,timer);
 
-	theMesh->Draw(renderer);
+	//theMesh->Draw(renderer);
 }
 
 void Game::DeInit(){

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Scene/Scene.h"
 #include "Scene/Import.h"
+#include "Scene\Import3D.h"
 #include "Renderer\Renderer.h"
 using namespace Inaba;
 
