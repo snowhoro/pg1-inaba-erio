@@ -28,7 +28,7 @@ void Import3D::setRenderer(Renderer *renderer)
 	_renderer = renderer;
 }
 
-bool Import3D::importScene(const std::string& fileName)
+bool Import3D::importScene(const std::string& fileName,Scene& scene)
 {
 	/*std::ifstream fin(fileName.c_str());
 	if(fin.fail()){
@@ -93,7 +93,7 @@ bool Import3D::importScene(const std::string& fileName)
 		Inaba::Mesh* myMesh = new Inaba::Mesh(*_renderer);
 		myMesh->setData(vertices, myAiMeshes[nMeshes].mNumVertices,Inaba::TriangleList,indices,numVertices);
 		myMesh->setPos(100,100,0);
-		
+		scene.AddEntity(myMesh);
 		
 	}
 	return true;

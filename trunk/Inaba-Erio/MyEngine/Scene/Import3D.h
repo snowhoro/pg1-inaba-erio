@@ -26,7 +26,7 @@ namespace Inaba
 		public:
 			static Import3D* GetInstance();
 			void setRenderer(Renderer*);
-			bool importScene(const std::string&);
+			bool importScene(const std::string&,Scene&);
 
 	};
 }
