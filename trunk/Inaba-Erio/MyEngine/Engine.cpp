@@ -5,6 +5,7 @@
 #include "Input/directinput.h"
 #include "Timer/timer.h"
 #include "Scene/Import.h"
+#include "Scene/Import3D.h"
 #include "Scene/Scene.h"
 using namespace Inaba;
  
@@ -42,6 +43,7 @@ bool Engine::Init()
 	   && _directInput->init(_window->gethInstance(),_window->hWnd()) == TRUE)
 	{
 		Import::GetInstance()->setRenderer(_renderer);
+		Import3D::GetInstance()->setRenderer(_renderer);
 		return true;
 	}
 	return false;

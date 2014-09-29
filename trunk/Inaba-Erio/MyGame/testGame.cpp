@@ -48,9 +48,7 @@ bool Game::Init(Inaba::Renderer& renderer)
 	theMesh->setScale(100,100,100);
 	theMesh->setPos(100,100,0);
 
-
-	Inaba::Import3D::GetInstance()->setRenderer(&renderer);
-	Inaba::Import3D::GetInstance()->importScene("cubito.obj",*scene1);
+	Inaba::Import3D::GetInstance()->importScene("cubitScene.obj",*scene1);
 	return true;
 }
 
