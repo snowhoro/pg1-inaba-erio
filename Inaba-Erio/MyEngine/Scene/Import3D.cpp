@@ -55,50 +55,46 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
     UINT numFaces = 0;
     UINT inx_vertex = 0;
     UINT inx_faces = 0;
-    UINT startIndex = 0;
+
 	TextureCoordVertex* vertices;
 	USHORT* indices = new USHORT();
 
 	
 	
-	for(int nMeshes = 0; nMeshes < objScene->mNumMeshes; nMeshes++)
-    {
-		numVertices += myAiMeshes[nMeshes].mNumVertices;
-	    numFaces += myAiMeshes[nMeshes].mNumFaces;
-	}
-
+	
+	numVertices += myAiMeshes[0].mNumVertices;
+	numFaces += myAiMeshes[0].mNumFaces;
 	vertices = new TextureCoordVertex[numVertices];
 
-	for(int nMeshes = 0; nMeshes < objScene->mNumMeshes; nMeshes++)
-	{
-	    startIndex = inx_vertex;
-		for(int nVertex = 0; nVertex < myAiMeshes[nMeshes].mNumVertices; nVertex++)
+	
+	   
+		for(int nVertex = 0; nVertex < myAiMeshes[0].mNumVertices; nVertex++)
 		{
-			vertices[inx_vertex].x = myAiMeshes[nMeshes].mVertices[nVertex].x;
-			vertices[inx_vertex].y = myAiMeshes[nMeshes].mVertices[nVertex].y;
-			vertices[inx_vertex].z = myAiMeshes[nMeshes].mVertices[nVertex].z;
+			vertices[inx_vertex].x = myAiMeshes[0].mVertices[nVertex].x;
+			vertices[inx_vertex].y = myAiMeshes[0].mVertices[nVertex].y;
+			vertices[inx_vertex].z = myAiMeshes[0].mVertices[nVertex].z;
 			//vertices[inx_vertex].Nx = myAiMeshes[nMeshes]->mNormals[nVertex].x;
 			//vertices[inx_vertex].Ny = myAiMeshes[nMeshes]->mNormals[nVertex].y;
 			//vertices[inx_vertex].Nz = myAiMeshes[nMeshes]->mNormals[nVertex].z;
 			
 			inx_vertex++;
 		}
-		for(int nFaces = 0; nFaces < myAiMeshes[nMeshes].mNumFaces; nFaces++)
+		for(int nFaces = 0; nFaces < myAiMeshes[0].mNumFaces; nFaces++)
 		{
-			indices[inx_faces++] = myAiMeshes[nMeshes].mFaces[nFaces].mIndices[0] + startIndex;
-			indices[inx_faces++] = myAiMeshes[nMeshes].mFaces[nFaces].mIndices[1] + startIndex;
-			indices[inx_faces++] = myAiMeshes[nMeshes].mFaces[nFaces].mIndices[2] + startIndex;
+			indices[inx_faces++] = myAiMeshes[0].mFaces[nFaces].mIndices[0];
+			indices[inx_faces++] = myAiMeshes[0].mFaces[nFaces].mIndices[1];
+			indices[inx_faces++] = myAiMeshes[0].mFaces[nFaces].mIndices[2];
 		}
 
 		Inaba::Mesh* myMesh = new Inaba::Mesh(*_renderer);
-		myMesh->setData(vertices, myAiMeshes[nMeshes].mNumVertices,Inaba::TriangleList,indices,numVertices);
+		myMesh->setData(vertices, myAiMeshes[0].mNumVertices,Inaba::TriangleList,indices,numVertices);
 		myMesh->setPos(100,100,0);
 		scene.AddEntity(myMesh);
 		
 	}
 	return true;
-  }
+ }
 
-}
+
 
 
