@@ -50,7 +50,7 @@ bool Game::Init(Inaba::Renderer& renderer)
 
 
 	Inaba::Import3D::GetInstance()->setRenderer(&renderer);
-	Inaba::Import3D::GetInstance()->importScene("cubito.obj");
+	Inaba::Import3D::GetInstance()->importScene("cubito.obj",*scene1);
 	return true;
 }
 
