@@ -21,13 +21,13 @@ namespace Inaba
 			Import3D();
 			Import3D(Import3D &const);
 			Import3D& operator= (Import3D const&);
-			
+			bool importMesh(Mesh* mMesh,Scene&);
 
 		public:
 			static Import3D* GetInstance();
 			void setRenderer(Renderer*);
+			bool importMesh(const std::string&,Scene&);
 			bool importScene(const std::string&,Scene&);
-
 	};
 }
 #endif
