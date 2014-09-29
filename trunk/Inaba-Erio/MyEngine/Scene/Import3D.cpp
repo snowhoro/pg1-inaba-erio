@@ -32,7 +32,6 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 {
 	UINT numVertices = 0;
 	UINT numFaces = 0;
-	UINT inx_vertex = 0;
 	UINT inx_faces = 0;
 
 	TextureCoordVertex* vertices;
@@ -41,33 +40,33 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 	numVertices += myAiMeshes->mNumVertices;
 	numFaces += myAiMeshes->mNumFaces;
 	vertices = new TextureCoordVertex[numVertices];
-	indices = new USHORT[numFaces];
+	indices = new USHORT[numFaces*3];
 
 
 	for(int nVertex = 0; nVertex < myAiMeshes->mNumVertices; nVertex++)
 	{
-		vertices[inx_vertex].x = myAiMeshes->mVertices[nVertex].x;
-		vertices[inx_vertex].y = myAiMeshes->mVertices[nVertex].y;
-		vertices[inx_vertex].z = myAiMeshes->mVertices[nVertex].z;
+		vertices[nVertex].x = myAiMeshes->mVertices[nVertex].x;
+		vertices[nVertex].y = myAiMeshes->mVertices[nVertex].y;
+		vertices[nVertex].z = myAiMeshes->mVertices[nVertex].z;
 		//vertices[inx_vertex].Nx = myAiMeshes[nMeshes]->mNormals[nVertex].x;
 		//vertices[inx_vertex].Ny = myAiMeshes[nMeshes]->mNormals[nVertex].y;
 		//vertices[inx_vertex].Nz = myAiMeshes[nMeshes]->mNormals[nVertex].z;
-
-		inx_vertex++;
 	}
+
 	for(int nFaces = 0; nFaces < myAiMeshes->mNumFaces; nFaces++)
 	{
-		indices[inx_faces] = myAiMeshes->mFaces[nFaces].mIndices[0];
-		indices[inx_faces] = myAiMeshes->mFaces[nFaces].mIndices[1];
-		indices[inx_faces] = myAiMeshes->mFaces[nFaces].mIndices[2];
-
-		inx_faces++;
+		indices[inx_faces++] = myAiMeshes->mFaces[nFaces].mIndices[0];
+		indices[inx_faces++] = myAiMeshes->mFaces[nFaces].mIndices[1];
+		indices[inx_faces++] = myAiMeshes->mFaces[nFaces].mIndices[2];
 	}
 
 	Mesh *myMesh = new Mesh(*_renderer);
-	myMesh->setData(vertices, myAiMeshes->mNumVertices,Inaba::TriangleList,indices,numVertices);
+	myMesh->setData(vertices, myAiMeshes->mNumVertices,Inaba::TriangleList,indices,numFaces*3);
 	myMesh->setPos(100,100,0);
 	scene.AddEntity(myMesh);
+
+	delete vertices;
+	delete indices;
 
 	return true;
 }
@@ -91,8 +90,3 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 		importMesh(objScene->mMeshes[nMeshes], scene);
 	}
 }
-
-
-
-
-
