@@ -10,7 +10,7 @@ _position(0,0,-1000),
 _lookAt(0,0,0),
 _velocity(0,0,0)
 {
-	CreateProjectionMatrix(D3DXToRadian(45), 1.3f, 0.0f, 1000.0f);
+	CreateProjectionMatrix(D3DXToRadian(45), 1.3f, 0.001f, 1000.0f);
 	Update();
 }
 

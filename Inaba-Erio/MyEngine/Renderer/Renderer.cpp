@@ -63,6 +63,10 @@ bool Renderer::Init(HWND hWnd)
 
     d3dpp.hDeviceWindow = hWnd; // set the window to be used by Direct3D
 
+	d3dpp.EnableAutoDepthStencil = true;
+
+	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
+
 	// create a device class using this information and information from the d3dpp
     if(_d3d->CreateDevice(	D3DADAPTER_DEFAULT,
 							D3DDEVTYPE_HAL, // Hardware Abstraction Layer is used to indicate that Direct3D 
@@ -79,12 +83,12 @@ bool Renderer::Init(HWND hWnd)
 	_d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE); // setea el uso de luz o no. 
 
 	_d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CW); 
-
+	_d3ddev->SetRenderState(D3DRS_ZENABLE, TRUE);
 	_d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE); //activa alpha
 	_d3ddev->SetRenderState(D3DRS_BLENDOP,D3DBLENDOP_ADD);
 	_d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
-	_d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
-	_d3ddev->SetRenderState(D3DRS_ZENABLE,D3DZB_USEW);
+	//_d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
+	_d3ddev->SetRenderState(D3DRS_BLENDOP,D3DBLENDOP_ADD);
 	//_d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 
 
@@ -127,7 +131,7 @@ void Renderer::deInit()
 void Renderer::BeginFrame()
 {
 	// Limpia el buffer	
-	_d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
+	_d3ddev->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
     
 	//tells Direct3D you are ready to start rendering. 
 	//to tell Direct3D that you are in control of the memory. 
@@ -137,7 +141,9 @@ void Renderer::BeginFrame()
 
 void Renderer::EndFrame()
 {
-	_vertexbuffer->flush();
+	if(!_vertexbuffer)
+		_vertexbuffer->flush();
+
 	_d3ddev->EndScene(); // unlocks
     _d3ddev->Present(NULL, NULL, NULL, NULL);
 }

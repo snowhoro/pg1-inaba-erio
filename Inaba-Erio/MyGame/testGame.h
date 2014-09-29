@@ -28,7 +28,6 @@ namespace Erio
 		Inaba::Scene *scene1;
 		Inaba::Scene *scene2;
 		Inaba::Scene *scene3D;
-		Inaba::Mesh* theMesh;
 	};
 }
 #endif
