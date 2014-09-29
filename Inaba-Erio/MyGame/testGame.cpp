@@ -49,7 +49,7 @@ bool Game::Init(Inaba::Renderer& renderer)
 	theMesh->setPos(100,100,0);
 
 
-
+	Inaba::Import3D::GetInstance()->setRenderer(&renderer);
 	Inaba::Import3D::GetInstance()->importScene("cubito.obj");
 	return true;
 }
@@ -57,7 +57,7 @@ bool Game::Init(Inaba::Renderer& renderer)
 void Game::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, Inaba::Timer& timer)
 {
 	currentScene()->Frame(renderer, directInput ,timer);
-
+	
 	//theMesh->Draw(renderer);
 }
 
