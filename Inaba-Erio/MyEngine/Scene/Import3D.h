@@ -7,6 +7,7 @@
 #include "../Assimp32/include/Importer.hpp"
 #include "../Assimp32/include/scene.h"
 #include "../Assimp32/include/postprocess.h"
+
 namespace Inaba
 {	
 	class Scene;
@@ -26,7 +27,7 @@ namespace Inaba
 		public:
 			static Import3D* GetInstance();
 			void setRenderer(Renderer*);
-			bool importMesh(const std::string&,Scene&);
+			bool importMesh(aiMesh*,Scene&);
 			bool importScene(const std::string&,Scene&);
 	};
 }
