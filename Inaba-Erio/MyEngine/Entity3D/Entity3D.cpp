@@ -6,6 +6,7 @@
 #include <iostream>
 #include <d3dx9.h>
 
+
 using namespace Inaba;
 
 Entity3D::Entity3D():
@@ -186,4 +187,27 @@ std::string Entity3D::name() const
 void Entity3D::setName(std::string name)
 {
 	_name = name;
+}
+
+void Entity3D::UpdateTransformation()
+{
+	if(!_parent)
+	{
+		_worldTransformationMatrix = _transformationMatrix;
+	}else
+	{
+	//D3DXMatrixMultiply(_worldTransformationMatrix,_parent->GetTransformationMatrix()
+	}
+	
+}
+
+void Entity3D::SetParent(Node* parent)
+{
+	_parent = parent;
+	
+}
+
+Matrix Entity3D::GetTranformationMatrix()
+{
+	return _worldTransformationMatrix;
 }
