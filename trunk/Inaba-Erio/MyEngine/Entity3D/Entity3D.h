@@ -5,10 +5,12 @@
 #include "../Renderer/RenderTypes.h"
 #include "../myengine_api.h"
 #include <string>
+
 namespace Inaba
 {
 	class Renderer;
 	class Timer;
+	class Node;
 
 	class MYENGINE_API Entity3D
 	{
@@ -46,6 +48,10 @@ namespace Inaba
 			virtual void Update(Timer&) = 0;
 			std::string name() const;
 			void setName(std::string);
+			void UpdateTransformation();
+			void SetParent(Node*);
+			Matrix GetTranformationMatrix();
+
 		protected:
 			float _posX, _posY, _posZ,_prevPosX, _prevPosY, _prevPosZ;
 			float _rotation;
@@ -53,10 +59,11 @@ namespace Inaba
 			float _scaleY;
 			float _scaleZ;
 			std::string _name; 
-
+			Node* _parent;
 			Matrix _transformationMatrix;
-		
+			Matrix _worldTransformationMatrix;
 			void UpdateLocalTransformation();
+
 
 	};
 }
