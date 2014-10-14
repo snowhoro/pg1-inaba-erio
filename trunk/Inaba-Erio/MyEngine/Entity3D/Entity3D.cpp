@@ -1,11 +1,11 @@
 #define NOMINMAX
 
 #include "Entity3D.h"
+#include "Node.h"
 #include "../Renderer/Renderer.h"
 #include <Windows.h>
 #include <iostream>
 #include <d3dx9.h>
-
 
 using namespace Inaba;
 
@@ -196,7 +196,7 @@ void Entity3D::UpdateTransformation()
 		_worldTransformationMatrix = _transformationMatrix;
 	}else
 	{
-	//D3DXMatrixMultiply(_worldTransformationMatrix,_parent->GetTransformationMatrix()
+		D3DXMatrixMultiply(_worldTransformationMatrix, _parent->GetTranformationMatrix(), _transformationMatrix);
 	}
 	
 }

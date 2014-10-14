@@ -10,6 +10,8 @@ using namespace std;
 namespace Inaba
 {	
 	class Entity3D;
+	class Timer;
+
 	class MYENGINE_API Node : public Entity3D
 	{
 		public:
@@ -19,7 +21,8 @@ namespace Inaba
 
 			void AddChild(Entity3D*);
 			void RemoveChild(Entity3D*);
-            void Draw(Renderer& r) const;
+			void Draw(Renderer&) const;
+			void Update(Timer&);
 			void UpdateTransformation();
 		private:
 			
