@@ -9,9 +9,9 @@ Node::Node()
 
 }
 
-Node::Node(Node* parent)
+Node::Node(Node* Node)
 {
-	parent = _parent;
+
 }
 
 Node::~Node()
@@ -45,10 +45,12 @@ void Node::UpdateTransformation()
 	}
 }
 
-void Mesh::Draw(Renderer& renderer) const{
-	_vertexBuffer3D->bind();
-	_indexBuffer->bind();
-	renderer.setCurrentTexture(NoTexture);
-	renderer.setMatrix(World,_transformationMatrix);
-	renderer.Draw(pPrimitive);
+void Node::Update(Timer& timer)
+{
+
+}
+
+void Node::Draw(Renderer& r) const
+{
+
 }

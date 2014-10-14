@@ -3,6 +3,7 @@
 #include <string>
 #include "../Entity3D/Entity3D.h"
 #include "../Entity3D/Mesh.h"
+#include "../Entity3D/Node.h"
 #include "../Renderer/Renderer.h"
 
 using namespace Inaba;
@@ -63,6 +64,7 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 	Mesh *myMesh = new Mesh(*_renderer);
 	myMesh->setData(vertices, myAiMeshes->mNumVertices,Inaba::TriangleList,indices,numFaces*3);
 	myMesh->setPos(100,100,0);
+	
 	scene.AddEntity(myMesh);
 
 	delete vertices;
@@ -71,9 +73,20 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 	return true;
 }
 
+bool Import3D::importNode(aiNode* myAiNodes,Scene& scene)
+{
+
+	Node *myNode = new Node();
+
+	scene.AddEntity(myNode);
+
+	return true;
+}
+
 bool Import3D::importScene(const std::string& fileName,Scene& scene)
 {
 	Assimp::Importer meshImporter;
+	
 	const aiScene* objScene = meshImporter.ReadFile( fileName.c_str(), 
 		aiProcess_Triangulate | 
 		aiProcess_GenSmoothNormals | 
@@ -84,6 +97,32 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 		//mandar mensajes de window
 		return false;
 	}
+
+
+	Node *myNode = new Node();
+
+	for(int nChilds=0; nChilds = objScene->mRootNode->mNumChildren; nChilds++)
+	{
+		list<Entity3D*> childs;
+		//meter root en childs traducido
+		for each(Entity3D* entity in childs)
+		{
+			for(int i = 0;i <= objScene-> )
+			{
+				//metes children en temp con una funcion que traduzca aiNode a Node
+				//set valores nodo
+				//childs.push(nodo);
+			}
+		}
+		
+		
+	}
+	
+	importEntity(objScene, scene);
+}
+
+void Import3D::importEntity(const aiScene* objScene, Scene& scene)
+{	
 
 	for(int nMeshes=0; nMeshes < objScene->mNumMeshes ; nMeshes++)
 	{
