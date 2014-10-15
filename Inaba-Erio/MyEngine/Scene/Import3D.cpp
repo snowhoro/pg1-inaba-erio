@@ -73,16 +73,6 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 	return true;
 }
 
-bool Import3D::importNode(aiNode* myAiNodes,Scene& scene)
-{
-
-	Node *myNode = new Node();
-
-	scene.AddEntity(myNode);
-
-	return true;
-}
-
 bool Import3D::importScene(const std::string& fileName,Scene& scene)
 {
 	Assimp::Importer meshImporter;
@@ -98,34 +88,30 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 		return false;
 	}
 
+	importNode(objScene->mRootNode, objScene, scene);
+
+	return true;
+}
+
+Node* Import3D::importNode(aiNode* myAiNode,const aiScene* myAiScene, Scene& scene)
+{	
 
 	Node *myNode = new Node();
 
-	for(int nChilds=0; nChilds = objScene->mRootNode->mNumChildren; nChilds++)
+	for(int nChild=0; nChild < myAiNode->mNumChildren; nChild++)
 	{
-		list<Entity3D*> childs;
-		//meter root en childs traducido
-		for each(Entity3D* entity in childs)
-		{
-			for(int i = 0;i <= objScene-> )
-			{
-				//metes children en temp con una funcion que traduzca aiNode a Node
-				//set valores nodo
-				//childs.push(nodo);
-			}
-		}
-		
-		
+		Node *myChildren = importNode(myAiNode->mChildren[nChild], myAiScene , scene);		
+		myChildren->SetParent(myNode);
+		myNode->AddChild(myChildren);
+	}
+
+	
+	for(int nMeshes=0; nMeshes < myAiNode->mNumMeshes ; nMeshes++)
+	{
+		importMesh(myAiScene->mMeshes[myAiNode->mMeshes[nMeshes]], scene);
 	}
 	
-	importEntity(objScene, scene);
-}
+	scene.AddEntity(myNode);
+	return myNode;
 
-void Import3D::importEntity(const aiScene* objScene, Scene& scene)
-{	
-
-	for(int nMeshes=0; nMeshes < objScene->mNumMeshes ; nMeshes++)
-	{
-		importMesh(objScene->mMeshes[nMeshes], scene);
-	}
 }
