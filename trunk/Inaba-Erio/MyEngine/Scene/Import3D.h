@@ -13,6 +13,7 @@ namespace Inaba
 	class Scene;
 	class Mesh;
 	class Renderer;
+	class Node;
 
 	class MYENGINE_API Import3D
 	{
@@ -27,9 +28,8 @@ namespace Inaba
 			static Import3D* GetInstance();
 			void setRenderer(Renderer*);
 			bool importMesh(aiMesh*,Scene&);
-			bool importNode(aiNode*,Scene&);
-			bool importEntity(const aiScene*, Scene&);
-			void importScene(const std::string&,Scene&);
+			Node* importNode(aiNode*,const aiScene*,Scene&);
+			bool importScene(const std::string&,Scene&);
 	};
 }
 #endif
