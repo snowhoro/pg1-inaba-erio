@@ -19,13 +19,15 @@ namespace Inaba
 			~Entity3D();
 			
 			void setPos(float,float,float);
-			void setRotation(float);
+			void setRotation(float,float,float);
 			void setScale(float,float,float);
 
 			float posX() const;
 			float posY() const;
 			float posZ() const;
-			float rotation() const;
+			float rotX() const;
+			float rotY() const;
+			float rotZ() const; 
 			float scaleX() const;
 			float scaleY() const;
 			float scaleZ() const;
@@ -50,11 +52,12 @@ namespace Inaba
 			void setName(std::string);
 			void UpdateTransformation();
 			void SetParent(Node*);
+			Node* GetParent();
 			Matrix GetTranformationMatrix();
 
 		protected:
 			float _posX, _posY, _posZ,_prevPosX, _prevPosY, _prevPosZ;
-			float _rotation;
+			float _rotX, _rotY, _rotZ;
 			float _scaleX;
 			float _scaleY;
 			float _scaleZ;
