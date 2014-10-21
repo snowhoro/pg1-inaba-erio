@@ -5,6 +5,7 @@
 #include "../Entity3D/Mesh.h"
 #include "../Entity3D/Node.h"
 #include "../Renderer/Renderer.h"
+#include <math.h>
 
 using namespace Inaba;
 
@@ -103,6 +104,16 @@ Node* Import3D::importNode(aiNode* myAiNode,const aiScene* myAiScene, Scene& sce
 		Node *myChildren = importNode(myAiNode->mChildren[nChild], myAiScene , scene);		
 		myChildren->SetParent(myNode);
 		myNode->AddChild(myChildren);
+
+		aiVector3t<float> scaling;
+		aiQuaterniont<float> rotation;
+		aiVector3t<float> position;
+		myAiNode->mTransformation.Decompose(scaling,rotation,position);
+		myNode->setPos(position.x,position.y,position.z);
+		myNode->setScale(scaling.x,scaling.y,scaling.z);
+		float rotX, rotY, rotZ;
+		quaternionToEuler(rotation.x,rotation.y,rotation.z,rotation.w,rotX,rotY,rotZ);
+		myNode->setRotation(rotX,rotY,rotZ);
 	}
 
 	
@@ -114,4 +125,30 @@ Node* Import3D::importNode(aiNode* myAiNode,const aiScene* myAiScene, Scene& sce
 	scene.AddEntity(myNode);
 	return myNode;
 
+}
+
+void Import3D::quaternionToEuler(float qX,float qY,float qZ,float qW,float& rotX,float& rotY,float& rotZ)
+{
+	double test = qX * qY + qZ * qW;
+	if(test > 0.499)
+	{
+		rotX = 2.0 * atan2(qX,qW);
+		rotY = AI_MATH_PI_F / 2;
+		rotZ = 0;
+		return;
+	}
+	if(test < -0.499)
+	{
+		rotX = - 2.0 * atan2(qX,qW);
+		rotY = - AI_MATH_PI_F / 2;
+		rotZ = 0;
+		return;
+	}
+	float sqx = qX*qX;
+    float sqy = qY*qY;
+    float sqz = qZ*qZ;
+
+	rotX = atan2(2*qY*qW-2*qX*qZ , 1 - 2*sqy - 2*sqz);
+	rotY = asin(2*test);
+	rotZ = atan2(2*qX*qW-2*qY*qZ , 1 - 2*sqx - 2*sqz);
 }

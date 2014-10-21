@@ -16,7 +16,9 @@ _posZ(0.0f),
 _prevPosX(0.0f),
 _prevPosY(0.0f),
 _prevPosZ(0.0f),
-_rotation(0.0f),
+_rotX(0.0f),
+_rotY(0.0f),
+_rotZ(0.0f),
 _scaleX(1.0f),
 _scaleY(1.0f),
 _scaleZ(1.0f),
@@ -42,9 +44,11 @@ void Entity3D::setPos(float posX, float posY, float posZ)
 	UpdateLocalTransformation();
 }
 
-void Entity3D::setRotation(float rotation)
+void Entity3D::setRotation(float rotX,float rotY,float rotZ)
 {
-	_rotation = rotation;
+	_rotX = rotX;
+	_rotY = rotY;
+	_rotZ = rotZ;
 
 	UpdateLocalTransformation();
 }
@@ -64,7 +68,9 @@ void Entity3D::UpdateLocalTransformation()
 	D3DXMatrixTranslation(&translateMatrix, _posX, _posY, _posZ);
 
 	D3DXMATRIX rotationMatrix;
-	D3DXMatrixRotationZ(&rotationMatrix, _rotation);
+	D3DXMatrixRotationX(&rotationMatrix, _rotX);
+	D3DXMatrixRotationY(&rotationMatrix, _rotY);
+	D3DXMatrixRotationZ(&rotationMatrix, _rotZ);
 
 	D3DXMATRIX scaleMatrix;
 	D3DXMatrixScaling(&scaleMatrix, _scaleX, _scaleY, _scaleZ);
@@ -120,6 +126,22 @@ float Entity3D::scaleZ() const
 {
 	return _scaleZ;
 }
+
+float Entity3D::rotX() const
+{
+	return _rotX;
+}
+
+float Entity3D::rotY() const
+{
+	return _rotY;
+}
+
+float Entity3D::rotZ() const
+{
+	return _rotZ;
+}
+
 
 Entity3D::CollisionResult Entity3D::checkCollision(Entity3D& rkEntity3D) const
 {
@@ -205,6 +227,10 @@ void Entity3D::SetParent(Node* parent)
 {
 	_parent = parent;
 	
+}
+Node* Entity3D::GetParent()
+{
+	return _parent;
 }
 
 Matrix Entity3D::GetTranformationMatrix()

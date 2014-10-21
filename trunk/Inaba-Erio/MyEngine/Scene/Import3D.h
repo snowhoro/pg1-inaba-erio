@@ -30,6 +30,7 @@ namespace Inaba
 			bool importMesh(aiMesh*,Scene&);
 			Node* importNode(aiNode*,const aiScene*,Scene&);
 			bool importScene(const std::string&,Scene&);
+			void quaternionToEuler(float qX,float qY,float qZ,float qW,float& rotX,float& rotY,float& rotZ);
 	};
 }
 #endif
