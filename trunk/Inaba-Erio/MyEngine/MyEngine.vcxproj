@@ -24,6 +24,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input\directinput.cpp" />
     <ClCompile Include="Input\input.cpp" />
+    <ClCompile Include="Renderer\AABB.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\RenderTypes.cpp" />
     <ClCompile Include="Renderer\Vertexbuffer.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="Input\directinput.h" />
     <ClInclude Include="Input\input.h" />
     <ClInclude Include="myengine_api.h" />
+    <ClInclude Include="Renderer\AABB.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\RenderTypes.h" />
     <ClInclude Include="Renderer\Vertexbuffer.h" />

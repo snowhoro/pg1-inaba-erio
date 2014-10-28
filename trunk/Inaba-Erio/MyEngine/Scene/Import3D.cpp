@@ -39,6 +39,8 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 	TextureCoordVertex* vertices;
 	USHORT* indices;
 
+	
+
 	numVertices += myAiMeshes->mNumVertices;
 	numFaces += myAiMeshes->mNumFaces;
 	vertices = new TextureCoordVertex[numVertices];
