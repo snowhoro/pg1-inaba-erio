@@ -48,6 +48,7 @@ namespace Inaba
 			void returnToPos(float, float, float);
 			virtual void Draw(Renderer&) const = 0;
 			virtual void Update(Timer&) = 0;
+			virtual void checkCollisionAABB(D3DXMATRIX* f);
 			std::string name() const;
 			void setName(std::string);
 			void UpdateTransformation();
