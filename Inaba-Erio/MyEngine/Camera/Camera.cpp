@@ -137,3 +137,64 @@ void Camera::CameraControl(DirectInput &directInput, float cameraVel)
 	}
 
 }
+
+void Camera::BuildViewFrustum()
+{
+	D3DXMATRIX _viewProj;
+	D3DXMatrixMultiply(&_viewProj,&_view,&_projection);
+	
+
+	// Left Frustum Plane
+    // Add first column of the matrix to the fourth column
+	FrustumPlane[0].a = _viewProj._14 + _viewProj._11; 
+	FrustumPlane[0].b = _viewProj._24 + _viewProj._21;
+	FrustumPlane[0].c = _viewProj._34 + _viewProj._31;
+	FrustumPlane[0].d = _viewProj._44 + _viewProj._41;
+
+	// Right Frustum Plane
+    // Subtract first column of matrix from the fourth column
+	FrustumPlane[1].a = _viewProj._14 - _viewProj._11; 
+	FrustumPlane[1].b = _viewProj._24 - _viewProj._21;
+	FrustumPlane[1].c = _viewProj._34 - _viewProj._31;
+	FrustumPlane[1].d = _viewProj._44 - _viewProj._41;
+
+	// Top Frustum Plane
+    // Subtract second column of matrix from the fourth column
+	FrustumPlane[2].a = _viewProj._14 - _viewProj._12; 
+	FrustumPlane[2].b = _viewProj._24 - _viewProj._22;
+	FrustumPlane[2].c = _viewProj._34 - _viewProj._32;
+	FrustumPlane[2].d = _viewProj._44 - _viewProj._42;
+
+	// Bottom Frustum Plane
+    // Add second column of the matrix to the fourth column
+	FrustumPlane[3].a = _viewProj._14 + _viewProj._12;
+	FrustumPlane[3].b = _viewProj._24 + _viewProj._22;
+	FrustumPlane[3].c = _viewProj._34 + _viewProj._32;
+	FrustumPlane[3].d = _viewProj._44 + _viewProj._42;
+
+	// Near Frustum Plane
+    // We could add the third column to the fourth column to get the near plane,
+    // but we don't have to do this because the third column IS the near plane
+	FrustumPlane[4].a = _viewProj._13;
+	FrustumPlane[4].b = _viewProj._23;
+	FrustumPlane[4].c = _viewProj._33;
+	FrustumPlane[4].d = _viewProj._43;
+
+	// Far Frustum Plane
+    // Subtract third column of matrix from the fourth column
+	FrustumPlane[5].a = _viewProj._14 - _viewProj._13; 
+	FrustumPlane[5].b = _viewProj._24 - _viewProj._23;
+	FrustumPlane[5].c = _viewProj._34 - _viewProj._33;
+	FrustumPlane[5].d = _viewProj._44 - _viewProj._43;
+
+	for(int i = 0; i < 6; i ++)
+	{
+		float length = sqrt((FrustumPlane[i].a * FrustumPlane[i].a) + (FrustumPlane[i].b * FrustumPlane[i].b) + (FrustumPlane[i].c * FrustumPlane[i].c));
+		FrustumPlane[i].a /= length;
+		FrustumPlane[i].b /= length;
+		FrustumPlane[i].c /= length;
+		FrustumPlane[i].d /= length;
+	}
+
+	
+}

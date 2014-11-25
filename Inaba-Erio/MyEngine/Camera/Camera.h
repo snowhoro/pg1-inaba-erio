@@ -29,7 +29,7 @@ namespace Inaba
 		void SetFarPlane(float plane)		{ CreateProjectionMatrix(_fov, _aspect, _nearPlane, plane); }
 		void SetPosition(D3DXVECTOR3* pPosition);
 		void SetLookAt(D3DXVECTOR3* pLookAt);
-
+		void BuildViewFrustum();
 		void Update();
 
 		void CameraControl(DirectInput &directInput, float cameraVel = 10.0f);
@@ -43,6 +43,7 @@ namespace Inaba
 		D3DXVECTOR3 _position;	// the camera position
 		D3DXVECTOR3 _lookAt;
 		D3DXVECTOR3 _velocity;
+		D3DXPLANE FrustumPlane[6];
 		float _fov;
 		float _aspect;
 		float _nearPlane;
