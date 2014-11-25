@@ -26,7 +26,6 @@ void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Ina
 	pPrimitive = Prim;
 	_vertexBuffer3D->setVertexData((void*) Tex_Vertex,vertexCount);
 	_indexBuffer->setIndexData(pInt,indexCount);
-
 }
 
 void Mesh::Draw(Renderer& renderer) const{
