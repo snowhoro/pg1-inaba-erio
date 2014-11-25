@@ -194,7 +194,44 @@ void Camera::BuildViewFrustum()
 		FrustumPlane[i].b /= length;
 		FrustumPlane[i].c /= length;
 		FrustumPlane[i].d /= length;
+		
 	}
 
-	
+	//D3DXPlaneNormalize(FrustumPlane[i], FrustumPlane[i]);
+}
+
+UINT Camera::checkCollisionAABB(Entity3D* entity3D)
+{
+	AABB *_aabb = entity3D->getAABB();
+
+	D3DXVECTOR3 aabbSize = D3DXVECTOR3(_aabb->getWidth(),_aabb->getHeight(),_aabb->getDepth());
+	D3DXVECTOR3 aabbCenter = _aabb->getCenter();
+
+	unsigned int result = INSIDE;
+		
+	for(unsigned int i = 0;i < 6;++i)
+	{	
+		const D3DXPLANE fPlane = FrustumPlane[i];
+		
+		float d = aabbCenter.x * fPlane.a + 
+			aabbCenter.y * fPlane.b + 
+			aabbCenter.z * fPlane.c;
+
+			float r = aabbSize.x * fPlane.a + 
+				  aabbSize.y * fPlane.b + 
+				  aabbSize.z * fPlane.c;
+
+			float d_p_r = d + r;
+			float d_m_r = d - r;
+
+			if(d_p_r < -fPlane.d)
+			{
+				result = OUTSIDE;
+				break;
+			}
+			else if(d_m_r < -fPlane.d)
+				result = INTERSECT;
+	}
+
+	return result;
 }

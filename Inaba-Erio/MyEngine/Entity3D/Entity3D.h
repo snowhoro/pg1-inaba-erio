@@ -5,6 +5,7 @@
 #include "../Renderer/RenderTypes.h"
 #include "../Renderer/AABB.h"
 #include "../myengine_api.h"
+#include <d3dx9.h>
 #include <string>
 
 namespace Inaba
@@ -50,11 +51,12 @@ namespace Inaba
 			void returnToPos(float, float, float);
 			virtual void Draw(Renderer&) const = 0;
 			virtual void Update(Timer&) = 0;
-			bool checkCollisionAABB(D3DXMATRIX* f);
 			std::string name() const;
+			AABB* getAABB(); 
 			void setName(std::string);
 			void UpdateTransformation();
 			void SetParent(Node*);
+			void UpdateAABB(TextureCoordVertex* vertices,int numVertex);
 			Node* GetParent();
 			Matrix GetTranformationMatrix();
 

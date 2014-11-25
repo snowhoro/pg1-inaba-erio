@@ -36,3 +36,18 @@ void AABB::setBounds(TextureCoordVertex* vertices,int numVertex)
 
 
 }
+
+float AABB::getWidth() {
+	return _max.x - _min.x;
+}
+
+float AABB::getHeight() {
+	return _max.y - _min.y;
+}
+float AABB::getDepth() {
+	return _max.z - _min.z;
+}
+
+D3DXVECTOR3 AABB::getCenter(){
+	return D3DXVECTOR3((_max.x + _min.x) / 2, (_max.y + _min.y) / 2, (_max.z + _min.z) /2);
+}

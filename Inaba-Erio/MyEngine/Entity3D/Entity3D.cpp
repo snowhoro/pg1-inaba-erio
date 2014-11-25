@@ -224,6 +224,16 @@ void Entity3D::UpdateTransformation()
 	
 }
 
+void Entity3D::UpdateAABB(TextureCoordVertex* vertices,int numVertex)
+{
+	_AABB->setBounds(vertices, numVertex);
+}
+
+AABB* Entity3D::getAABB()
+{
+	return _AABB;
+}
+
 void Entity3D::SetParent(Node* parent)
 {
 	_parent = parent;
@@ -237,9 +247,4 @@ Node* Entity3D::GetParent()
 Matrix Entity3D::GetTranformationMatrix()
 {
 	return _worldTransformationMatrix;
-}
-
-bool Entity3D::checkCollisionAABB(D3DXMATRIX* f)
-{
-	
 }
