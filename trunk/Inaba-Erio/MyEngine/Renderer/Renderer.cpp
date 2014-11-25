@@ -235,6 +235,8 @@ Camera* Renderer::getCamera()
 void Renderer::UpdateCamera()
 {
 	_camera->Update();
+	_camera->BuildViewFrustum();
 	_d3ddev->SetTransform(D3DTS_VIEW, _camera->getViewMatrix());
 	_d3ddev->SetTransform(D3DTS_PROJECTION, _camera->getProjectionMatrix());
+
 }

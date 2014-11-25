@@ -31,6 +31,9 @@
     <Filter Include="VertexBuffer">
       <UniqueIdentifier>{c39620f8-d829-4061-af48-65304c1adb7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{f7d53ec0-5447-4276-b005-50692f9159f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity2D\Animation.cpp">
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="Renderer\AABB.cpp">
       <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Physics.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="Renderer\AABB.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Physics.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

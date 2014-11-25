@@ -22,6 +22,7 @@ _rotZ(0.0f),
 _scaleX(1.0f),
 _scaleY(1.0f),
 _scaleZ(1.0f),
+_AABB(new AABB()),
 _transformationMatrix(new D3DXMATRIX())
 {
 }
@@ -236,4 +237,9 @@ Node* Entity3D::GetParent()
 Matrix Entity3D::GetTranformationMatrix()
 {
 	return _worldTransformationMatrix;
+}
+
+bool Entity3D::checkCollisionAABB(D3DXMATRIX* f)
+{
+	
 }

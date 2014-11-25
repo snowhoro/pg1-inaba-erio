@@ -3,6 +3,7 @@
 
 #include "../Renderer/xMath.h"
 #include "../Renderer/RenderTypes.h"
+#include "../Renderer/AABB.h"
 #include "../myengine_api.h"
 #include <string>
 
@@ -11,6 +12,7 @@ namespace Inaba
 	class Renderer;
 	class Timer;
 	class Node;
+	
 
 	class MYENGINE_API Entity3D
 	{
@@ -48,7 +50,7 @@ namespace Inaba
 			void returnToPos(float, float, float);
 			virtual void Draw(Renderer&) const = 0;
 			virtual void Update(Timer&) = 0;
-			virtual void checkCollisionAABB(D3DXMATRIX* f);
+			bool checkCollisionAABB(D3DXMATRIX* f);
 			std::string name() const;
 			void setName(std::string);
 			void UpdateTransformation();
@@ -67,7 +69,7 @@ namespace Inaba
 			Matrix _transformationMatrix;
 			Matrix _worldTransformationMatrix;
 			void UpdateLocalTransformation();
-
+			AABB* _AABB;
 
 	};
 }

@@ -14,9 +14,7 @@ class MYENGINE_API AABB
 	public:
 		AABB();
 		~AABB();
-		void setBound(TextureCoordVertex* vertices,int numVertex);
-
-		
+		void setBounds(TextureCoordVertex* vertices,int numVertex);
 };
 
 }

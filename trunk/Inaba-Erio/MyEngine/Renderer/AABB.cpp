@@ -11,7 +11,7 @@ AABB::~AABB()
 {
 }
 
-void AABB::setBound(TextureCoordVertex* vertices,int numVertex)
+void AABB::setBounds(TextureCoordVertex* vertices,int numVertex)
 {
 	_min = *vertices;
 	_max = _min;
@@ -33,4 +33,6 @@ void AABB::setBound(TextureCoordVertex* vertices,int numVertex)
 		if(vertices[i].z > _max.z)
 			_min.z = vertices[i].z;
 	}
+
+
 }
