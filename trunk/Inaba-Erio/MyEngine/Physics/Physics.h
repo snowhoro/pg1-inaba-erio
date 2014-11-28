@@ -1,38 +1,33 @@
-/*
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
-
 #include "../myengine_api.h"
+#include "RigidBody.h"
+#include <iostream>
 
-
-
+class hkVisualDebugger;
+class hkpPhysicsContext;
+class hkpWorld;
+class hkpRigidBody;
 namespace Inaba
 {	
-	class hkVisualDebugger;
-	class hkpPhysicsContext;
-	class hkpWorld;
-	class hkpRigidBody;
-
 	class MYENGINE_API Physics
 	{
-
 		private:
-			Physics* _instance;
-			hkpWorld* _world;
-			hkVisualDebugger* _vdb;
-			hkpPhysicsContext* _physicsContext;
+			static Physics *_instance;
+			static hkpWorld *_world;
+			hkVisualDebugger *_vdb;
+			hkpPhysicsContext *_physicsContext;
+
 			void InitPhysics();
 			void DeInitPhysics();
-
-
 		public:
 			Physics();
 			~Physics();
 			static Physics* GetInstance();
-			hpkWorld* GetWorld();
-			
+			static hkpWorld* GetWorld();
+			void stepSimulation(float deltaTime);
+			static void addEntity(RigidBody* _rigidb);
 	};
 }
 #endif
-*/

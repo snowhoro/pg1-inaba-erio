@@ -7,6 +7,7 @@
 #include "../VertexBuffer/indexbuffer.h"
 #include "../VertexBuffer/vertexbuffer3D.h"
 #include "../myengine_api.h"
+#include <vector>
 
 namespace Inaba
 {
@@ -22,12 +23,18 @@ namespace Inaba
 			void setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount);
             void Draw(Renderer& r) const;
 			void Update(Timer&);
+
+			const std::vector<TextureCoordVertex>& vertexs() const;
+			const std::vector<unsigned short> indexs() const;
+
 		private:
 			TextureCoordVertex* _vertex;
 			IndexBuffer* _indexBuffer;
 			VertexBuffer3D* _vertexBuffer3D;
 			Primitive pPrimitive;
 			Renderer& _renderer;
+			std::vector<TextureCoordVertex> _vVertex;
+			std::vector<unsigned short> _vIndex;
 	};
 }
 #endif

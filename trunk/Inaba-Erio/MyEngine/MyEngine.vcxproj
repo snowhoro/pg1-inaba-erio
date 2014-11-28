@@ -24,12 +24,15 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input\directinput.cpp" />
     <ClCompile Include="Input\input.cpp" />
+    <ClCompile Include="Physics\Collider.cpp" />
     <ClCompile Include="Physics\Physics.cpp" />
+    <ClCompile Include="Physics\RigidBody.cpp" />
     <ClCompile Include="Renderer\AABB.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\RenderTypes.cpp" />
     <ClCompile Include="Renderer\Vertexbuffer.cpp" />
     <ClCompile Include="Renderer\Window.cpp" />
+    <ClCompile Include="Renderer\xMath.cpp" />
     <ClCompile Include="Scene\Import.cpp" />
     <ClCompile Include="Scene\Import3D.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
@@ -53,7 +56,9 @@
     <ClInclude Include="Input\directinput.h" />
     <ClInclude Include="Input\input.h" />
     <ClInclude Include="myengine_api.h" />
+    <ClInclude Include="Physics\Collider.h" />
     <ClInclude Include="Physics\Physics.h" />
+    <ClInclude Include="Physics\RigidBody.h" />
     <ClInclude Include="Renderer\AABB.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\RenderTypes.h" />
@@ -119,14 +124,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>TINYXML2_EXPORT;MYENGINE_EXPORTS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\ignacio\Desktop\pg1-inaba-erio\Inaba-Erio\MyEngine\Havok\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\havok\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>
       </SubSystem>
-      <AdditionalDependencies>assimp.lib;d3dx9.lib;d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\Assimp32\lib;C:\Users\IC74\Desktop\pg1-inaba-erio\Inaba-Erio\MyEngine\Assimp32\lib;C:\Users\ignacio\Desktop\pg1-inaba-erio\Inaba-Erio\MyEngine\Havok\Lib\win32_vs2010\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>hkBase.lib;hkVisualize.lib;hkInternal.lib;hkSerialize.lib;hkGeometryUtilities.lib;hkcdInternal.lib;hkcdCollide.lib;hkpCollide.lib;hkpConstraint.lib;hkpConstraintSolver.lib;hkpDynamics.lib;hkpInternal.lib;hkpUtilities.lib;assimp.lib;d3dx9.lib;d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\havok\Lib\win32_vs2010\dev_dll;$(ProjectDir)\Assimp32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,14 +141,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>TINYXML2_EXPORT;MYENGINE_EXPORTS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\ignacio\Desktop\pg1-inaba-erio\Inaba-Erio\MyEngine\Havok\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\havok\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>hkBase.lib;hkVisualize.lib;hkInternal.lib;hkSerialize.lib;hkGeometryUtilities.lib;hkcdInternal.lib;hkcdCollide.lib;hkpCollide.lib;hkpConstraint.lib;hkpConstraintSolver.lib;hkpDynamics.lib;hkpInternal.lib;hkpUtilities.lib;assimp.lib;d3dx9.lib;d3d9.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\Assimp32\lib;C:\Users\IC74\Desktop\pg1-inaba-erio\Inaba-Erio\MyEngine\Assimp32\lib;C:\Users\ignacio\Desktop\pg1-inaba-erio\Inaba-Erio\MyEngine\Havok\Lib\win32_vs2010\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\havok\Lib\win32_vs2010\release_dll;$(ProjectDir)\Assimp32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

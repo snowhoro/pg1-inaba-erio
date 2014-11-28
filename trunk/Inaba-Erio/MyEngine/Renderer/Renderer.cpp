@@ -113,8 +113,7 @@ bool Renderer::Init(HWND hWnd)
 
 	//FONT
 	_font = new Font();
-	_font->Init(_d3ddev,"Arial",22);
-
+	_font->Init(_d3ddev, "Arial", 22);
 	return true;
 }
 
@@ -137,6 +136,7 @@ void Renderer::BeginFrame()
 	//to tell Direct3D that you are in control of the memory. 
 	//locking, where the buffer in the video RAM is 'locked'
 	_d3ddev->BeginScene(); 
+
 }
 
 void Renderer::EndFrame()
@@ -160,7 +160,8 @@ void Renderer::Draw(TextureCoordVertex* vertex,Inaba::Primitive primitive,size_t
 	_textureCoordVertexbuffer->draw(vertex,primitivesMapping[primitive], vertexCount);
 }
 
-void Renderer::Draw(Inaba::Primitive primitive){
+void Renderer::Draw(Inaba::Primitive primitive)
+{
 	_d3ddev->DrawIndexedPrimitive(primitivesMapping[primitive], 0, 0, _vertexBuffer3D->vertexCount(), 0, _indexBuffer->indexCount() / 3);
 }
 
