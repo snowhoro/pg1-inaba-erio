@@ -39,7 +39,7 @@ void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Ina
 	coll->build(this);
 
 	getRigidbody()->setCollider(coll);
-	getRigidbody()->setHavokMotion(RigidBody::HavokMotion::Dynamic);
+	getRigidbody()->setHavokMotion(RigidBody::HavokMotion::Static);
 	Physics::GetInstance()->addEntity(getRigidbody());
 
 }

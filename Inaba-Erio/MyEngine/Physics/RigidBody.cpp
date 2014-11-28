@@ -114,7 +114,8 @@ float RigidBody::rotationZ() const{
 	return rotZ;
 }
 
-void RigidBody::setCollider(Collider* pkCollider){
+void RigidBody::setCollider(Collider* pkCollider)
+{
 
 	if (_collider != NULL){
 		_rigidbody->markForWrite();
