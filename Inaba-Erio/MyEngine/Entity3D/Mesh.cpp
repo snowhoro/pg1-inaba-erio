@@ -1,7 +1,9 @@
 #include "Mesh.h"
 #include "../Renderer/Renderer.h"
 #include <d3dx9.h>
-
+#include "../Physics/Collider.h"
+#include "../Physics/RigidBody.h"
+#include "../Physics/Physics.h"
 using namespace Inaba;
 
 Mesh::Mesh(Renderer& pRenderer) : _renderer(pRenderer){
@@ -26,6 +28,20 @@ void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Ina
 	pPrimitive = Prim;
 	_vertexBuffer3D->setVertexData((void*) Tex_Vertex,vertexCount);
 	_indexBuffer->setIndexData(pInt,indexCount);
+
+	_vVertex.resize(vertexCount);
+	memcpy(&(_vVertex.front()), Tex_Vertex, vertexCount * sizeof(TextureCoordVertex));
+
+	_vIndex.resize(indexCount);
+	memcpy(&(_vIndex.front()), pInt, indexCount * sizeof(unsigned short));
+
+	MeshCollider *coll = new MeshCollider();
+	coll->build(this);
+
+	getRigidbody()->setCollider(coll);
+	getRigidbody()->setHavokMotion(RigidBody::HavokMotion::Dynamic);
+	Physics::GetInstance()->addEntity(getRigidbody());
+
 }
 
 void Mesh::Draw(Renderer& renderer) const{
@@ -39,4 +55,12 @@ void Mesh::Draw(Renderer& renderer) const{
 void Mesh::Update(Timer&)
 {
 
+}
+
+const std::vector<TextureCoordVertex>& Mesh::vertexs() const{
+	return _vVertex;
+}
+
+const std::vector<unsigned short> Mesh::indexs() const{
+	return _vIndex;
 }

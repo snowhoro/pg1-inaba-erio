@@ -7,6 +7,8 @@
 #include "Scene/Import.h"
 #include "Scene/Import3D.h"
 #include "Scene/Scene.h"
+#include "Physics\Physics.h"
+
 using namespace Inaba;
  
 Engine::Engine(HINSTANCE hInstance, int width, int height):
@@ -58,9 +60,13 @@ void Engine::Run()
 	if(!_game->Init(*_renderer))
 		return;
 
+	if (Physics::GetInstance() == NULL)
+		return;
+	
 	_timer->firstMeasure();
 	while(GameOn)
 	{
+		
 		if (_renderer != NULL || _game!= NULL)
 		{
 			_timer->measure();
@@ -69,7 +75,10 @@ void Engine::Run()
 			_game->Frame(*_renderer, *_directInput,*_timer);
 			_game->currentScene()->Draw(*_renderer,*_timer);
 			_renderer->UpdateCamera();
-			_renderer->EndFrame();
+			_renderer->EndFrame();		
+
+			Physics::GetInstance()->stepSimulation(_timer->timeBetweenFrames());
+
 		}
 
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

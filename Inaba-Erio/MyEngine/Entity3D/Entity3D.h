@@ -7,6 +7,7 @@
 #include "../myengine_api.h"
 #include <d3dx9.h>
 #include <string>
+#include "../Physics/RigidBody.h"
 
 namespace Inaba
 {
@@ -21,6 +22,9 @@ namespace Inaba
 			Entity3D();
 			~Entity3D();
 			
+			const RigidBody* getRigidbody() const { return _rigidBody; };
+			RigidBody* getRigidbody(){ return _rigidBody; };
+
 			void setPos(float,float,float);
 			void setRotation(float,float,float);
 			void setScale(float,float,float);
@@ -72,6 +76,8 @@ namespace Inaba
 			Matrix _worldTransformationMatrix;
 			void UpdateLocalTransformation();
 			AABB* _AABB;
+			RigidBody  *_rigidBody;
+
 
 	};
 }

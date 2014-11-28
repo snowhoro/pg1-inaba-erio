@@ -66,7 +66,7 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 
 	Mesh *myMesh = new Mesh(*_renderer);
 	myMesh->setData(vertices, myAiMeshes->mNumVertices,Inaba::TriangleList,indices,numFaces*3);
-	myMesh->setPos(100,100,0);
+	myMesh->setPos(0,0,0);
 	
 	scene.AddEntity(myMesh);
 
