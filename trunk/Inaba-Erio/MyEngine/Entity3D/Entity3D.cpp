@@ -23,8 +23,11 @@ _scaleX(1.0f),
 _scaleY(1.0f),
 _scaleZ(1.0f),
 _AABB(new AABB()),
-_transformationMatrix(new D3DXMATRIX())
+_transformationMatrix(new D3DXMATRIX()),
+_rigidBody(new RigidBody())
 {
+	//D3DXMatrixIdentity(_transformationMatrix);
+	//UpdateLocalTransformation();
 }
 
 Entity3D::~Entity3D()

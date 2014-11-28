@@ -54,14 +54,16 @@ void Engine::Run()
 {
 	bool GameOn = true;
 	MSG msg;
+
+	if (Physics::GetInstance() == NULL)
+		return;
 	
 	if(!_game)
 		return;
 	if(!_game->Init(*_renderer))
 		return;
 
-	if (Physics::GetInstance() == NULL)
-		return;
+	
 	
 	_timer->firstMeasure();
 	while(GameOn)

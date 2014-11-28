@@ -54,7 +54,7 @@ namespace Inaba
 		public:
 			hkpShape *shape();
 
-		private:
+	private:
 			hkpConvexVerticesShape *_meshCollider;
 
 	};
