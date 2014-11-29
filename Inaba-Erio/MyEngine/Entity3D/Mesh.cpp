@@ -39,12 +39,15 @@ void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Ina
 	coll->build(this);
 
 	getRigidbody()->setCollider(coll);
-	getRigidbody()->setHavokMotion(RigidBody::HavokMotion::Static);
+
+	//CAMBIAR ACA FIXED - DYNAMIC
+	getRigidbody()->setHavokMotion(RigidBody::HavokMotion::Dynamic);
 	Physics::GetInstance()->addEntity(getRigidbody());
 
 }
 
-void Mesh::Draw(Renderer& renderer) const{
+void Mesh::Draw(Renderer& renderer) const
+{
 	_vertexBuffer3D->bind();
 	_indexBuffer->bind();
 	renderer.setCurrentTexture(NoTexture);

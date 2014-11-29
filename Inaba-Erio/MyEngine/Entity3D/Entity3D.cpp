@@ -26,8 +26,8 @@ _AABB(new AABB()),
 _transformationMatrix(new D3DXMATRIX()),
 _rigidBody(new RigidBody())
 {
-	//D3DXMatrixIdentity(_transformationMatrix);
-	//UpdateLocalTransformation();
+	D3DXMatrixIdentity(_transformationMatrix);
+	UpdateLocalTransformation();
 }
 
 Entity3D::~Entity3D()
@@ -38,21 +38,25 @@ Entity3D::~Entity3D()
 
 void Entity3D::setPos(float posX, float posY, float posZ)
 {
-	_prevPosX = _posX;
+	/*_prevPosX = _posX;
 	_prevPosY = _posY;
 	_prevPosZ = _posZ;
 	_posX = posX;
 	_posY = posY;
-	_posZ = posZ;
+	_posZ = posZ;*/
+
+	_rigidBody->SetPosition(posX, posY, posZ);
 
 	UpdateLocalTransformation();
 }
 
 void Entity3D::setRotation(float rotX,float rotY,float rotZ)
 {
-	_rotX = rotX;
+	/*_rotX = rotX;
 	_rotY = rotY;
-	_rotZ = rotZ;
+	_rotZ = rotZ;*/
+
+	_rigidBody->setRotation(rotX, rotY, rotZ);
 
 	UpdateLocalTransformation();
 }
@@ -69,12 +73,12 @@ void Entity3D::setScale(float scaleX, float scaleY, float scaleZ)
 void Entity3D::UpdateLocalTransformation()
 {
 	D3DXMATRIX translateMatrix;
-	D3DXMatrixTranslation(&translateMatrix, _posX, _posY, _posZ);
+	D3DXMatrixTranslation(&translateMatrix, _rigidBody->posX(), _rigidBody->posY(), _rigidBody->posZ());
 
 	D3DXMATRIX rotationMatrix;
-	D3DXMatrixRotationX(&rotationMatrix, _rotX);
-	D3DXMatrixRotationY(&rotationMatrix, _rotY);
-	D3DXMatrixRotationZ(&rotationMatrix, _rotZ);
+	D3DXMatrixRotationX(&rotationMatrix, _rigidBody->rotationX());
+	D3DXMatrixRotationY(&rotationMatrix, _rigidBody->rotationY());
+	D3DXMatrixRotationZ(&rotationMatrix, _rigidBody->rotationZ());
 
 	D3DXMATRIX scaleMatrix;
 	D3DXMatrixScaling(&scaleMatrix, _scaleX, _scaleY, _scaleZ);
@@ -88,17 +92,17 @@ void Entity3D::UpdateLocalTransformation()
 
 float Entity3D::posX() const
 {
-	return _posX;
+	return _rigidBody->posX();
 }
 
 float Entity3D::posY() const
 {
-	return _posY;
+	return _rigidBody->posY();
 }
 
 float Entity3D::posZ() const
 {
-	return _posZ;
+	return _rigidBody->posZ();
 }
 
 float Entity3D::prevPosX() const
@@ -133,17 +137,17 @@ float Entity3D::scaleZ() const
 
 float Entity3D::rotX() const
 {
-	return _rotX;
+	return _rigidBody->rotationX();
 }
 
 float Entity3D::rotY() const
 {
-	return _rotY;
+	return _rigidBody->rotationY();
 }
 
 float Entity3D::rotZ() const
 {
-	return _rotZ;
+	return _rigidBody->rotationZ();
 }
 
 
@@ -217,6 +221,8 @@ void Entity3D::setName(std::string name)
 
 void Entity3D::UpdateTransformation()
 {
+	UpdateLocalTransformation();
+
 	if(!_parent)
 	{
 		_worldTransformationMatrix = _transformationMatrix;
