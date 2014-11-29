@@ -55,9 +55,9 @@ void Mesh::Draw(Renderer& renderer) const
 	renderer.Draw(pPrimitive);
 }
 
-void Mesh::Update(Timer&)
+void Mesh::Update(Timer& timer)
 {
-
+	Entity3D::Update(timer);
 }
 
 const std::vector<TextureCoordVertex>& Mesh::vertexs() const{
