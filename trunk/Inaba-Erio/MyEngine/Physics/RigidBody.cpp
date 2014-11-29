@@ -83,7 +83,8 @@ void RigidBody::setRotation(float px, float py, float pz){
 	_rigidbody->unmarkForWrite();
 }
 
-float RigidBody::rotationX() const{
+float RigidBody::rotationX() const
+{
 	_rigidbody->markForRead();
 
 	float rotX, rotY, rotZ;

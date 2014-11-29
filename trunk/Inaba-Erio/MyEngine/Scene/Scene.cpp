@@ -44,6 +44,7 @@ bool Scene::Draw(Renderer &renderer,Timer &timer)
 	std::vector<Entity3D*>::iterator iter2;
 	for(iter2 = _entities3D.begin(); iter2 != _entities3D.end(); iter2++)
 	{
+		//(*iter2)->UpdateTransformation();
 		(*iter2)->Update(timer);
 		(*iter2)->Draw(renderer);
 	}

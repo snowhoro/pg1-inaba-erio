@@ -62,7 +62,7 @@ namespace Inaba
 			void SetParent(Node*);
 			void UpdateAABB(TextureCoordVertex* vertices,int numVertex);
 			Node* GetParent();
-			Matrix GetTranformationMatrix();
+			Matrix GetTranformationMatrix();			
 
 		protected:
 			float _posX, _posY, _posZ,_prevPosX, _prevPosY, _prevPosZ;
@@ -77,8 +77,6 @@ namespace Inaba
 			void UpdateLocalTransformation();
 			AABB* _AABB;
 			RigidBody  *_rigidBody;
-
-
 	};
 }
 
