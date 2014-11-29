@@ -257,3 +257,8 @@ Matrix Entity3D::GetTranformationMatrix()
 {
 	return _worldTransformationMatrix;
 }
+
+void Entity3D::Update(Timer&)
+{
+	UpdateLocalTransformation();
+}
