@@ -19,6 +19,8 @@ class MYENGINE_API AABB
 		float getWidth();
 		float getHeight();
 		float getDepth();
+		
+		
 		D3DXVECTOR3 getCenter();
 };
 

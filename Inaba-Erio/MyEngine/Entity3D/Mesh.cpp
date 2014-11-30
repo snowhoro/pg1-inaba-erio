@@ -25,6 +25,8 @@ Mesh::~Mesh()
 
 void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount)
 {
+	_numVertex = vertexCount;
+
 	pPrimitive = Prim;
 	_vertexBuffer3D->setVertexData((void*) Tex_Vertex,vertexCount);
 	_indexBuffer->setIndexData(pInt,indexCount);
@@ -66,4 +68,9 @@ const std::vector<TextureCoordVertex>& Mesh::vertexs() const{
 
 const std::vector<unsigned short> Mesh::indexs() const{
 	return _vIndex;
+}
+
+void Mesh::UpdateAABB()
+{
+	Entity3D::_AABB->setBounds(_vertex,_numVertex);
 }

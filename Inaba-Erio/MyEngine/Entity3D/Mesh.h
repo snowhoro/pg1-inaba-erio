@@ -23,6 +23,7 @@ namespace Inaba
 			void setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount);
             void Draw(Renderer& r) const;
 			void Update(Timer&);
+			void UpdateAABB();
 
 			const std::vector<TextureCoordVertex>& vertexs() const;
 			const std::vector<unsigned short> indexs() const;
@@ -35,6 +36,7 @@ namespace Inaba
 			Renderer& _renderer;
 			std::vector<TextureCoordVertex> _vVertex;
 			std::vector<unsigned short> _vIndex;
+			UINT _numVertex;
 	};
 }
 #endif

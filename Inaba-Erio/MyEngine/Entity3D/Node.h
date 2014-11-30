@@ -24,6 +24,7 @@ namespace Inaba
 			void Draw(Renderer&) const;
 			void Update(Timer&);
 			void UpdateTransformation();
+			void UpdateAABB();
 		private:
 			
 			list<Entity3D*> childs;

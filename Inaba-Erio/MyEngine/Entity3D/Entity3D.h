@@ -60,9 +60,10 @@ namespace Inaba
 			void setName(std::string);
 			void UpdateTransformation();
 			void SetParent(Node*);
-			void UpdateAABB(TextureCoordVertex* vertices,int numVertex);
+			void UpdateAABB();
 			Node* GetParent();
-			Matrix GetTranformationMatrix();		
+			Matrix GetTranformationMatrix();	
+			
 
 		protected:
 			float _posX, _posY, _posZ,_prevPosX, _prevPosY, _prevPosZ;
