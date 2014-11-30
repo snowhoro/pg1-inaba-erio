@@ -28,6 +28,7 @@ _rigidBody(new RigidBody())
 {
 	D3DXMatrixIdentity(_transformationMatrix);
 	UpdateLocalTransformation();
+	
 }
 
 Entity3D::~Entity3D()
@@ -233,10 +234,59 @@ void Entity3D::UpdateTransformation()
 	
 }
 
-void Entity3D::UpdateAABB(TextureCoordVertex* vertices,int numVertex)
-{
-	_AABB->setBounds(vertices, numVertex);
+void Entity3D::drawAABB(Renderer& renderer) const{
+        static Mesh* s_AKAABBMesh;
+        static bool s_bIsInitialized = false;
+        if(!s_bIsInitialized){
+                s_bIsInitialized = true;
+                s_AKAABBMesh = new Mesh(renderer);
+                Inaba::TextureCoordVertex * pakVertices = new Inaba::TextureCoordVertex[8];
+                unsigned short* pausIndices = new unsigned short[24];
+
+                pakVertices[0].x = +0.5f;       pakVertices[0].y = +0.5f;       pakVertices[0].z = +0.5f;
+        pakVertices[1].x = +0.5f;       pakVertices[1].y = +0.5f;       pakVertices[1].z = -0.5f;
+        pakVertices[2].x = +0.5f;       pakVertices[2].y = -0.5f;       pakVertices[2].z = +0.5f;
+        pakVertices[3].x = +0.5f;       pakVertices[3].y = -0.5f;       pakVertices[3].z = -0.5f;
+        pakVertices[4].x = -0.5f;       pakVertices[4].y = +0.5f;       pakVertices[4].z = +0.5f;
+        pakVertices[5].x = -0.5f;       pakVertices[5].y = +0.5f;       pakVertices[5].z = -0.5f;
+        pakVertices[6].x = -0.5f;       pakVertices[6].y = -0.5f;       pakVertices[6].z = +0.5f;
+        pakVertices[7].x = -0.5f;       pakVertices[7].y = -0.5f;       pakVertices[7].z = -0.5f;
+
+        pausIndices[0] =        0;                      pausIndices[1] =        1;                      pausIndices[2] =        1;              pausIndices[3] = 3;
+        pausIndices[4] =        3;                      pausIndices[5] =        2;                      pausIndices[6] =        2;              pausIndices[7] = 0;
+        pausIndices[8] =        4;                      pausIndices[9] =        5;                      pausIndices[10] =       5;              pausIndices[11] = 7;
+        pausIndices[12] =       7;                      pausIndices[13] =       6;                      pausIndices[14] =       6;              pausIndices[15] = 4;
+        pausIndices[16] =       0;                      pausIndices[17] =       4;                      pausIndices[18] =       1;              pausIndices[19] = 5;
+        pausIndices[20] =       3;                      pausIndices[21] =       7;                      pausIndices[22] =       2;              pausIndices[23] = 6;
+
+                s_AKAABBMesh->setData(pakVertices,8,Inaba::LineStrip,pausIndices,24);
+
+                delete[] pakVertices;
+                delete[] pausIndices;
+        }
+        /*const Entity3D* t = this;
+        const Node* pk = dynamic_cast<const Node*>(t) ;
+        if(pk){
+                s_AKAABBMesh->setParent((Node*) this);
+        }*/
+        
+        
+        //s_AKAABBMesh->setParent((Node*)this);
+		s_AKAABBMesh->setPos( (_worldTransformationMatrix->_41 + _transformationMatrix->_41) / _AABB->getWidth() + _AABB->getCenter().x / _AABB->getWidth()  ,
+                                                  (_worldTransformationMatrix->_42 + _transformationMatrix->_42) / _AABB->getWidth() + _AABB->getCenter().y / _AABB->getHeight() , 
+												  (_worldTransformationMatrix->_43 + _transformationMatrix->_43) / _AABB->getWidth() + _AABB->getCenter().z /  _AABB->getDepth() );
+                                                  
+        //s_AKAABBMesh->setPos(aabb().offset()->x - _TrMatrix->_41, aabb().offset()->y - _TrMatrix->_42 ,aabb().offset()->z - _TrMatrix->_43);
+        //s_AKAABBMesh->setPos(0,0,0);
+        
+        //s_AKAABBMesh->setPos(aabb().offset()->x + posX() , aabb().offset()->y + posY() , aabb().offset()->z + posZ() );
+        
+        s_AKAABBMesh->setScale(_AABB->getWidth()  ,_AABB->getHeight() ,_AABB->getDepth() );
+		s_AKAABBMesh->UpdateLocalTransformation();
+        s_AKAABBMesh->Draw(renderer);
+
 }
+
 
 AABB* Entity3D::getAABB()
 {
@@ -261,4 +311,9 @@ Matrix Entity3D::GetTranformationMatrix()
 void Entity3D::Update(Timer&)
 {
 	UpdateLocalTransformation();
+}
+
+void Entity3D::UpdateAABB()
+{
+
 }

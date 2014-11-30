@@ -45,6 +45,15 @@ void Node::UpdateTransformation()
 	}
 }
 
+void Node::UpdateAABB()
+{
+	for(list<Entity3D*>::iterator iter = childs.begin(); iter != childs.end(); iter++)
+	{
+		(*iter)->UpdateAABB();
+	}
+	Entity3D::UpdateAABB();
+}
+
 void Node::Update(Timer& timer)
 {
 
