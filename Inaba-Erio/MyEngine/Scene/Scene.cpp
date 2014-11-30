@@ -5,6 +5,7 @@
 #include "../Entity2D/Sprite.h"
 #include "../Entity2D/Animation.h"
 #include "../Entity3D/Mesh.h"
+#include "../Entity3D/Node.h"
 #include "../Timer/Timer.h"
 #include "../Game.h"
 
@@ -48,6 +49,10 @@ bool Scene::Draw(Renderer &renderer,Timer &timer)
 		(*iter2)->Draw(renderer);
 	}
 
+	if (!_entities3D.empty()){
+		((Node*)(_entities[0]))->UpdateTransformation();
+		((Node*)(_entities[0]))->UpdateAABB();
+	}
 	return true;
 }
 

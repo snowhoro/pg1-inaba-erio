@@ -63,7 +63,7 @@ bool Scene3D::Frame(Inaba::Renderer& renderer, Inaba::DirectInput& directInput, 
 	strstream << directInput.mouseRelPosX();
 	strstream >> number;
 	renderer.getFont()->Print((char*)("mouse X: " + number).c_str(), 0, 0, D3DCOLOR_XRGB(255, 255, 255), NULL, 200, 0, Inaba::FA_LEFT);
-	//_entities3D[0]->setPos(_entities3D[0]->posX() + 0.1,_entities3D[0]->posY(),_entities3D[0]->posZ());
+	_entities3D[4]->setPos(_entities3D[4]->posX() + 0.5,_entities3D[4]->posY(),_entities3D[4]->posZ());
 	renderer.getCamera()->CameraControl(directInput);
 	
 	//_mesh1->Draw(renderer);
