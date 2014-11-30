@@ -57,7 +57,7 @@ static void HK_CALL errorReport(const char* msg, void *userContext)
 	std::cerr << msg << std::endl;
 }
 
-/*void Physics::InitPhysics()
+void Physics::InitPhysics()
 {
 	hkMemoryRouter *memoryRouter = hkMemoryInitUtil::initChecking(hkMallocAllocator::m_defaultMallocAllocator, hkMemorySystem::FrameInfo(1024 * 1024));
 	hkBaseSystem::init(memoryRouter, errorReport);
@@ -79,9 +79,11 @@ static void HK_CALL errorReport(const char* msg, void *userContext)
 	contexts.pushBack(_physicsContext);
 	_vdb = new hkVisualDebugger(contexts);
 	_vdb->serve();
-}*/
+}
 
-void Physics::InitPhysics()
+
+//TEST
+/*void Physics::InitPhysics()
 {
 	//if (!s_HavokIsStarted) {
 
@@ -139,7 +141,7 @@ void Physics::InitPhysics()
 		//s_HavokIsStarted = true;                                // Seteo mi trigger a True para no poder inicializar todo de nuevo :D!
 		_instance = this;
 	//}
-}
+}*/
 
 void Physics::DeInitPhysics()
 {
