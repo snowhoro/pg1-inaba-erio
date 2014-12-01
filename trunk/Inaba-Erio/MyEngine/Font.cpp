@@ -49,7 +49,7 @@ bool Font::DeInit()
 }
 
 
-void Font::Print( char* text, int xPosition, int yPosition, DWORD color, LPD3DXSPRITE sprite,
+void Font::Print( const char* text, int xPosition, int yPosition, DWORD color, LPD3DXSPRITE sprite,
 				  int textBoxWidth, int textBoxHeight, FONTALIGNMENT alignment ) 
 { 
 	if ( !_font ) 

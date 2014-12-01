@@ -25,6 +25,7 @@ _scaleZ(1.0f),
 _AABB(new AABB()),
 _transformationMatrix(new D3DXMATRIX()),
 _worldTransformationMatrix(new D3DXMATRIX()),
+_parent(NULL),
 _rigidBody(new RigidBody())
 {
 	D3DXMatrixIdentity(_transformationMatrix);
@@ -49,7 +50,7 @@ void Entity3D::setPos(float posX, float posY, float posZ)
 
 	_rigidBody->SetPosition(posX, posY, posZ);
 
-	UpdateLocalTransformation();
+	//UpdateLocalTransformation();
 }
 
 void Entity3D::setRotation(float rotX,float rotY,float rotZ)
@@ -60,7 +61,7 @@ void Entity3D::setRotation(float rotX,float rotY,float rotZ)
 
 	_rigidBody->setRotation(rotX, rotY, rotZ);
 
-	UpdateLocalTransformation();
+	//UpdateLocalTransformation();
 }
 
 void Entity3D::setScale(float scaleX, float scaleY, float scaleZ)
@@ -69,7 +70,7 @@ void Entity3D::setScale(float scaleX, float scaleY, float scaleZ)
 	_scaleY = scaleY;
 	_scaleZ = scaleZ;
 
-	UpdateLocalTransformation();
+	//UpdateLocalTransformation();
 }
 
 void Entity3D::UpdateLocalTransformation()
@@ -178,29 +179,47 @@ Entity3D::CollisionResult Entity3D::checkCollision(Entity3D& rkEntity3D) const
  return NoCollision;
 }
 
-/*void Entity3D::drawAABB(Renderer& rkRenderer) const
-{
- static ColorVertex s_akAABBVertices[5];
- static bool s_bIsInitialized = false;
- if(!s_bIsInitialized){
-  s_bIsInitialized = true;
+void Entity3D::drawAABB(Renderer& pkRenderer) const{
+      /*static Mesh* s_AKAABBMesh;
+        static bool s_bIsInitialized = false;
+        if(!s_bIsInitialized){
+                s_bIsInitialized = true;
+                s_AKAABBMesh = new Mesh(pkRenderer);
+                Inaba::TextureCoordVertex * pakVertices = new Inaba::TextureCoordVertex[8];
+                unsigned short* pausIndices = new unsigned short[24];
 
-  s_akAABBVertices[0].x = -0.5; s_akAABBVertices[0].y = -0.5; s_akAABBVertices[0].z = 0.5; s_akAABBVertices[0].color =Inaba_COLOR_RGB(255,50,50);
-  s_akAABBVertices[1].x = -0.5; s_akAABBVertices[1].y = 0.5; s_akAABBVertices[1].z = 0.5; s_akAABBVertices[1].color = Inaba_COLOR_RGB(255,70,70);
-  s_akAABBVertices[2].x = 0.5; s_akAABBVertices[2].y = 0.5; s_akAABBVertices[2].z = 0.5; s_akAABBVertices[2].color = Inaba_COLOR_RGB(255,30,30);
-  s_akAABBVertices[3].x = 0.5; s_akAABBVertices[3].y = -0.5; s_akAABBVertices[3].z = 0.5; s_akAABBVertices[3].color = Inaba_COLOR_RGB(255,15,15);
-  s_akAABBVertices[4].x = -0.5; s_akAABBVertices[4].y = -0.5; s_akAABBVertices[4].z = 0.5; s_akAABBVertices[4].color = Inaba_COLOR_RGB(255,95,90);
-  s_akAABBVertices[5].x = -0.5; s_akAABBVertices[5].y = -0.5; s_akAABBVertices[5].z = -0.5; s_akAABBVertices[5].color =Inaba_COLOR_RGB(255,50,50);
-  s_akAABBVertices[6].x = -0.5; s_akAABBVertices[6].y = 0.5; s_akAABBVertices[6].z = -0.5; s_akAABBVertices[6].color = Inaba_COLOR_RGB(255,70,70);
-  s_akAABBVertices[7].x = 0.5; s_akAABBVertices[7].y = 0.5; s_akAABBVertices[7].z = -0.5; s_akAABBVertices[7].color = Inaba_COLOR_RGB(255,30,30);
-  s_akAABBVertices[8].x = 0.5; s_akAABBVertices[8].y = -0.5; s_akAABBVertices[8].z = -0.5; s_akAABBVertices[8].color = Inaba_COLOR_RGB(255,15,15);
-  s_akAABBVertices[9].x = -0.5; s_akAABBVertices[9].y = -0.5; s_akAABBVertices[9].z = -0.5; s_akAABBVertices[9].color = Inaba_COLOR_RGB(255,95,90);  
+                pakVertices[0].x = +0.5f;       pakVertices[0].y = +0.5f;       pakVertices[0].z = +0.5f;
+		pakVertices[1].x = +0.5f;       pakVertices[1].y = +0.5f;       pakVertices[1].z = -0.5f;
+        pakVertices[2].x = +0.5f;       pakVertices[2].y = -0.5f;       pakVertices[2].z = +0.5f;
+        pakVertices[3].x = +0.5f;       pakVertices[3].y = -0.5f;       pakVertices[3].z = -0.5f;
+        pakVertices[4].x = -0.5f;       pakVertices[4].y = +0.5f;       pakVertices[4].z = +0.5f;
+        pakVertices[5].x = -0.5f;       pakVertices[5].y = +0.5f;       pakVertices[5].z = -0.5f;
+        pakVertices[6].x = -0.5f;       pakVertices[6].y = -0.5f;       pakVertices[6].z = +0.5f;
+        pakVertices[7].x = -0.5f;       pakVertices[7].y = -0.5f;       pakVertices[7].z = -0.5f;
 
- }
- rkRenderer.setCurrentTexture(NoTexture);
- rkRenderer.setMatrix(World, _transformationMatrix );
- rkRenderer.Draw(s_akAABBVertices, Inaba::TriangleStrip, 5);
-}*/
+        pausIndices[0] =        0;                      pausIndices[1] =        1;                      pausIndices[2] =        1;              pausIndices[3] = 3;
+        pausIndices[4] =        3;                      pausIndices[5] =        2;                      pausIndices[6] =        2;              pausIndices[7] = 0;
+        pausIndices[8] =        4;                      pausIndices[9] =        5;                      pausIndices[10] =       5;              pausIndices[11] = 7;
+        pausIndices[12] =       7;                      pausIndices[13] =       6;                      pausIndices[14] =       6;              pausIndices[15] = 4;
+        pausIndices[16] =       0;                      pausIndices[17] =       4;                      pausIndices[18] =       1;              pausIndices[19] = 5;
+        pausIndices[20] =       3;                      pausIndices[21] =       7;                      pausIndices[22] =       2;              pausIndices[23] = 6;
+
+                s_AKAABBMesh->setData(pakVertices,8,Inaba::LineStrip,pausIndices,24);
+
+                delete[] pakVertices;
+                delete[] pausIndices;
+        }
+                                                  
+		s_AKAABBMesh->setPos(_AABB->getCenter().x + _worldTransformationMatrix->_41, _AABB->getCenter().y + _worldTransformationMatrix->_42 ,_AABB->getCenter().z+ _worldTransformationMatrix->_43);
+        //s_AKAABBMesh->setPos(0,0,0);
+        
+        //s_AKAABBMesh->setPos(aabb().offset()->x + posX() , aabb().offset()->y + posY() , aabb().offset()->z + posZ() );
+        
+		s_AKAABBMesh->setScale(_AABB->getWidth()  ,_AABB->getHeight() ,_AABB->getDepth() );
+		s_AKAABBMesh->UpdateTransformation();
+        s_AKAABBMesh->Draw(pkRenderer);
+		*/
+}
 
 void Entity3D::returnToPos(float posX, float posY, float posZ)
 {
@@ -208,7 +227,7 @@ void Entity3D::returnToPos(float posX, float posY, float posZ)
 	_posY = posY;
 	_posZ = posZ;
 
-	UpdateLocalTransformation();
+	//UpdateLocalTransformation();
 }
 
 std::string Entity3D::name() const
@@ -235,7 +254,7 @@ void Entity3D::UpdateTransformation()
 	
 }
 
-void Entity3D::drawAABB(Renderer& renderer) const{
+/*void Entity3D::drawAABB(Renderer& renderer) const{
         static Mesh* s_AKAABBMesh;
         static bool s_bIsInitialized = false;
         if(!s_bIsInitialized){
@@ -273,20 +292,20 @@ void Entity3D::drawAABB(Renderer& renderer) const{
         
         
         //s_AKAABBMesh->setParent((Node*)this);
-		s_AKAABBMesh->setPos( (_worldTransformationMatrix->_41 + _transformationMatrix->_41) / _AABB->getWidth() + _AABB->getCenter().x / _AABB->getWidth()  ,
-                                                  (_worldTransformationMatrix->_42 + _transformationMatrix->_42) / _AABB->getWidth() + _AABB->getCenter().y / _AABB->getHeight() , 
-												  (_worldTransformationMatrix->_43 + _transformationMatrix->_43) / _AABB->getWidth() + _AABB->getCenter().z /  _AABB->getDepth() );
+		//s_AKAABBMesh->setPos( (_worldTransformationMatrix->_41 + _transformationMatrix->_41) / _AABB->getWidth() + _AABB->getCenter().x / _AABB->getWidth()  ,
+                                 //                 (_worldTransformationMatrix->_42 + _transformationMatrix->_42) / _AABB->getWidth() + _AABB->getCenter().y / _AABB->getHeight() , 
+								//				  (_worldTransformationMatrix->_43 + _transformationMatrix->_43) / _AABB->getWidth() + _AABB->getCenter().z /  _AABB->getDepth() );
                                                   
         //s_AKAABBMesh->setPos(aabb().offset()->x - _TrMatrix->_41, aabb().offset()->y - _TrMatrix->_42 ,aabb().offset()->z - _TrMatrix->_43);
         //s_AKAABBMesh->setPos(0,0,0);
         
         //s_AKAABBMesh->setPos(aabb().offset()->x + posX() , aabb().offset()->y + posY() , aabb().offset()->z + posZ() );
         
-        s_AKAABBMesh->setScale(_AABB->getWidth()  ,_AABB->getHeight() ,_AABB->getDepth() );
-		s_AKAABBMesh->UpdateLocalTransformation();
-        s_AKAABBMesh->Draw(renderer);
+      //  s_AKAABBMesh->setScale(_AABB->getWidth()  ,_AABB->getHeight() ,_AABB->getDepth() );
+	//	s_AKAABBMesh->UpdateLocalTransformation();
+      //  s_AKAABBMesh->Draw(renderer);
 
-}
+//}
 
 
 AABB* Entity3D::getAABB()

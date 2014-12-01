@@ -77,9 +77,10 @@ void Node::Update(Timer& timer)
 
 void Node::Draw(Renderer& r)
 {
-	//for (std::list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++) {
-	//	(*it)->Draw(r);
-	//}
+	drawAABB(r);
+	for (std::list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++) {
+		(*it)->Draw(r);
+	}
 }
 
 std::list<Entity3D*> Node::getChilds(){

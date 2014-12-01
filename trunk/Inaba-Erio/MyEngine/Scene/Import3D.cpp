@@ -94,7 +94,8 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 
 	Node *rootNode = new Node();
 	importNode(objScene->mRootNode, objScene, scene, *rootNode);
-	scene.AddEntity(rootNode);
+	rootNode->setName("rootNode");
+	scene.AddEntity(rootNode);	
 
 	return true;
 }
@@ -116,6 +117,7 @@ bool Import3D::importNode(aiNode* myAiNode,const aiScene* myAiScene, Scene& scen
 		Node *childNode = new Node();
 		pNode.AddChild(childNode);
 		childNode->SetParent(&pNode);
+		childNode->setName(myAiNode->mChildren[nChild]->mName.C_Str());
 
         importNode(myAiNode->mChildren[nChild], myAiScene, scene, *childNode);
 

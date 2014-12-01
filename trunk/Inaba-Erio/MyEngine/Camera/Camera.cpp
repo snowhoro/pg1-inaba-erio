@@ -6,7 +6,7 @@ Camera::Camera():
 _right(0,0,0),
 _up(0,1,0),
 _look(0,0,1000),
-_position(0,0,-1000),
+_position(0,0,-100),
 _lookAt(0,0,0),
 _velocity(0,0,0)
 {
@@ -132,8 +132,8 @@ void Camera::CameraControl(DirectInput &directInput, float cameraVel)
 
 	if (directInput.keyDown(Inaba::Input::KEY_LCONTROL))
 	{
-		Yaw(D3DXToRadian(directInput.mouseRelPosX()));
-		Pitch(D3DXToRadian(directInput.mouseRelPosY()));
+		Yaw(D3DXToRadian(directInput.mouseRelPosX()/5));
+		Pitch(D3DXToRadian(directInput.mouseRelPosY()/5));
 	}
 
 }
@@ -189,15 +189,8 @@ void Camera::BuildViewFrustum()
 
 	for(int i = 0; i < 6; i ++)
 	{
-		float length = sqrt((FrustumPlane[i].a * FrustumPlane[i].a) + (FrustumPlane[i].b * FrustumPlane[i].b) + (FrustumPlane[i].c * FrustumPlane[i].c));
-		FrustumPlane[i].a /= length;
-		FrustumPlane[i].b /= length;
-		FrustumPlane[i].c /= length;
-		FrustumPlane[i].d /= length;
-		
+		D3DXPlaneNormalize( &(FrustumPlane[i]), &(FrustumPlane[i]) );
 	}
-
-	//D3DXPlaneNormalize(FrustumPlane[i], FrustumPlane[i]);
 }
 
 UINT Camera::checkCollisionAABB(Entity3D* entity3D)
@@ -206,16 +199,16 @@ UINT Camera::checkCollisionAABB(Entity3D* entity3D)
 
 	D3DXVECTOR3 aabbSize = D3DXVECTOR3(_aabb->getWidth(),_aabb->getHeight(),_aabb->getDepth());
 	D3DXVECTOR3 aabbCenter = _aabb->getCenter();
-
+	//D3DXVECTOR3 aabbCenter = D3DXVECTOR3( _aabb->getCenter().x + entity3D->GetTranformationMatrix()->_41 , _aabb->getCenter().y + entity3D->GetTranformationMatrix()->_42 , _aabb->getCenter().z + entity3D->GetTranformationMatrix()->_43);
 	unsigned int result = INSIDE;
-		
+	
 	for(unsigned int i = 0;i < 6;++i)
 	{	
 		const D3DXPLANE fPlane = FrustumPlane[i];
 		
 		float d = aabbCenter.x * fPlane.a + 
-			aabbCenter.y * fPlane.b + 
-			aabbCenter.z * fPlane.c;
+				  aabbCenter.y * fPlane.b + 
+				  aabbCenter.z * fPlane.c;
 
 			float r = aabbSize.x * fPlane.a + 
 				  aabbSize.y * fPlane.b + 

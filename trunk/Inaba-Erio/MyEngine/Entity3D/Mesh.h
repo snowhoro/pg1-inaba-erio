@@ -28,6 +28,8 @@ namespace Inaba
 			const std::vector<TextureCoordVertex>& vertexs() const;
 			const std::vector<unsigned short> indexs() const;
 
+			static int DrawnMeshes;
+
 		private:
 			TextureCoordVertex* _vertex;
 			IndexBuffer* _indexBuffer;

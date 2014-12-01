@@ -16,7 +16,7 @@ namespace Inaba
 			~Font();
 			bool Init( LPDIRECT3DDEVICE9 pDevice, char* faceName, int size, bool bold = false, bool italic = false );
 			bool DeInit();
-			void Print( char *text, int xPosition, int yPosition, DWORD color,
+			void Print( const char *text, int xPosition, int yPosition, DWORD color,
 						LPD3DXSPRITE sprite = NULL,int textBoxWidth = 0, int textBoxHeight = 0, FONTALIGNMENT alignment = FA_LEFT ); 
 
 		private:
