@@ -24,6 +24,7 @@ _scaleY(1.0f),
 _scaleZ(1.0f),
 _AABB(new AABB()),
 _transformationMatrix(new D3DXMATRIX()),
+_worldTransformationMatrix(new D3DXMATRIX()),
 _rigidBody(new RigidBody())
 {
 	D3DXMatrixIdentity(_transformationMatrix);

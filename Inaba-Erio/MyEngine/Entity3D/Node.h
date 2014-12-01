@@ -21,11 +21,12 @@ namespace Inaba
 
 			void AddChild(Entity3D*);
 			void RemoveChild(Entity3D*);
-			list<Entity3D*> getChilds();
+			const list<Entity3D*> getChilds() const;
 			void Draw(Renderer&);
 			void Update(Timer&);
 			void UpdateTransformation();
 			void UpdateAABB();
+			void UpdateNodeAABB();
 		private:
 			
 			list<Entity3D*> childs;

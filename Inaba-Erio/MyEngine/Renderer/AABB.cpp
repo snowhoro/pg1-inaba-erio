@@ -1,4 +1,5 @@
 #include "AABB.h"
+#include <vector>
 
 using namespace Inaba;
 
@@ -11,9 +12,9 @@ AABB::~AABB()
 {
 }
 
-void AABB::setBounds(TextureCoordVertex* vertices,int numVertex)
+void AABB::setBounds(std::vector<TextureCoordVertex> vertices,int numVertex)
 {
-	_min = vertices[0];
+ 	_min = vertices[0];
 	_max = _min;
 	
 
@@ -27,14 +28,22 @@ void AABB::setBounds(TextureCoordVertex* vertices,int numVertex)
 			_min.z = vertices[i].z;
 
 		if(vertices[i].x > _max.x)
-			_min.x = vertices[i].x;
+			_max.x = vertices[i].x;
 		if(vertices[i].y > _max.y)
-			_min.y = vertices[i].y;
+			_max.y = vertices[i].y;
 		if(vertices[i].z > _max.z)
-			_min.z = vertices[i].z;
+			_max.z = vertices[i].z;
 	}
 
 
+}
+
+TextureCoordVertex AABB::getMax(){
+	return _max;
+}
+
+TextureCoordVertex AABB::getMin(){
+	return _min;
 }
 
 float AABB::getWidth() {

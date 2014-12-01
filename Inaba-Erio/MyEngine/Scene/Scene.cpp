@@ -46,15 +46,17 @@ bool Scene::Draw(Renderer &renderer,Timer &timer)
 
 
 	if (!_entities3D.empty()){
-		((Node*)(_entities3D[0]))->UpdateTransformation();
+		((Node*)(_entities3D[_entities3D.size() -1]))->UpdateTransformation();
 		((Node*)(_entities3D[_entities3D.size() -1]))->UpdateAABB();
+		//CheckDraw(renderer,*_entities3D[_entities3D.size() - 1]); // nuevo
 	}
 
 	std::vector<Entity3D*>::iterator iter2;
 	for(iter2 = _entities3D.begin(); iter2 != _entities3D.end(); iter2++)
 	{
 		(*iter2)->Update(timer);
-		CheckDraw(renderer,*(*iter2));
+		(*iter2)->Draw(renderer);           // mas viejo
+		//CheckDraw(renderer,*(*iter2));		// viejo 
 	}
 
 	return true;
@@ -69,7 +71,7 @@ bool Scene::CheckDraw(Renderer& renderer,Entity3D& entity) {
 	else if (r == Camera::INTERSECT){
         Inaba::Node* child = dynamic_cast<Inaba::Node*>(&entity);
         if(child){ //
-			for(list<Entity3D*>::iterator it = child->getChilds().begin(); it != child->getChilds().end(); it++) {
+			for(list<Entity3D*>::const_iterator it = child->getChilds().begin(); it != child->getChilds().end(); it++) {
 				CheckDraw(renderer,entity);
 			}
 		}

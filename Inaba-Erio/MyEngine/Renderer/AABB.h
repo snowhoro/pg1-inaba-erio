@@ -3,6 +3,7 @@
 
 #include "RenderTypes.h"
 #include <d3dx9.h>
+#include <vector>
 
 namespace Inaba
 {
@@ -15,12 +16,12 @@ class MYENGINE_API AABB
 	public:
 		AABB();
 		~AABB();
-		void setBounds(TextureCoordVertex* vertices,int numVertex);
+		void setBounds(std::vector<TextureCoordVertex> vertices,int numVertex);
 		float getWidth();
 		float getHeight();
 		float getDepth();
-		
-		
+		TextureCoordVertex getMax();
+		TextureCoordVertex getMin();
 		D3DXVECTOR3 getCenter();
 };
 

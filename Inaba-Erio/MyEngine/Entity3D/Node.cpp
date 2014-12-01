@@ -6,7 +6,7 @@ using namespace Inaba;
 
 Node::Node()
 {
-
+	childs.clear();
 }
 
 Node::Node(Node* Node)
@@ -54,7 +54,20 @@ void Node::UpdateAABB()
 	{
 		(*it)->UpdateAABB();
 	}
-	//UpdateAABB();
+	UpdateNodeAABB();
+}
+
+void Node::UpdateNodeAABB() {
+
+	vector<TextureCoordVertex> _vertex;
+
+	for (list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++)
+	{
+		_vertex.push_back((*it)->getAABB()->getMin());
+		_vertex.push_back((*it)->getAABB()->getMax());
+	}
+	
+	_AABB->setBounds(_vertex, _vertex.size());
 }
 
 void Node::Update(Timer& timer)
@@ -64,11 +77,11 @@ void Node::Update(Timer& timer)
 
 void Node::Draw(Renderer& r)
 {
-	for (std::list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++) {
-		(*it)->Draw(r);
-	}
+	//for (std::list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++) {
+	//	(*it)->Draw(r);
+	//}
 }
 
-list<Entity3D*> Node::getChilds(){
+const list<Entity3D*> Node::getChilds() const{
 	return childs;
 }
