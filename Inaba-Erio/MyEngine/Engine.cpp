@@ -8,6 +8,7 @@
 #include "Scene/Import3D.h"
 #include "Scene/Scene.h"
 #include "Physics\Physics.h"
+#include "Entity3D/Mesh.h"
 
 using namespace Inaba;
  
@@ -75,6 +76,7 @@ void Engine::Run()
 			_directInput->reacquire();
 			_renderer->BeginFrame();
 			_game->Frame(*_renderer, *_directInput,*_timer);
+			Mesh::DrawnMeshes = 0;
 			_game->currentScene()->Draw(*_renderer,*_timer);
 			_renderer->UpdateCamera();
 			_renderer->EndFrame();		

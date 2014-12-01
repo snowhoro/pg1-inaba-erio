@@ -6,6 +6,8 @@
 #include "../Physics/Physics.h"
 using namespace Inaba;
 
+int Mesh::DrawnMeshes = 0;
+
 Mesh::Mesh(Renderer& pRenderer) : _renderer(pRenderer){
 	_vertexBuffer3D = _renderer.createVertexBuffer3D(sizeof(Inaba::TextureCoordVertex), Inaba::TextureCoordVertexType);
     _indexBuffer = _renderer.createIndexBuffer();	
@@ -50,12 +52,16 @@ void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Ina
 
 void Mesh::Draw(Renderer& renderer) 
 {
+	DrawnMeshes++;
+
 	_vertexBuffer3D->bind();
 	_indexBuffer->bind();
 	renderer.setCurrentTexture(NoTexture);
 	renderer.setMatrix(World,_transformationMatrix);
 	
 	renderer.Draw(pPrimitive);
+
+	drawAABB(renderer);
 }
 
 void Mesh::Update(Timer& timer) 

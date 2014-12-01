@@ -81,68 +81,6 @@ void Physics::InitPhysics()
 	_vdb->serve();
 }
 
-
-//TEST
-/*void Physics::InitPhysics()
-{
-	//if (!s_HavokIsStarted) {
-
-#if defined(HK_COMPILER_HAS_INTRINSICS_IA32) && (HK_CONFIG_SIMD ==  HK_CONFIG_SIMD_ENABLED)
-		_MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
-#endif
-
-		// Arrancamos Havok con Memory Leak Detector. Leer documentación para saber mas :)
-		hkMemoryRouter* memoryRouter = hkMemoryInitUtil::initChecking(hkMallocAllocator::m_defaultMallocAllocator, hkMemorySystem::FrameInfo(1024 * 1024));
-		hkBaseSystem::init(memoryRouter, errorReport);
-
-		//*********************************** COMIENZO A CONFIGURAR WORLD ****************************
-		// Configuro la Fisica del World
-
-		hkpWorldCinfo HavokWorldInfo;
-		HavokWorldInfo.m_gravity = hkVector4(0.0f, -9.8f, 0.0f); // Ajusto Gravedad YAY!
-		HavokWorldInfo.m_simulationType = hkpWorldCinfo::SIMULATION_TYPE_CONTINUOUS;
-
-		// Seteo el comportamiento en los limites del world y el Size del World.
-		HavokWorldInfo.m_broadPhaseBorderBehaviour = hkpWorldCinfo::BROADPHASE_BORDER_FIX_ENTITY;
-		HavokWorldInfo.setBroadPhaseWorldSize(10000.0f);
-
-		_world = new hkpWorld(HavokWorldInfo);
-		_world->m_wantDeactivation = false;
-
-		// Bloqueo el World para poder modificarlo :D!
-		_world->markForWrite();
-
-		// Detecto colisiones a travez de Havok Agents.
-		hkpAgentRegisterUtil::registerAllAgents(_world->getCollisionDispatcher());
-
-		//*********************************** TERMINO DE CONFIGURAR WORLD *****************************
-		//*********************************** CONFIGURO EL VISUAL DEBUGER *****************************
-		// Inicio Visual Debugger
-
-		_physicsContext = new hkpPhysicsContext();
-		hkpPhysicsContext::registerAllPhysicsProcesses();
-		_physicsContext->addWorld(_world);
-
-		// Desbloqueo el World para que el resto lo use (AL SER MULTITHREADING ES NECESARIO ESTO)
-		_world->unmarkForWrite();
-
-		hkArray<hkProcessContext*> havokContexts;
-		havokContexts.pushBack(_physicsContext);
-
-		_vdb = new hkVisualDebugger(havokContexts);
-		_vdb->serve();
-
-		//*********************************** TERMINO EL VISUAL DEBUGER *******************************
-
-		//****************************************** LLAMO A TEST SCENE *******************************
-		//StartTestScene();
-		//****************************** TERMINO DE LLAMAR A TEST SCENE *******************************
-
-		//s_HavokIsStarted = true;                                // Seteo mi trigger a True para no poder inicializar todo de nuevo :D!
-		_instance = this;
-	//}
-}*/
-
 void Physics::DeInitPhysics()
 {
 	_vdb->removeReference();
@@ -156,7 +94,7 @@ void Physics::DeInitPhysics()
 
 void Physics::stepSimulation(float deltaTime)
 {
-	_vdb->step();
+	/*_vdb->step();
 
 	float fHavokStep = (deltaTime / 1000.0f);
 	if (fHavokStep < 0.00000001f) {
@@ -167,7 +105,7 @@ void Physics::stepSimulation(float deltaTime)
 		fHavokStep = 3.9f;
 	}
 
-	_world->stepDeltaTime(fHavokStep);
+	_world->stepDeltaTime(fHavokStep);*/
 }
 
 void Physics::addEntity(RigidBody *_rigidb)

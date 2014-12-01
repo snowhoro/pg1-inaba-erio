@@ -48,7 +48,7 @@ bool Scene::Draw(Renderer &renderer,Timer &timer)
 	if (!_entities3D.empty()){
 		((Node*)(_entities3D[_entities3D.size() -1]))->UpdateTransformation();
 		((Node*)(_entities3D[_entities3D.size() -1]))->UpdateAABB();
-		//CheckDraw(renderer,*_entities3D[_entities3D.size() - 1]); // nuevo
+		CheckDraw(renderer,*_entities3D[_entities3D.size() - 1]); // nuevo
 	}
 
 	std::vector<Entity3D*>::iterator iter2;
@@ -56,7 +56,7 @@ bool Scene::Draw(Renderer &renderer,Timer &timer)
 	{
 		(*iter2)->Update(timer);
 		//(*iter2)->Draw(renderer);           // mas viejo
-		CheckDraw(renderer,*(*iter2));		// viejo 
+		//CheckDraw(renderer,*(*iter2));		// viejo 
 	}
 
 	return true;
