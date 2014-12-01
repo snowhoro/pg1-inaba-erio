@@ -92,7 +92,7 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 	}
 
 	Node* myNode = importNode(objScene->mRootNode, objScene, scene);
-	//scene.AddEntity(myNode);
+	scene.AddEntity(myNode);
 
 	return true;
 }
@@ -117,7 +117,6 @@ Node* Import3D::importNode(aiNode* myAiNode,const aiScene* myAiScene, Scene& sce
 		float rotX, rotY, rotZ;
 		quaternionToEuler(rotation.x,rotation.y,rotation.z,rotation.w,rotX,rotY,rotZ);
 		myNode->setRotation(rotX,rotY,rotZ);
-
 	}
 
 	

@@ -13,7 +13,7 @@ AABB::~AABB()
 
 void AABB::setBounds(TextureCoordVertex* vertices,int numVertex)
 {
-	_min = *vertices;
+	_min = vertices[0];
 	_max = _min;
 	
 

@@ -7,6 +7,8 @@
 #include "../Entity3D/Mesh.h"
 #include "../Entity3D/Node.h"
 #include "../Timer/Timer.h"
+#include "../Camera/Camera.h"
+#include "../Renderer/Renderer.h"
 #include "../Game.h"
 
 using namespace Inaba;
@@ -42,16 +44,38 @@ bool Scene::Draw(Renderer &renderer,Timer &timer)
 		(*iter)->Draw(renderer);
 	}
 
+
+	if (!_entities3D.empty()){
+		((Node*)(_entities3D[0]))->UpdateTransformation();
+		((Node*)(_entities3D[_entities3D.size() -1]))->UpdateAABB();
+	}
+
 	std::vector<Entity3D*>::iterator iter2;
 	for(iter2 = _entities3D.begin(); iter2 != _entities3D.end(); iter2++)
 	{
 		(*iter2)->Update(timer);
-		(*iter2)->Draw(renderer);
+		CheckDraw(renderer,*(*iter2));
 	}
 
-	if (!_entities3D.empty()){
-		((Node*)(_entities[0]))->UpdateTransformation();
-		((Node*)(_entities[0]))->UpdateAABB();
+	return true;
+}
+
+bool Scene::CheckDraw(Renderer& renderer,Entity3D& entity) {
+	
+	int r = renderer.getCamera()->checkCollisionAABB(&entity);
+
+	if(r == Camera::INSIDE)
+		entity.Draw(renderer);
+	else if (r == Camera::INTERSECT){
+        Inaba::Node* child = dynamic_cast<Inaba::Node*>(&entity);
+        if(child){ //
+			for(list<Entity3D*>::iterator it = child->getChilds().begin(); it != child->getChilds().end(); it++) {
+				CheckDraw(renderer,entity);
+			}
+		}
+		else{
+			entity.Draw(renderer);                
+		}
 	}
 	return true;
 }

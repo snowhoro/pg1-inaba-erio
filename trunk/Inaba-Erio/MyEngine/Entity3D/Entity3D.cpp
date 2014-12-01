@@ -229,7 +229,7 @@ void Entity3D::UpdateTransformation()
 		_worldTransformationMatrix = _transformationMatrix;
 	}else
 	{
-		D3DXMatrixMultiply(_worldTransformationMatrix, _parent->GetTranformationMatrix(), _transformationMatrix);
+		D3DXMatrixMultiply(_worldTransformationMatrix, (_parent->GetTranformationMatrix()), _transformationMatrix);
 	}
 	
 }
@@ -311,9 +311,4 @@ Matrix Entity3D::GetTranformationMatrix()
 void Entity3D::Update(Timer&)
 {
 	UpdateLocalTransformation();
-}
-
-void Entity3D::UpdateAABB()
-{
-
 }
