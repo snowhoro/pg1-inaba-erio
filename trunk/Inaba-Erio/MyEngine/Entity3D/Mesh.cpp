@@ -73,5 +73,5 @@ const std::vector<unsigned short> Mesh::indexs() const{
 
 void Mesh::UpdateAABB()
 {
-	_AABB->setBounds(_vertex,_numVertex);
+	_AABB->setBounds(_vVertex,_numVertex);
 }

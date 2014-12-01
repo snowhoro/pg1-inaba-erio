@@ -30,7 +30,7 @@ void Import3D::setRenderer(Renderer *renderer)
 	_renderer = renderer;
 }
 
-bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
+bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene, Mesh* mesh)
 {
 	UINT numVertices = 0;
 	UINT numFaces = 0;
@@ -64,13 +64,14 @@ bool Import3D::importMesh(aiMesh* myAiMeshes,Scene& scene)
 		indices[inx_faces++] = myAiMeshes->mFaces[nFaces].mIndices[2];
 	}
 
-	Mesh *myMesh = new Mesh(*_renderer);
-	myMesh->setData(vertices, myAiMeshes->mNumVertices,Inaba::TriangleList,indices,numFaces*3);
-	myMesh->setPos(0,0,0);
+	mesh->setData(vertices, myAiMeshes->mNumVertices,Inaba::TriangleList,indices,numFaces*3);
+	mesh->setPos(0,0,0);
+	mesh->setName(myAiMeshes->mName.C_Str());
 	
-	scene.AddEntity(myMesh);
+	scene.AddEntity(mesh);
 
-	delete vertices;
+	delete[] vertices;
+	vertices = NULL;
 	delete indices;
 
 	return true;
@@ -91,42 +92,48 @@ bool Import3D::importScene(const std::string& fileName,Scene& scene)
 		return false;
 	}
 
-	Node* myNode = importNode(objScene->mRootNode, objScene, scene);
-	scene.AddEntity(myNode);
+	Node *rootNode = new Node();
+	importNode(objScene->mRootNode, objScene, scene, *rootNode);
+	scene.AddEntity(rootNode);
 
 	return true;
 }
 
-Node* Import3D::importNode(aiNode* myAiNode,const aiScene* myAiScene, Scene& scene)
+bool Import3D::importNode(aiNode* myAiNode,const aiScene* myAiScene, Scene& scene, Node& pNode)
 {	
-
-	Node *myNode = new Node();
+	aiVector3t<float> scaling;
+	aiQuaterniont<float> rotation;
+	aiVector3t<float> position;
+	myAiNode->mTransformation.Decompose(scaling,rotation,position);
+	pNode.setPos(position.x,position.y,position.z);
+	pNode.setScale(scaling.x,scaling.y,scaling.z);
+	float rotX, rotY, rotZ;
+	quaternionToEuler(rotation.x,rotation.y,rotation.z,rotation.w,rotX,rotY,rotZ);
+	pNode.setRotation(rotX,rotY,rotZ);
 
 	for(int nChild=0; nChild < myAiNode->mNumChildren; nChild++)
 	{
-		Node *myChildren = importNode(myAiNode->mChildren[nChild], myAiScene , scene);		
-		myChildren->SetParent(myNode);
-		myNode->AddChild(myChildren);
+		Node *childNode = new Node();
+		pNode.AddChild(childNode);
+		childNode->SetParent(&pNode);
 
-		aiVector3t<float> scaling;
-		aiQuaterniont<float> rotation;
-		aiVector3t<float> position;
-		myAiNode->mTransformation.Decompose(scaling,rotation,position);
-		myNode->setPos(position.x,position.y,position.z);
-		myNode->setScale(scaling.x,scaling.y,scaling.z);
-		float rotX, rotY, rotZ;
-		quaternionToEuler(rotation.x,rotation.y,rotation.z,rotation.w,rotX,rotY,rotZ);
-		myNode->setRotation(rotX,rotY,rotZ);
+        importNode(myAiNode->mChildren[nChild], myAiScene, scene, *childNode);
+
+		scene.AddEntity(childNode);
 	}
-
 	
 	for(int nMeshes=0; nMeshes < myAiNode->mNumMeshes ; nMeshes++)
 	{
-		importMesh(myAiScene->mMeshes[myAiNode->mMeshes[nMeshes]], scene);
+		Mesh *childMesh = new Mesh(*_renderer);
+		importMesh(myAiScene->mMeshes[myAiNode->mMeshes[nMeshes]], scene, childMesh);
+
+		pNode.AddChild(childMesh);
+		childMesh->SetParent(&pNode);
 	}
+
 	
-	scene.AddEntity(myNode);
-	return myNode;
+
+	return true;
 
 }
 
