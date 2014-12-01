@@ -5,7 +5,6 @@
 #include "Mesh.h"
 #include <list>
 #include "../myengine_api.h"
-using namespace std;
 
 namespace Inaba
 {	
@@ -21,7 +20,7 @@ namespace Inaba
 
 			void AddChild(Entity3D*);
 			void RemoveChild(Entity3D*);
-			const list<Entity3D*> getChilds() const;
+			std::list<Entity3D*> getChilds();
 			void Draw(Renderer&);
 			void Update(Timer&);
 			void UpdateTransformation();
@@ -29,7 +28,7 @@ namespace Inaba
 			void UpdateNodeAABB();
 		private:
 			
-			list<Entity3D*> childs;
+			std::list<Entity3D*> childs;
 	};
 }
 #endif
