@@ -1,11 +1,6 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-
-#define OUTSIDE 0
-#define INSIDE 1
-#define INTERSECT 2
-
 #include "../myengine_api.h"
 #include <d3dx9.h>
 #include "../Entity3D/Entity3D.h"
@@ -39,7 +34,7 @@ namespace Inaba
 		void BuildViewFrustum();
 		UINT checkCollisionAABB(Entity3D* entity3D);
 		void Update();
-
+		static enum {OUTSIDE, INSIDE, INTERSECT};
 		void CameraControl(DirectInput &directInput, float cameraVel = 10.0f);
 
 	private:

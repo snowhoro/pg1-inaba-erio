@@ -38,7 +38,8 @@ void Node::RemoveChild(Entity3D* child)
 
 void Node::UpdateTransformation()
 {
-	Entity3D::UpdateTransformation();
+	//Entity3D::UpdateTransformation();
+	
 	for(list<Entity3D*>::iterator iter = childs.begin(); iter != childs.end(); iter++)
 	{
 		(*iter)->UpdateTransformation();
@@ -47,19 +48,27 @@ void Node::UpdateTransformation()
 
 void Node::UpdateAABB()
 {
-	for(list<Entity3D*>::iterator iter = childs.begin(); iter != childs.end(); iter++)
+	//std::vector<Entity3D*>::iterator iter;
+	for (list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++)
+	//for(list<Entity3D*>::iterator iter = childs.begin(); iter != childs.end(); iter++)
 	{
-		(*iter)->UpdateAABB();
+		(*it)->UpdateAABB();
 	}
-	Entity3D::UpdateAABB();
+	//UpdateAABB();
 }
 
 void Node::Update(Timer& timer)
 {
-
+	
 }
 
-void Node::Draw(Renderer& r) const
+void Node::Draw(Renderer& r)
 {
+	for (std::list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++) {
+		(*it)->Draw(r);
+	}
+}
 
+list<Entity3D*> Node::getChilds(){
+	return childs;
 }

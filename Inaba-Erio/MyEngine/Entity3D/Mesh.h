@@ -21,7 +21,7 @@ namespace Inaba
 			~Mesh();
 
 			void setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Inaba::Primitive Prim, const unsigned short* pInt, size_t indexCount);
-            void Draw(Renderer& r) const;
+            void Draw(Renderer& r);
 			void Update(Timer&);
 			void UpdateAABB();
 

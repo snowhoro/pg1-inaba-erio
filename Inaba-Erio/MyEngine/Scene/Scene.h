@@ -33,6 +33,7 @@ namespace Inaba
 			virtual bool Frame(Renderer&,DirectInput&,Timer&)= 0;
 			bool deInit();
 			bool Draw(Renderer&,Timer&);
+			bool CheckDraw(Renderer&,Entity3D&);
 			bool getEntity(Sprite** ent ,std::string name);
 			bool getEntity(Quad** ent ,std::string name);
 			bool getEntity(Mesh** ent ,std::string name);

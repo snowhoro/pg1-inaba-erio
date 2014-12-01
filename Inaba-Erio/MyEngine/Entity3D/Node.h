@@ -21,7 +21,8 @@ namespace Inaba
 
 			void AddChild(Entity3D*);
 			void RemoveChild(Entity3D*);
-			void Draw(Renderer&) const;
+			list<Entity3D*> getChilds();
+			void Draw(Renderer&);
 			void Update(Timer&);
 			void UpdateTransformation();
 			void UpdateAABB();

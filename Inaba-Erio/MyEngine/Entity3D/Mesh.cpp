@@ -48,16 +48,17 @@ void Mesh::setData(const TextureCoordVertex* Tex_Vertex, size_t vertexCount, Ina
 
 }
 
-void Mesh::Draw(Renderer& renderer) const
+void Mesh::Draw(Renderer& renderer) 
 {
 	_vertexBuffer3D->bind();
 	_indexBuffer->bind();
 	renderer.setCurrentTexture(NoTexture);
 	renderer.setMatrix(World,_transformationMatrix);
+	
 	renderer.Draw(pPrimitive);
 }
 
-void Mesh::Update(Timer& timer)
+void Mesh::Update(Timer& timer) 
 {
 	Entity3D::Update(timer);
 }
@@ -72,5 +73,5 @@ const std::vector<unsigned short> Mesh::indexs() const{
 
 void Mesh::UpdateAABB()
 {
-	Entity3D::_AABB->setBounds(_vertex,_numVertex);
+	_AABB->setBounds(_vertex,_numVertex);
 }
