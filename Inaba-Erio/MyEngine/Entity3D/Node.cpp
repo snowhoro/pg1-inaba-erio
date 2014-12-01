@@ -40,7 +40,7 @@ void Node::UpdateTransformation()
 {
 	//Entity3D::UpdateTransformation();
 	
-	for(list<Entity3D*>::iterator iter = childs.begin(); iter != childs.end(); iter++)
+	for(std::list<Entity3D*>::iterator iter = childs.begin(); iter != childs.end(); iter++)
 	{
 		(*iter)->UpdateTransformation();
 	}
@@ -49,7 +49,7 @@ void Node::UpdateTransformation()
 void Node::UpdateAABB()
 {
 	//std::vector<Entity3D*>::iterator iter;
-	for (list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++)
+	for (std::list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++)
 	//for(list<Entity3D*>::iterator iter = childs.begin(); iter != childs.end(); iter++)
 	{
 		(*it)->UpdateAABB();
@@ -59,9 +59,9 @@ void Node::UpdateAABB()
 
 void Node::UpdateNodeAABB() {
 
-	vector<TextureCoordVertex> _vertex;
+	std::vector<TextureCoordVertex> _vertex;
 
-	for (list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++)
+	for (std::list<Entity3D*>::iterator it = childs.begin(); it != childs.end(); it++)
 	{
 		_vertex.push_back((*it)->getAABB()->getMin());
 		_vertex.push_back((*it)->getAABB()->getMax());
@@ -82,6 +82,6 @@ void Node::Draw(Renderer& r)
 	//}
 }
 
-const list<Entity3D*> Node::getChilds() const{
+std::list<Entity3D*> Node::getChilds(){
 	return childs;
 }
