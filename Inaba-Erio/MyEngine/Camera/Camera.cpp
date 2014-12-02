@@ -196,8 +196,39 @@ void Camera::BuildViewFrustum()
 UINT Camera::checkCollisionAABB(Entity3D* entity3D)
 {
 	AABB *_aabb = entity3D->getAABB();
+	/*
+	TextureCoordVertex* tmpVertex = new TextureCoordVertex();
 
+	
+	//los de adelante
+	tmpVertex[0].x = _aabb->getMin().x;			tmpVertex[0].y = _aabb->getMin().y;			tmpVertex[0].z = _aabb->getMin().z;	
+	tmpVertex[1].x = _aabb->getMin().x;			tmpVertex[1].y = _aabb->getMax().y;			tmpVertex[1].z = _aabb->getMin().z;	
+	tmpVertex[2].x = _aabb->getMax().x;			tmpVertex[2].y = _aabb->getMin().y;			tmpVertex[2].z = _aabb->getMin().z;	
+	tmpVertex[3].x = _aabb->getMax().x;			tmpVertex[3].y = _aabb->getMax().y;			tmpVertex[3].z = _aabb->getMin().z;	
+	//los de atras
+	tmpVertex[4].x = _aabb->getMin().x;			tmpVertex[4].y = _aabb->getMin().y;			tmpVertex[4].z = _aabb->getMax().z;	
+	tmpVertex[5].x = _aabb->getMin().x;			tmpVertex[5].y = _aabb->getMax().y;			tmpVertex[5].z = _aabb->getMax().z;	
+	tmpVertex[6].x = _aabb->getMax().x;			tmpVertex[6].y = _aabb->getMin().y;			tmpVertex[6].z = _aabb->getMax().z;	
+	tmpVertex[7].x = _aabb->getMax().y;			tmpVertex[7].y = _aabb->getMax().y;			tmpVertex[7].z = _aabb->getMax().z;	
+
+	int iInCount = 8;
+	for(int p = 0; p < 6; ++p)
+	{
+		for(int i = 0; i < 8; i++)
+		{
+			float d  =  FrustumPlane[p].a * tmpVertex[i].x +	
+						FrustumPlane[p].b * tmpVertex[i].y +
+						FrustumPlane[p].c * tmpVertex[i].z ;
+			
+			float r = FrustumPlane[p].d;
+		}
+	}
+
+	*/
+
+	
 	D3DXVECTOR3 aabbSize = D3DXVECTOR3(_aabb->getWidth(),_aabb->getHeight(),_aabb->getDepth());
+	
 	D3DXVECTOR3 aabbCenter = _aabb->getCenter();
 	//D3DXVECTOR3 aabbCenter = D3DXVECTOR3( _aabb->getCenter().x + entity3D->GetTranformationMatrix()->_41 , _aabb->getCenter().y + entity3D->GetTranformationMatrix()->_42 , _aabb->getCenter().z + entity3D->GetTranformationMatrix()->_43);
 	unsigned int result = INSIDE;
@@ -210,9 +241,9 @@ UINT Camera::checkCollisionAABB(Entity3D* entity3D)
 				  aabbCenter.y * fPlane.b + 
 				  aabbCenter.z * fPlane.c;
 
-			float r = aabbSize.x * fPlane.a + 
-				  aabbSize.y * fPlane.b + 
-				  aabbSize.z * fPlane.c;
+		float r = aabbSize.x * std::abs(fPlane.a) + 
+				  aabbSize.y * std::abs(fPlane.b )+ 
+				  aabbSize.z * std::abs(fPlane.c);
 
 			float d_p_r = d + r;
 			float d_m_r = d - r;
@@ -227,4 +258,5 @@ UINT Camera::checkCollisionAABB(Entity3D* entity3D)
 	}
 
 	return result;
+	
 }

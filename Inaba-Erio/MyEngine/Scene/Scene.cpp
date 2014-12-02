@@ -71,7 +71,7 @@ bool Scene::CheckDraw(Renderer& renderer,Entity3D& entity) {
 	else if (r == Camera::INTERSECT){
         Inaba::Node* child = dynamic_cast<Inaba::Node*>(&entity);
         if(child)
-		{ //
+		{ 
 			std::list<Entity3D*> tmp = child->getChilds();
 			for(std::list<Entity3D*>::iterator it = tmp.begin(); it != tmp.end(); it++) 
 			{
