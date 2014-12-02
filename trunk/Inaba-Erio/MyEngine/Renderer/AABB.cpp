@@ -47,14 +47,14 @@ TextureCoordVertex AABB::getMin(){
 }
 
 float AABB::getWidth() {
-	return _max.x - _min.x;
+	return (_max.x - _min.x) * 0.5;
 }
 
 float AABB::getHeight() {
-	return _max.y - _min.y;
+	return (_max.y - _min.y) * 0.5;
 }
 float AABB::getDepth() {
-	return _max.z - _min.z;
+	return (_max.z - _min.z) * 0.5;
 }
 
 D3DXVECTOR3 AABB::getCenter(){
